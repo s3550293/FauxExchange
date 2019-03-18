@@ -1,10 +1,17 @@
-# CapstoneProject GROUP 4
+# Faux Exchange | GROUP 4 | Capstone Project
+Faux Exchange is
 
-## Rules
-* All team members must pull before they start working
-* All team members must push at the end of each working session
-* Team members should never push to master
-* Team members must get a merge request approved before continuing with the merge
-* Team members must pray to the gods when they push to master to ensure the code still works
-* When presented with a merge conflict NEVER replace the old code with the code you are merging. Team members must go through and resolve  each conflict manually
-* Team members should never push useless code
+## Getting Started
+Please visit [URL](#) to launch the web application
+
+## Contributing
+Please read [CONTRIBUTING.md](https://github.com/s3550293/CapstoneProject/blob/master/CONTRIBUTING.md) for the controbution rules
+
+## Built With
+
+## Authors
+* **Arnold D'Silva** - *Technical Lead* - [RMIT](#)
+* **Mark Nguyen** - *Scrum Master* - [RMIT](#)
+* **Joseph Garner** - *Team Leader* - [RMIT](#)
+
+
