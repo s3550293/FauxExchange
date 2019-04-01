@@ -1,7 +1,9 @@
 package com.g4.fauxexchange.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 public class Currency {
 	
 	@Id
@@ -9,8 +11,8 @@ public class Currency {
 
 	public String code;
 	public String name;
-	public String url;
 	public double price;
+	public double change;
 
 	public Currency() {}
 
@@ -21,7 +23,7 @@ public class Currency {
 
 	@Override
 	public String toString() {
-		return String.format("Currency[id=%s, code='%s', name='%s']", id, code, name);
+		return String.format("Currency[id=%s, code='%s', name='%s', price='%f']", id, code, name, price);
 	}
 
 }
