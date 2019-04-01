@@ -1,9 +1,13 @@
 package com.g4.fauxexchange;
 
+import java.net.URL;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.apache.commons.io.IOUtils;
+import org.json.*;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -39,20 +43,11 @@ public class FauxexchangeApplication implements CommandLineRunner {
         repository.save(new Currency("EOS", "EOS"));
         repository.save(new Currency("DOGE", "Dogecoin"));
 
+        System.out.println("Added crypto currencies into the database");
 
-        printMessage();
-    }
-
-    @Scheduled(fixedRate=1000)
-    public void printMessage() {
-        // fetch all Currency
-        System.out.println();
-        System.out.println("Currencies found with findAll():");
-        System.out.println("-------------------------------");
-        for (Currency currency : repository.findAll()) {
-            System.out.println(currency);
+        for(Currency currency : repository.findAll()) {
+            System.out.println(currency.code + " | " + currency.id);
         }
-        System.out.println();
     }
 
 }
