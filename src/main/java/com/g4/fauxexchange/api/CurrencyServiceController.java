@@ -14,12 +14,12 @@ import com.g4.fauxexchange.model.Currency;
 
 @RestController
 public class CurrencyServiceController {
-	
-	@Autowired
-	CurrencyService currencyService;
+    
+    @Autowired
+    CurrencyService currencyService;
 
-	@RequestMapping(value = "/api/currencies")
-	public ResponseEntity<Object> getCurrencies() {
-		return new ResponseEntity<>(currencyService.getCurrencies(), HttpStatus.OK);
-	}
+    @RequestMapping(value = "/api/currencies")
+    public ResponseEntity<Object> getCurrencies() {
+        return new ResponseEntity<>(currencyService.getCurrencies(), HttpStatus.OK);
+    }
 }
