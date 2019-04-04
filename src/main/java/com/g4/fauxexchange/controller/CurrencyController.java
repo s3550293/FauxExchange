@@ -14,9 +14,9 @@ public class CurrencyController {
         return "template";
     }
 
-	@RequestMapping("/notemplate") 
-	public String NoTemplate() {
-		return "notemplate";
-	}
+    @RequestMapping("/notemplate") 
+    public String NoTemplate() {
+        return "notemplate";
+    }
 
 }
