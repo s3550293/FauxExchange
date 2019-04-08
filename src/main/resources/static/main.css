@@ -1,5 +1,30 @@
 @import url('https://fonts.googleapis.com/css?family=Copse|Montserrat:300,400,700');
 
-*{
+
+* {
     font-family: 'Montserrat', sans-serif;
+}
+
+.center-DIV{
+    margin:5em auto;
+    padding-left: 5em;
+    padding-right: 5em;
+}
+
+@media only screen and (max-width: 40em) { 
+    .center-DIV{
+        margin:2em auto;
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+}
+
+.transation-money-in-arrow{
+    font-size:20px;
+    color:green;
+}
+
+.transation-money-out-arrow{
+    font-size:20px;
+    color:red;
 }

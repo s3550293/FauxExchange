@@ -3,7 +3,7 @@
 <header>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Currencies</title>
+    <title>Transactions</title>
     <!-- foundation-float.min.css: Compressed CSS with legacy Float Grid -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/css/foundation-float.min.css"
         integrity="sha256-sP0p6J7SbJGiJ2gkdY1nkVsLgdwiFN2kI370lU+zacQ= sha384-yZLxxcD8nfiSt1qfKJWwHwtkL58WZDTlkBnZN60qr3ZS35+LDsmUF2JHLxdyZ+KU sha512-Z3WbpfWFSsK2dBvoSYZnMvPmxSJUa5cxj3TYlmyj6cq8IXy7iB2nlUk+jjms8gnz4HmpQk/yhRSlRzW7keoSlg=="
@@ -56,84 +56,55 @@
                     <span class="title-bar-title">Faux Exchange</span>
                 </div>
                 <div class="title-bar-right">
-                    <span>Currencies</span>
+                    <span>Transactions</span>
                 </div>
             </div>
             <div class="center-DIV">
 
                 <!-- CODE GOES BELOW -->
 
-                <table id="API_Table" class="hover">
-                    
-                </table>
+
 
                 <!-- CODE GOES ABOVE -->
 
-                <!-- <table class="hover">
+                <table class="hover">
                     <tr>
-                        <td class="text-center"><img src="../static/logos/bitcoin.svg" height="30px" width="30pxx"></td>
-                        <td class="text-center">Bitcoin</td>
-                        <td class="text-center">$10.30</td>
-                        <td class="text-center"><button class="button primary">Buy/Sell</button></td>
+                        <th class="text-center">In/Out</th>
+                        <th class="text-center">Value</th>
+                        <th class="text-center">Type</th>
+                        <th class="text-center">Currency</th>
+                        <th class="text-center">Volume</th>
+                        <th class="text-center">Wallet</th>
+                        <th class="text-center">Date</th>
+
                     </tr>
                     <tr>
-                        <td class="text-center"><img src="../static/logos/dash.svg" height="30px" width="30pxx"></td>
-                        <td class="text-center">Dash</td>
-                        <td class="text-center">$10.30</td>
-                        <td class="text-center"><button class="button primary">Buy/Sell</button></td>
+                        <td class="text-center"><i class="fas fa-arrow-left transation-money-in-arrow"></i></td>
+                        <td class="text-center">$100</td>
+                        <td class="text-center">Deposit</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">$100</td>
+                        <td class="text-center">01/01/1977</td>
                     </tr>
                     <tr>
-                        <td class="text-center"><img src="../static/logos/dogecoin.svg" height="30px" width="30pxx">
-                        </td>
-                        <td class="text-center">DogeCoin</td>
-                        <td class="text-center">$10.30</td>
-                        <td class="text-center"><button class="button primary">Buy/Sell</button></td>
+                        <td class="text-center"><i class="fas fa-arrow-right transation-money-out-arrow"></i></td>
+                        <td class="text-center">$25.60</td>
+                        <td class="text-center">Purchase</td>
+                        <td class="text-center">BTC</td>
+                        <td class="text-center">0.5</td>
+                        <td class="text-center">$74.4</td>
+                        <td class="text-center">01/01/1977</td>
                     </tr>
                     <tr>
-                        <td class="text-center"><img src="../static/logos/eos.svg" height="30px" width="30pxx"></td>
-                        <td class="text-center">EOS</td>
-                        <td class="text-center">$10.30</td>
-                        <td class="text-center"><button class="button primary">Buy/Sell</button></td>
+                        <td class="text-center"><i class="fas fa-arrow-left transation-money-in-arrow"></i></td>
+                        <td class="text-center">$47</td>
+                        <td class="text-center">Sale</td>
+                        <td class="text-center">BTC</td>
+                        <td class="text-center">0.5</td>
+                        <td class="text-center">$121.40</td>
+                        <td class="text-center">01/01/1977</td>
                     </tr>
-                    <tr>
-                        <td class="text-center"><img src="../static/logos/ethereum.svg" height="30px" width="30pxx">
-                        </td>
-                        <td class="text-center">Ethereum</td>
-                        <td class="text-center">$10.30</td>
-                        <td class="text-center"><button class="button primary">Buy/Sell</button></td>
-                    </tr>
-                    <tr>
-                        <td class="text-center"><img src="../static/logos/litecoin.svg" height="30px" width="30pxx">
-                        </td>
-                        <td class="text-center">Litecoin</td>
-                        <td class="text-center">$10.30</td>
-                        <td class="text-center"><button class="button primary">Buy/Sell</button></td>
-                    </tr>
-                    <tr>
-                        <td class="text-center"><img src="../static/logos/maker.svg" height="30px" width="30pxx"></td>
-                        <td class="text-center">Maker</td>
-                        <td class="text-center">$10.30</td>
-                        <td class="text-center"><button class="button primary">Buy/Sell</button></td>
-                    </tr>
-                    <tr>
-                        <td class="text-center"><img src="../static/logos/salt.svg" height="30px" width="30pxx"></td>
-                        <td class="text-center">Salt</td>
-                        <td class="text-center">$10.30</td>
-                        <td class="text-center"><button class="button primary">Buy/Sell</button></td>
-                    </tr>
-                    <tr>
-                        <td class="text-center"><img src="../static/logos/xrp.svg" height="30px" width="30pxx"></td>
-                        <td class="text-center">XRP</td>
-                        <td class="text-center">$0.30</td>
-                        <td class="text-center"><button class="button primary">Buy/Sell</button></td>
-                    </tr>
-                    <tr>
-                        <td class="text-center"><img src="../static/logos/zcash.svg" height="30px" width="30pxx"></td>
-                        <td class="text-center">Zcash</td>
-                        <td class="text-center">$10.30</td>
-                        <td class="text-center"><button class="button primary">Buy/Sell</button></td>
-                    </tr>
-                </table> -->
             </div>
         </div>
     </div>
@@ -160,9 +131,6 @@
 
     <!-- Custom Lib -->
     <script src="../static/js/main.js"></script>
-
-     <!-- Custom Lib -->
-     <script src="../static/js/grabCoin.js" type="text/babel"></script>
 </body>
 
 </html>

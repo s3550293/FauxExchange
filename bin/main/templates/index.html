@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<header>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <!-- foundation-float.min.css: Compressed CSS with legacy Float Grid -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/css/foundation-float.min.css"
+        integrity="sha256-sP0p6J7SbJGiJ2gkdY1nkVsLgdwiFN2kI370lU+zacQ= sha384-yZLxxcD8nfiSt1qfKJWwHwtkL58WZDTlkBnZN60qr3ZS35+LDsmUF2JHLxdyZ+KU sha512-Z3WbpfWFSsK2dBvoSYZnMvPmxSJUa5cxj3TYlmyj6cq8IXy7iB2nlUk+jjms8gnz4HmpQk/yhRSlRzW7keoSlg=="
+        crossorigin="anonymous">
+
+    <!-- foundation-prototype.min.css: Compressed CSS with prototyping classes -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/css/foundation-prototype.min.css"
+        integrity="sha256-ksLmXa0k3ACbX6azB9g6l7XlmSKFBkuH0DXKNwULXtE= sha384-RGTvu65DAT+yLQsTj5tnITDrMfrS5mbajNAYILSg4hHr9vRr/3Y9q0WAdChqLKfx sha512-KMJ7XYrv5UcwEvJFaYnLSdN5O3fT7aQvjed//LQPB3AsN4VPA/wXG9j4x4vKZkjNmU/U8aZC9Ac3FYxs9lPXcw=="
+        crossorigin="anonymous">
+
+    <!-- foundation-rtl.min.css: Compressed CSS with right-to-left reading direction -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/css/foundation-rtl.min.css"
+        integrity="sha256-jvk46bzgetf2fy3FF19toDOoy9CG3aFqZfd229doSyo= sha384-w6E9ynA6OV6MFswc7C8nr8QoBiRtqqOKF/5M9ZVyVDDyrUPLI75xizNuXgRZxWK5 sha512-7MZk47L+5Mj6Y0dP3NuB2aqlNdDgzTlCf8m50nvgnCHUbxZ9KabCy8VUzQAl/DqDKwR7E6JsCf1MUjkfCiVzJw=="
+        crossorigin="anonymous">
+
+
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel=stylesheet type="text/css" href="../static/main.css">
+</header>
+<!-- https://foundation.zurb.com/sites/docs -->
+
+<body>
+
+    <div class="off-canvas-wrapper">
+        <div class="off-canvas position-left reveal-for-large" id="mobileNav" data-off-canvas data-transition="overlap">
+            <button class="close-button" aria-label="Close Menu" type="button" data-toggle="mobileNav">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <br>
+            <br>
+            <lu class="vertical menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="currencies.html">Currencies</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </lu>
+        </div>
+        <div class="off-canvas-content" data-off-canvas-content>
+            <div class="title-bar">
+                    <div class="title-bar-left">
+                        <button class="menu-icon hide-for-large" type="button" data-open="mobileNav"></button>
+                        <span class="title-bar-title">Faux Exchange</span>
+                    </div>
+                    <div class="title-bar-right">
+                        <span>Index</span>
+                    </div>
+				</div>
+			
+				<h1 class="text-center">HELLO WORLD!</h1>
+            <!-- CODE GOES BELOW -->
+
+
+
+            <!-- CODE GOES ABOVE -->
+        </div>
+    </div>
+
+
+    <!-- JS libs -->
+    <!-- Foundation Libs -->
+    <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/what-input.js"></script>
+    <script src="../static/js/foundation.min.js"></script>
+    <!-- Initialize Foundation -->
+    <script>
+        $(document).foundation();
+    </script>
+
+    <!-- ReactJS Libs -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js" crossorigine>
+    </script>
+
+    <!-- Graph Lib -->
+    <script src="../static/js/Chart.bundle.js"></script>
+
+    <!-- Custom Lib -->
+    <script src="../static/js/main.js"></script>
+</body>
+
+</html>
