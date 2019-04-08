@@ -15,8 +15,8 @@ class grabBTC extends React.Component{
             const url = "https://api.cryptonator.com/api/ticker/"+coinCode[i];
             const response = await fetch(url);
             const data = await response.json();
+            this.state.coins.push(data.ticker);
             this.setState({loading: false});
-            this.state.coins.push(data.ticker)
             //console.log(data.ticker);
             console.log(this.state.coins[i]);
         }
@@ -26,22 +26,21 @@ class grabBTC extends React.Component{
     render(){
         //var i;
         if(this.state.loading){
-            return <div>loading...</div>;
+            return <tbody><tr><td>loading...</td></tr></tbody>;
         }
-
         return(
-            <div>
+            <tbody>
                 {this.state.coins.map(coin => (
-                    <div key={coin.base}>
-                        <div>Currency: {coin.base}</div>
-                        <div>Price: {coin.price} {coin.target}</div>
-                        <div>Change: {coin.change}</div>
-                        <div><p></p></div>
-                    </div>
+                    <tr key={coin.base}>
+                        <td >{coin.base}</td>
+                        <td>{coin.price} {coin.target}</td>
+                        <td>{coin.change}</td>
+                        <td className="text-center"><button className="button primary">Buy/Sell</button></td>
+                    </tr>
                 ))}
-            </div>
+            </tbody>
         );
     }
 }
-const windowElement = document.getElementById('grabBTC');
+const windowElement = document.getElementById('API_Table');
 ReactDOM.render(e(grabBTC), windowElement);
