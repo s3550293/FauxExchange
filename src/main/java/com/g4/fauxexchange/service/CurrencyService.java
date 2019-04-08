@@ -1,6 +1,6 @@
 package com.g4.fauxexchange.service;
 
-import java.util.List;
+import java.util.List ;
 import com.g4.fauxexchange.model.Currency;
 
 public interface CurrencyService {

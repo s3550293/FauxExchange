@@ -1,6 +1,6 @@
 package com.g4.fauxexchange.service;
 
-import java.util.Collection;
+import java.util.List;
 import java.net.URL;
 
 import org.springframework.stereotype.Service;
@@ -56,7 +56,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     }
 
     public Currency getCurrency(String code) {
-        return repository
+        return repository.findByCode(code);
     }
 
 }
