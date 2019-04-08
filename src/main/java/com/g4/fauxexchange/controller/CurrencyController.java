@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class CurrencyController {
 
-    @GetMapping("/template")
-    public String Template() {
-        return "template";
+    @GetMapping("/currencies")
+    public String Currencies() {
+        return "currencies";
     }
 
     @RequestMapping("/notemplate") 
