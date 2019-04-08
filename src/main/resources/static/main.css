@@ -18,3 +18,13 @@
         padding-right: 2em;
     }
 }
+
+.transation-money-in-arrow{
+    font-size:20px;
+    color:green;
+}
+
+.transation-money-out-arrow{
+    font-size:20px;
+    color:red;
+}
