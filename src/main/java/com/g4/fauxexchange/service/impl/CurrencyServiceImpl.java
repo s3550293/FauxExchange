@@ -51,8 +51,12 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     }
 
-    public Collection<Currency> getCurrencies() {
+    public List<Currency> getCurrencies() {
         return repository.findAll();
+    }
+
+    public Currency getCurrency(String code) {
+        return repository
     }
 
 }
