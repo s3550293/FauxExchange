@@ -30,11 +30,19 @@ class grabBTC extends React.Component{
         }
         return(
             <tbody>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Value</th>
+                    <th>Change</th>
+                    <th></th>
+                </tr>
                 {this.state.coins.map(coin => (
                     <tr key={coin.base}>
-                        <td >{coin.base}</td>
-                        <td>{coin.price} {coin.target}</td>
-                        <td>{coin.change}</td>
+                        <td className="text-center"><img src={"logos/"+coin.base+".svg"} height="30px" width="30p"></img></td>
+                        <td className="text-center">{coin.base}</td>
+                        <td className="text-center">{coin.price} {coin.target}</td>
+                        <td className="text-center">{coin.change}</td>
                         <td className="text-center"><button className="button primary">Buy/Sell</button></td>
                     </tr>
                 ))}
