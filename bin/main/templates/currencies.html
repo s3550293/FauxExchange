@@ -26,7 +26,7 @@
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <!-- Custom CSS -->
-    <link rel=stylesheet type="text/css" href="../static/main.css">
+    <link rel=stylesheet type="text/css" href="css/main.css">
 </header>
 <!-- https://foundation.zurb.com/sites/docs -->
 
@@ -39,36 +39,30 @@
             </button>
             <br>
             <br>
-            <lu class="vertical menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="currencies.html">Currencies</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-            </lu>
+            <div th:replace="fragments/nav :: navigation"></div>
         </div>
         <div class="off-canvas-content" data-off-canvas-content>
-            <div class="title-bar">
-                    <div class="title-bar-left">
-                        <button class="menu-icon hide-for-large" type="button" data-open="mobileNav"></button>
-                        <span class="title-bar-title">Faux Exchange</span>
-                    </div>
-                    <div class="title-bar-right">
-                        <span>Currency</span>
-                    </div>
-                </div>
-            <!-- CODE GOES BELOW -->
+            <div th:replace="fragments/header :: header"></div>
+            <div class="center-DIV">
 
+                <!-- CODE GOES BELOW -->
 
+                <table id="API_Table" class="hover">
+                    
+                </table>
 
-            <!-- CODE GOES ABOVE -->
+                <!-- CODE GOES ABOVE -->
+
+            </div>
         </div>
     </div>
 
 
     <!-- JS libs -->
     <!-- Foundation Libs -->
-    <script src="../static/js/jquery.js"></script>
-    <script src="../static/js/what-input.js"></script>
-    <script src="../static/js/foundation.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/what-input.js"></script>
+    <script src="js/foundation.min.js"></script>
     <!-- Initialize Foundation -->
     <script>
         $(document).foundation();
@@ -81,10 +75,13 @@
     </script>
 
     <!-- Graph Lib -->
-    <script src="../static/js/Chart.bundle.js"></script>
+    <script src="js/Chart.bundle.js"></script>
 
     <!-- Custom Lib -->
-    <script src="../static/js/main.js"></script>
+    <script src="js/main.js"></script>
+
+     <!-- Custom Lib -->
+     <script src="js/grabCoin.js" type="text/babel"></script>
 </body>
 
 </html>
