@@ -1,6 +1,6 @@
 const e = React.createElement;
 const coinCode =['btc-aud','dash-aud','doge-aud','eos-aud','eth-aud','ltc-aud','mkr-aud','salt-aud','xrp-aud','zec-aud'];
-class grabBTC extends React.Component{
+class GrabCoin extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -51,4 +51,4 @@ class grabBTC extends React.Component{
     }
 }
 const windowElement = document.getElementById('API_Table');
-ReactDOM.render(e(grabBTC), windowElement);
+ReactDOM.render(e(GrabCoin), windowElement);
