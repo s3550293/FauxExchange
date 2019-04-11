@@ -5,10 +5,11 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.center-DIV{
-    margin:5em auto;
+.center-DIV {
+    margin: 5em auto;
     padding-left: 5em;
     padding-right: 5em;
+    height: 40em;
 }
 
 @media only screen and (max-width: 40em) { 
