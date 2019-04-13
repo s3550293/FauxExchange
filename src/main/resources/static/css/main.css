@@ -5,11 +5,24 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+html{
+    height: 100%;
+}
+
+body{
+    min-height: 100%;
+}
+
 .center-DIV {
-    margin: 5em auto;
+    /* margin: 5em auto; */
     padding-left: 5em;
     padding-right: 5em;
-    height: 40em;
+    /* height: 40em; */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 @media only screen and (max-width: 40em) { 

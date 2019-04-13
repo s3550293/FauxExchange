@@ -33,19 +33,22 @@
 <body>
 
     <div class="off-canvas-wrapper">
-        <div class="off-canvas position-left reveal-for-large" id="mobileNav" data-off-canvas data-transition="overlap">
+        <!-- <div class="off-canvas position-left reveal-for-large" id="mobileNav" data-off-canvas data-transition="overlap">
             <button class="close-button" aria-label="Close Menu" type="button" data-toggle="mobileNav">
                 <span aria-hidden="true">&times;</span>
             </button>
             <br>
             <br>
             <div th:replace="fragments/nav :: navigation"></div>
-        </div>
+        </div> -->
         <div class="off-canvas-content" data-off-canvas-content>
             <div th:replace="fragments/header :: headerIndex"></div>
-            <div class="center-DIV">
+            <div class="center-DIV window-size">
                 <h1 class="text-center">HELLO WORLD!</h1>
-
+                <br/>
+                <form action="/register">
+                    <input class="button warning" type="submit" value="Sign up">
+                </form>
                 <!-- CODE GOES BELOW -->
 
 

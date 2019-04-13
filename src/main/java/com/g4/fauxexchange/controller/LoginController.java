@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class CurrencyController {
+public class LoginController {
 
     /*
-    *   Calls the currency Page that displays a signal currency
+    *   Calls the login page
     */
-    @GetMapping("/currency")
-    public String Currency(){
-        return "currency";
+    @GetMapping("/login")
+    public String Login(){
+        return "login";
     }
     
 }

@@ -6,15 +6,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 @Controller
-public class CurrencyController {
+public class CurrenciesController {
 
     /*
-    *   Calls the currency Page that displays a signal currency
+    *   Calls the currency Page that displays all signal currencies
     */
-    @GetMapping("/currency")
-    public String Currency(){
-        return "currency";
+    @GetMapping("/currencies")
+    public String Currencies() {
+        return "currencies";
     }
-    
+
+    // What does this do?? - Jo
+    @RequestMapping("/notemplate") 
+    public String NoTemplate() {
+        return "notemplate";
+    }
+
 }
