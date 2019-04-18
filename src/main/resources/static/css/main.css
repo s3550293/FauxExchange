@@ -53,7 +53,7 @@ body {
 /* CONTENT */
 .index-header {
     /* background-color: blueviolet; */
-    background-image: url("images/indexbanner.jpg"), linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+    background-image: url("../images/indexbanner.jpg"), linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
     background-position: center;
     background-blend-mode: overlay;
     background-repeat: no-repeat;
