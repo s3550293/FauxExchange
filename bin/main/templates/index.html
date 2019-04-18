@@ -31,57 +31,76 @@
 <!-- https://foundation.zurb.com/sites/docs -->
 
 <body>
-
-    <div class="off-canvas-wrapper">
-        <!-- <div class="off-canvas position-left reveal-for-large" id="mobileNav" data-off-canvas data-transition="overlap">
-            <button class="close-button" aria-label="Close Menu" type="button" data-toggle="mobileNav">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <br>
-            <br>
-            <div th:replace="fragments/nav :: navigation"></div>
-        </div> -->
-        <div class="off-canvas-content" data-off-canvas-content>
-            <div th:replace="fragments/header :: headerIndex"></div>
-            <div class="center-DIV window-size">
-                <h1 class="text-center">HELLO WORLD!</h1>
-                <br/>
-                <form action="/register">
-                    <input class="button warning" type="submit" value="Sign up">
-                </form>
-                <!-- CODE GOES BELOW -->
-
-
-
-                <!-- CODE GOES ABOVE -->
-
-            </div>
-            <div th:replace="fragments/footer :: footer"></div>
+    <div th:replace="fragments/header :: headerIndex"></div>
+    <div class="index-header">
+        <div class="index-header-title">
+            <h1 class="index-h1">Real Time Trading.</h1>
+            <h1 class="index-h1">No Risk.</h1>
+            <h5>Faux Exchange is a university capstone project<br> developed by 3 idiots</h5>
         </div>
     </div>
+    <div class="curved-lid">
+        <!-- <div class="button info site-info"><div class="arrow-down"></div></div>
+        <span class="read-more">Read more!</span> -->
+    </div>
+    <div class="center-DIV window-size index-body center-DIV-mobile" style="min-height: 60vh;">
+        <div class="parent-twin parent-twin-mobile">
+            <div class="index-body-left index-body-left-mobile">
+                <h3>Learning to trade crypto currency its as easy as 1 2 3 4.</h3>
+                <h3>Start trading today!</h3>
+                <form action="/register">
+                    <input class="button error" type="submit" value="Sign up">
+                </form>
+            </div>
+            <div class="index-body-right index-body-right-mobile">
+                <div class="info-box box-1">
+                    <h3>1.</h3>
+                    <h4>Trade</h4>
+                </div>
+                <div class="info-box box-2">
+                    <h3>2.</h3>
+                    <h4>Grow</h4>
+                </div>
+                <div class="info-box box-3">
+                    <h3>3.</h3>
+                    <h4>Compare</h4>
+                </div>
+                <div class="info-box box-4">
+                    <h3>4.</h3>
+                    <h4>Compete</h4>
+                </div>
+            </div>
+        </div>
 
 
-    <!-- JS libs -->
-    <!-- Foundation Libs -->
-    <script src="js/jquery.js"></script>
-    <script src="js/what-input.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <!-- Initialize Foundation -->
-    <script>
-        $(document).foundation();
-    </script>
+        <!-- CODE GOES BELOW -->
 
-    <!-- ReactJS Libs -->
-    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-    <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js" crossorigine>
-    </script>
 
-    <!-- Graph Lib -->
-    <script src="js/Chart.bundle.js"></script>
 
-    <!-- Custom Lib -->
-    <script src="js/main.js"></script>
+        <!-- CODE GOES ABOVE -->
+
+        <div th:replace="fragments/footer :: footer-index"></div>
+        <!-- JS libs -->
+        <!-- Foundation Libs -->
+        <script src="js/jquery.js"></script>
+        <script src="js/what-input.js"></script>
+        <script src="js/foundation.min.js"></script>
+        <!-- Initialize Foundation -->
+        <script>
+            $(document).foundation();
+        </script>
+
+        <!-- ReactJS Libs -->
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js" crossorigine>
+        </script>
+
+        <!-- Graph Lib -->
+        <script src="js/Chart.bundle.js"></script>
+
+        <!-- Custom Lib -->
+        <script src="js/main.js"></script>
 </body>
 
 </html>
