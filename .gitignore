@@ -34,3 +34,7 @@ HELP.md
 
 ##Java##
 *.class
+
+### Bianry Files ###
+/bin
+\bin
