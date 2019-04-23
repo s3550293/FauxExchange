@@ -28,7 +28,6 @@ public class CurrencyServiceImpl implements CurrencyService {
     @Override
     @Scheduled(fixedRate=60000, initialDelay = 60000)
     public void updateCurrency() {
-        System.out.println("UPDATE CURRENCIES:");
         for(Currency currency : repository.findAll()) {
             JSONObject json = null;
             try {
@@ -38,12 +37,14 @@ public class CurrencyServiceImpl implements CurrencyService {
             }
 
             if(json != null) {
-                currency.price = json.getJSONObject("ticker").getDouble("price");
-                currency.change = json.getJSONObject("ticker").getDouble("change");
+                Double oldPrice = currency.price.peekLast();
+                currency.price.add(new Double(json.getJSONObject("ticker").getDouble("price")));
+                Double newPrice = currency.price.peekLast();
+                currency.change = newPrice - oldPrice;
                 repository.save(currency);
             }
 
-            System.out.println(currency.code + " | " + currency.price);
+            System.out.println("Updated: " + currency);
         }
     }
 

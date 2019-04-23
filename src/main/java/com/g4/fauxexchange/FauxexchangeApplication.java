@@ -45,8 +45,10 @@ public class FauxexchangeApplication implements CommandLineRunner {
 
         System.out.println("Added crypto currencies into the database");
 
+        System.out.println(repository.findByCode("XRP"));
+
         for(Currency currency : repository.findAll()) {
-            System.out.println(currency.code + " | " + currency.id);
+            System.out.println(currency);
         }
     }
 
