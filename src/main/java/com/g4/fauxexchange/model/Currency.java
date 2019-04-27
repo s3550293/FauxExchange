@@ -1,5 +1,7 @@
 package com.g4.fauxexchange.model;
 
+import java.util.LinkedList;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,7 +13,7 @@ public class Currency {
 
 	public String code;
 	public String name;
-	public double price;
+	public LinkedList<Double> price;
 	public double change;
 
 	public Currency() {}
@@ -19,11 +21,13 @@ public class Currency {
 	public Currency(String code, String name) {
 		this.code = code;
 		this.name = name;
+        this.price = new LinkedList<Double>();
+        this.price.add(new Double(0.0));
 	}
 
 	@Override
 	public String toString() {
-		return String.format("Currency[id=%s, code='%s', name='%s', price='%f']", id, code, name, price);
+		return String.format("Currency[id=%s, code='%s', name='%s', price='%s']", id, code, name, price.peekLast());
 	}
 
 }

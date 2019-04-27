@@ -7,7 +7,15 @@ import com.g4.fauxexchange.model.Currency;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface CurrencyRepository extends MongoRepository<Currency, String> {
-	public Currency findByCode(String code);
+
+    @Query(value = "{ 'code': ?0 }")
+	Currency findByCode(String code);
+
+    @Query(value = "{}", fields="{ 'id': 0, 'name': 1, 'code': 1, 'price': { $slice: -1 }, 'change': 1 }")
+    List<Currency> findAllWithRecentPrices();
+
 }
