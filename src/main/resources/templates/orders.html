@@ -3,7 +3,7 @@
 <header>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
+    <title>Transactions</title>
     <!-- foundation-float.min.css: Compressed CSS with legacy Float Grid -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/css/foundation-float.min.css"
         integrity="sha256-sP0p6J7SbJGiJ2gkdY1nkVsLgdwiFN2kI370lU+zacQ= sha384-yZLxxcD8nfiSt1qfKJWwHwtkL58WZDTlkBnZN60qr3ZS35+LDsmUF2JHLxdyZ+KU sha512-Z3WbpfWFSsK2dBvoSYZnMvPmxSJUa5cxj3TYlmyj6cq8IXy7iB2nlUk+jjms8gnz4HmpQk/yhRSlRzW7keoSlg=="
@@ -31,6 +31,7 @@
 <!-- https://foundation.zurb.com/sites/docs -->
 
 <body>
+
     <div class="off-canvas-wrapper">
         <div class="off-canvas position-left reveal-for-large" id="mobileNav" data-off-canvas data-transition="overlap">
             <button class="close-button" aria-label="Close Menu" type="button" data-toggle="mobileNav">
@@ -42,42 +43,52 @@
         </div>
         <div class="off-canvas-content" data-off-canvas-content>
             <div th:replace="fragments/header :: header"></div>
-            <style>
-                .flex-container {
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                }
-            </style>
             <div class="center-DIV">
 
                 <!-- CODE GOES BELOW -->
-                <canvas id="Currency-Chart-Display"></canvas>
-                <div class="flex-container">
-                    <div style="margin: 5em;">
-                        <h3>Buy</h3>
-                        <br />
-                        <form>
-                            <input type="text" id="value" placeholder="value" />
-                            <input type="text" id="Qty" placeholder="Qty" />
-                            <input type="submit" class="button success" value="Buy" />
-                        </form>
-                    </div>
 
-                    <div style="margin: 5em;">
-                        <h3>Sell</h3>
-                        <br />
-                        <form>
-                            <input type="text" id="value" placeholder="value" />
-                            <input type="text" id="Qty" placeholder="Qty" />
-                            <input type="submit" class="button error" value="Sell" />
-                        </form>
-                    </div>
-                </div>
+
 
                 <!-- CODE GOES ABOVE -->
 
+                <table class="hover">
+                    <tr>
+                        <th class="text-center">In/Out</th>
+                        <th class="text-center">Value</th>
+                        <th class="text-center">Type</th>
+                        <th class="text-center">Currency</th>
+                        <th class="text-center">Volume</th>
+                        <th class="text-center">Wallet</th>
+                        <th class="text-center">Date</th>
+
+                    </tr>
+                    <tr>
+                        <td class="text-center"><i class="fas fa-arrow-left transation-money-in-arrow"></i></td>
+                        <td class="text-center">$100</td>
+                        <td class="text-center">Deposit</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">$100</td>
+                        <td class="text-center">01/01/1977</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"><i class="fas fa-arrow-right transation-money-out-arrow"></i></td>
+                        <td class="text-center">$25.60</td>
+                        <td class="text-center">Purchase</td>
+                        <td class="text-center">BTC</td>
+                        <td class="text-center">0.5</td>
+                        <td class="text-center">$74.4</td>
+                        <td class="text-center">01/01/1977</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"><i class="fas fa-arrow-left transation-money-in-arrow"></i></td>
+                        <td class="text-center">$47</td>
+                        <td class="text-center">Sale</td>
+                        <td class="text-center">BTC</td>
+                        <td class="text-center">0.5</td>
+                        <td class="text-center">$121.40</td>
+                        <td class="text-center">01/01/1977</td>
+                    </tr>
             </div>
         </div>
     </div>
@@ -103,10 +114,7 @@
     <script src="js/Chart.bundle.js"></script>
 
     <!-- Custom Lib -->
-    <!-- <script src="js/JavaScriptMain.js"></script> -->
-
-    <!-- Graph For change over time -->
-    <script src="js/ChartCoin.js" type="text/babel"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

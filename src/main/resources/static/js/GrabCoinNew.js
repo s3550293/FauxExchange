@@ -4,23 +4,31 @@ class GrabCoinNew extends React.Component {
         super(props);
         this.state = {
             loading: true,
-            coins: []
+            coins: [],
         };
     }
     
     //Fetchs from rest API
-    async componentDidMount() {
-        var i;
-        const url = "/api/currencies";
-        const response = await fetch(url);
-        const data = await response.json();
-        this.setState({coins: data, loading: false})
+    componentDidMount() {
+        this.interval = setInterval(() => {
+            // var i;
+            // const url = "/api/currencies";
+            // const response = await fetch(url);
+            // const data = await response.json();
+            // this.setState({coins: data, loading: false})
+            fetch("/api/currencies")
+            .then(response => response.json())
+            .then(data => this.setState({coins: data, loading: false})), 3000
+        });
         //Code for testing api fetch
-        console.log(data);
+        // console.log(data);
         //Code to see if coins array has been correctly filled out
-        for(i = 0; i <this.state.coins.length;i++) {
-            console.log(this.state.coins[i]);
-        }
+        // for(i = 0; i <this.state.coins.length;i++) {
+        //     console.log(this.state.coins[i]);
+        // }
+    }
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
     render() {
@@ -39,12 +47,13 @@ class GrabCoinNew extends React.Component {
                 </tr>
                 {this.state.coins.map(coin => (
                     //Key used as a unique identifier otherwise console will spit out warning
-                    <tr key={coin.code}>
+                    // onClick={window.location='currency'}
+                    <tr key={coin.code} >
                         <td className="text-center"><img src={"logos/"+coin.code+".svg"} height="30px" width="30p"></img></td>
                         <td className="text-center">{coin.name}</td>
                         <td className="text-center">{coin.price}</td>
                         <td className="text-center">{coin.change}</td>
-                        <td className="text-center"><button className="button primary">Buy/Sell</button></td>
+                        {/* <td className="text-center"><button className="button primary">Buy/Sell</button></td> */}
                     </tr>
                 ))}
             </tbody>
