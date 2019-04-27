@@ -28,7 +28,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     @Override
     @Scheduled(fixedRate=60000, initialDelay = 60000)
     public void updateCurrency() {
-        for(Currency currency : repository.findAll()) {
+        for(Currency currency : currencyRepository.findAll()) {
             JSONObject json = null;
             try {
                 json = new JSONObject(IOUtils.toString(new URL("https://api.cryptonator.com/api/ticker/"+currency.code+"-aud")));
@@ -41,7 +41,7 @@ public class CurrencyServiceImpl implements CurrencyService {
                 currency.price.add(new Double(json.getJSONObject("ticker").getDouble("price")));
                 Double newPrice = currency.price.peekLast();
                 currency.change = newPrice - oldPrice;
-                repository.save(currency);
+                currencyRepository.save(currency);
             }
 
             System.out.println("Updated: " + currency);
@@ -55,7 +55,7 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     @Override
     public List<Currency> getCurrencies() {
-        return repository.findAllWithRecentPrices();
+        return currencyRepository.findAllWithRecentPrices();
     }
 
     @Override
