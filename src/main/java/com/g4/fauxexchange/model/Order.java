@@ -11,25 +11,23 @@ public class Order {
 	@Id
 	public String id;
 
-	public String code;
-	public int type;
+	public String type;
+    public String code;
     public double price;
 	public double qty;
 
     public Order() {}
 
-	public Order(String code, int type, double price, double qty) {
-        this.code = code;
+	public Order(String type, String code, double price, double qty) {
         this.type = type;
+        this.code = code;
         this.price = price;
         this.qty = qty;
     }
 
-
-
 	@Override
 	public String toString() {
-		return String.format("Order[id=%s, type='%s', code='%s', name='%s', qty='%s']", id, type, code, price, qty);
+		return String.format("Order[id=%s, type='%s', code='%s', price='%f', qty='%f']", id, type, code, price, qty);
 	}
 
 }

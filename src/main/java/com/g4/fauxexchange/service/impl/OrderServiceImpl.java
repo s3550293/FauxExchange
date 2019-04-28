@@ -42,7 +42,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getOrders(String code) {
-        return null;
+        return orderRepository.findAll();
     }
 
 }

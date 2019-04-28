@@ -9,19 +9,28 @@ class BuyCoin extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
-        data.append('type',0);
+        data.append('type', 'buy');
+        data.append('code', 'BTC');
         this.setState({
             res: stringifyFormData(data),
         });
-        {console.log(this.state.res)}
+        console.log(this.state.res);
+
+        fetch('/api/orders', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: stringifyFormData(data),
+        });
     }
 
     render() {
         return(
             <div>
                 <form onSubmit = {this.handleSubmit}>
-                    <input type="text" id="value" name="value" placeholder="Value" pattern="\d+" />
-                    <input type="text" id="Qty" name= "Qty" placeholder="Qty" pattern="\d+" />
+                    <input type="text" id="price" name="price" placeholder="Value" pattern="\d+" />
+                    <input type="text" id="qty" name= "qty" placeholder="Qty" pattern="\d+" />
                     <input type="submit" className="button success" value="Buy" />
                 </form>
                 {this.state.res && (

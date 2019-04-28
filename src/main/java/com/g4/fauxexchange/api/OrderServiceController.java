@@ -20,15 +20,16 @@ public class OrderServiceController {
     @Autowired
     OrderService orderService;
 
-    @GetMapping("/api/orders")
-    public ResponseEntity<Object> getCurrencies() {
+    @RequestMapping(value = "/api/orders", method = RequestMethod.GET)
+    public ResponseEntity<Object> getOrders() {
         return new ResponseEntity<>(orderService.getOrders(), HttpStatus.OK);
     }
 
 
-    @PostMapping("/api/orders")
+    @RequestMapping(value = "/api/orders", method = RequestMethod.POST)
     public ResponseEntity<Object> createOrder(@RequestBody Order order) {
         orderService.createOrder(order);
+        System.out.println(order);
         return new ResponseEntity<>("Hello World!", HttpStatus.OK);
     }
 }
