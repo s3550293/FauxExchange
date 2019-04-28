@@ -3,7 +3,6 @@ var i = 0;
 class SellCoin extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
     }
 
     handleSubmit = (event) => {
@@ -11,10 +10,7 @@ class SellCoin extends React.Component {
         const data = new FormData(event.target);
         data.append('type', 'sell');
         data.append('code', 'BTC');
-        this.setState({
-            res: stringifyFormData(data),
-        });
-
+        
         fetch('/api/orders', {
             method: "POST",
             headers: {
@@ -48,6 +44,9 @@ function stringifyFormData(fd) {
     return JSON.stringify(data, null, 2);
 }
 //Used to help debug json
+//this.setState({
+//    res: stringifyFormData(data),
+//});
 // {this.state.res && (
 //     <div>
 //         <h3>Data to be sent:</h3>

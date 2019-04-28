@@ -3,7 +3,6 @@ var i = 0;
 class BuyCoin extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
     }
 
     handleSubmit = (event) => {
@@ -11,9 +10,6 @@ class BuyCoin extends React.Component {
         const data = new FormData(event.target);
         data.append('type', 'buy');
         data.append('code', 'BTC');
-        this.setState({
-            res: stringifyFormData(data),
-        });
 
         fetch('/api/orders', {
             method: "POST",
