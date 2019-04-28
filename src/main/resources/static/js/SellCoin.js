@@ -1,6 +1,6 @@
 const e = React.createElement;
 var i = 0;
-class BuyCoin extends React.Component {
+class SellCoin extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -9,7 +9,7 @@ class BuyCoin extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
-        data.append('type', 'buy');
+        data.append('type', 'sell');
         data.append('code', 'BTC');
         this.setState({
             res: stringifyFormData(data),
@@ -22,23 +22,23 @@ class BuyCoin extends React.Component {
             },
             body: stringifyFormData(data),
         });
-        alert('Buy Order Successful');
+        alert('Sell Order Successful');
     }
 
     render() {
         return(
             <div>
                 <form onSubmit = {this.handleSubmit}>
-                    <input type="text" id="price" name="price" placeholder="Value" pattern="\d+" />
-                    <input type="text" id="qty" name= "qty" placeholder="Qty" pattern="\d+" />
-                    <input type="submit" className="button success" value="Buy" />
+                    <input type="text" id="price" name="price" placeholder="value" />
+                    <input type="text" id="qty" name= "qty" placeholder="Qty" />
+                    <input type="submit" className="button error" value="Sell" />
                 </form>
             </div>
         );
     }
 }
-const windowElement = document.getElementById('BuyForm');
-ReactDOM.render(e(BuyCoin),windowElement);
+const windowElement = document.getElementById('SellForm');
+ReactDOM.render(e(SellCoin),windowElement);
 
 function stringifyFormData(fd) {
     const data = {};
