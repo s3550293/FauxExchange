@@ -39,8 +39,8 @@ class BuyCoin extends React.Component {
 
     render() {
         return(
-            <div>
-                <div>
+            <div className="flex-container">
+                <div Style="margin: 5em;">
                     <h3>Buy</h3>
                     <br />
                     <form onSubmit = {this.buyHandleSubmit}>
@@ -49,7 +49,7 @@ class BuyCoin extends React.Component {
                         <input type="submit" className="button success" value="Buy" />
                     </form>
                 </div>
-                <div>
+                <div Style="margin: 5em;">
                     <h3>Sell</h3>
                     <br />
                     <form onSubmit = {this.sellHandleSubmit}>
