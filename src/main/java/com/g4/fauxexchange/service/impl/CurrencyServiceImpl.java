@@ -28,6 +28,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     @Override
     @Scheduled(fixedRate=60000, initialDelay = 60000)
     public void updateCurrency() {
+        System.out.println("- Updating Currencies -");
         for(Currency currency : currencyRepository.findAll()) {
             JSONObject json = null;
             try {
