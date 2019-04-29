@@ -18,18 +18,18 @@ import com.g4.fauxexchange.dao.CurrencyRepository;
 public class CurrencyServiceImpl implements CurrencyService {
 
     @Autowired
-    private CurrencyRepository repository;
+    private CurrencyRepository currencyRepository;
 
     @Override
     public void createCurrency(Currency currency) {
-        repository.save(currency);
+        currencyRepository.save(currency);
     }
 
     @Override
     @Scheduled(fixedRate=60000, initialDelay = 60000)
     public void updateCurrency() {
-        System.out.println("UPDATE CURRENCIES:");
-        for(Currency currency : repository.findAll()) {
+        System.out.println("- Updating Currencies -");
+        for(Currency currency : currencyRepository.findAll()) {
             JSONObject json = null;
             try {
                 json = new JSONObject(IOUtils.toString(new URL("https://api.cryptonator.com/api/ticker/"+currency.code+"-aud")));
@@ -38,25 +38,30 @@ public class CurrencyServiceImpl implements CurrencyService {
             }
 
             if(json != null) {
-                currency.price = json.getJSONObject("ticker").getDouble("price");
-                currency.change = json.getJSONObject("ticker").getDouble("change");
-                repository.save(currency);
+                Double oldPrice = currency.price.peekLast();
+                currency.price.add(new Double(json.getJSONObject("ticker").getDouble("price")));
+                Double newPrice = currency.price.peekLast();
+                currency.change = newPrice - oldPrice;
+                currencyRepository.save(currency);
             }
 
-            System.out.println(currency.code + " | " + currency.price);
+            System.out.println("Updated: " + currency);
         }
     }
 
+    @Override
     public void deleteCurrency(Currency currency) {
 
     }
 
+    @Override
     public List<Currency> getCurrencies() {
-        return repository.findAll();
+        return currencyRepository.findAllWithRecentPrices();
     }
 
+    @Override
     public Currency getCurrency(String code) {
-        return repository.findByCode(code);
+        return currencyRepository.findByCode(code);
     }
 
 }

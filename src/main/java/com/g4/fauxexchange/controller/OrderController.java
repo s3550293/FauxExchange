@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-public class CurrenciesController {
+public class OrderController {
 
     /*
     *   Calls the currency Page that displays all signal currencies
     */
-    @GetMapping("/currencies")
-    public String Currencies() {
-        return "currencies";
+    @GetMapping("/orders")
+    public String Orders() {
+        return "orders";
     }
 
 }

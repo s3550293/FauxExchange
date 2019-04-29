@@ -30,57 +30,79 @@
 </header>
 <!-- https://foundation.zurb.com/sites/docs -->
 
-<div class="off-canvas-wrapper">
-    <div class="off-canvas position-left reveal-for-large" id="mobileNav" data-off-canvas data-transition="overlap">
-        <button class="close-button" aria-label="Close Menu" type="button" data-toggle="mobileNav">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        <br>
-        <br>
-        <div th:replace="fragments/nav :: navigation"></div>
-    </div>
-    <div class="off-canvas-content" data-off-canvas-content>
-        <div th:replace="fragments/header :: header"></div>
-        <div class="center-DIV">
+<body>
+    <div class="off-canvas-wrapper">
+        <div class="off-canvas position-left reveal-for-large" id="mobileNav" data-off-canvas data-transition="overlap">
+            <button class="close-button" aria-label="Close Menu" type="button" data-toggle="mobileNav">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <br>
+            <br>
+            <div th:replace="fragments/nav :: navigation"></div>
+        </div>
+        <div class="off-canvas-content" data-off-canvas-content>
+            <div th:replace="fragments/header :: header"></div>
+            <style>
+                .flex-container {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                }
+            </style>
+            <div class="center-DIV">
 
-            <!-- CODE GOES BELOW -->
+                <!-- CODE GOES BELOW -->
+                <canvas id="Currency-Chart-Display"></canvas>
+                <div id="OrderForm">
+                    <!-- <div style="margin: 5em;">
+                        <h3>Buy</h3>
+                        <br />
+                        <div id="BuyForm"></div>
+                    </div>
 
-            <div id="Currency-Graph">
-                <canvas id="myChart" width="400px" height="200px"></canvas>
+                    <div style="margin: 5em;">
+                        <h3>Sell</h3>
+                        <br />
+                        <div id="SellForm"></div>
+                    </div> -->
+                </div>
+                <!-- CODE GOES ABOVE -->
+
             </div>
-
-
-            <!-- CODE GOES ABOVE -->
-
         </div>
     </div>
-</div>
 
 
-<!-- JS libs -->
-<!-- Foundation Libs -->
-<script src="js/jquery.js"></script>
-<script src="js/what-input.js"></script>
-<script src="js/foundation.min.js"></script>
-<!-- Initialize Foundation -->
-<script>
-    $(document).foundation();
-</script>
+    <!-- JS libs -->
+    <!-- Foundation Libs -->
+    <script src="js/jquery.js"></script>
+    <script src="js/what-input.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <!-- Initialize Foundation -->
+    <script>
+        $(document).foundation();
+    </script>
 
-<!-- ReactJS Libs -->
-<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-<script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js" crossorigine>
-</script>
+    <!-- ReactJS Libs -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js" crossorigine>
+    </script>
 
-<!-- Graph Lib -->
-<script src="js/Chart.bundle.js"></script>
+    <!-- Graph Lib -->
+    <script src="js/Chart.bundle.js"></script>
 
-<!-- Custom Lib -->
-<script src="js/main.js"></script>
+    <!-- Custom Lib -->
+    <!-- <script src="js/JavaScriptMain.js"></script> -->
 
-<!-- Graph For change over time -->
-<script src="js/ChartCoin.js" type="text/babel"></script>
+    <!-- Graph For change over time -->
+    <script src="js/ChartCoin.js" type="text/babel"></script>
+
+    <!-- Buy/Sell JS-->
+    <!-- <script src="js/BuyCoin.js" type="text/babel"></script>
+    <script src="js/SellCoin.js" type="text/babel"></script> -->
+    <script src="js/OrderCoin.js" type="text/babel"></script>
 </body>
 
 </html>

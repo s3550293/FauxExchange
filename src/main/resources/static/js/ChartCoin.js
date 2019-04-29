@@ -12,7 +12,7 @@ class ChartCoin extends React.Component {
             config: null
         };
     }
-    
+
     //Fetchs from rest API
     async componentDidMount() {
         var i;
@@ -21,8 +21,11 @@ class ChartCoin extends React.Component {
         const data = await response.json();
         var date;
         var month;
-        
-        this.setState({coins: data.Data, loading: false})
+        console.log("Node 1");
+        this.setState({
+            coins: data.Data,
+            loading: false
+        })
     }
 
     convertDate(value) {
@@ -32,12 +35,20 @@ class ChartCoin extends React.Component {
         return date;
     }
 
-    graphConfig(){
+    graphConfig() {
         this.state.coins.map(coin => (
             this.state.value.push(coin.open),
             this.state.time.push(this.convertDate(coin.time))
         ));
-        this.state.config = {
+        this.state.config;
+    }
+
+    // https://codepen.io/marcusvilete/pen/EEpKMx
+    render() {
+        this.graphConfig();
+        //Sets render to loading if coin array doesn't have data.\
+        var ctx = document.getElementById('Currency-Chart-Display').getContext('2d');
+        var graph = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: this.state.time,
@@ -98,24 +109,11 @@ class ChartCoin extends React.Component {
                     }
                 }
             }
-        };
-    }
-
-// https://codepen.io/marcusvilete/pen/EEpKMx
-    render() {
-        this.graphConfig();
-        //Sets render to loading if coin array doesn't have data.
-        if(this.state.loading){
-            return <h1>loading...</h1>
-        }else{
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var graph = new Chart(ctx, this.state.config);
-
-        }
-        return(
+        });
+        return (
             null
         );
     }
 }
-const windowElement = document.getElementById('Currency-Graph');
+const windowElement = document.getElementById('Currency-Chart-Display');
 ReactDOM.render(e(ChartCoin), windowElement);
