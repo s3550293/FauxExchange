@@ -27,37 +27,63 @@
 
     <!-- Custom CSS -->
     <link rel=stylesheet type="text/css" href="css/main.css">
+    <link rel=stylesheet type="text/css" href="css/color.css">
+    <link rel=stylesheet type="text/css" href="css/nav.css">
 </header>
 <!-- https://foundation.zurb.com/sites/docs -->
 
 <body>
 
     <div class="off-canvas-wrapper">
-        <div class="off-canvas position-left reveal-for-large" id="mobileNav" data-off-canvas data-transition="overlap">
+        <div class="off-canvas position-left reveal-for-large nav-lite text-lite" id="mobileNav" data-off-canvas data-transition="overlap">
             <button class="close-button" aria-label="Close Menu" type="button" data-toggle="mobileNav">
                 <span aria-hidden="true">&times;</span>
             </button>
             <br>
             <br>
-            <div th:replace="fragments/nav :: navigation"></div>
+            <!-- NAV -->
+            <div th:fragment="navigation">
+                <ul class="vertical menu">
+                    <li><a href="/"><i class="fi-list"></i> <span>Home</span></a></li>
+                    <li><a href="currencies">Currencies</a></li>
+                </ul>
+                <ul id="dev_nav" class="hide vertical menu">
+                        <li><a href="login">Login</a></li>
+                        <li><a href="register">Register</a></li>
+                        <li><a href="currency">Currency (BTC)</a></li>
+                        <li><a href="dashboard">Dashboard</a></li>
+                        <li><a href="transactions">Transactions</a></li>
+                        <li><a href="orders">Orders</a></li>
+                    </ul>
+            </div>
+            <!-- <div th:replace="fragments/nav :: navigation"></div> -->
+            <!-- NAV -->
         </div>
         <div class="off-canvas-content" data-off-canvas-content>
+            <!-- HEADER -->
             <div th:replace="fragments/header :: header"></div>
-            <div class="center-DIV">
+            <!-- HEADER -->
+            
+            <div class="cell medium-auto medium-cell-block-container">
+                <div class="center-DIV lite">
 
-                <!-- CODE GOES BELOW -->
-                <h3>Login</h3>
-                <br/>
-                <form>
-                    <input type="text" id="username" placeholder="username"/>
-                    <input type="password" id="password" placeholder="password"/>
-                    <input type="submit" class="button success" value="Login"/>
-                </form>
+                    <!-- CODE GOES BELOW -->
+                    <h3>Login</h3>
+                    <br />
+                    <form>
+                        <input type="text" id="username" placeholder="username" />
+                        <input type="password" id="password" placeholder="password" />
+                        <input type="submit" class="button success" value="Login" />
+                    </form>
 
+                    <!-- CODE GOES ABOVE -->
 
-                <!-- CODE GOES ABOVE -->
-
+                </div>
             </div>
+            <!-- FOOTER -->
+            <div th:replace="fragments/footer :: footer"></div>
+            
+            <!-- FOOTER -->
         </div>
     </div>
 
@@ -82,10 +108,7 @@
     <script src="js/Chart.bundle.js"></script>
 
     <!-- Custom Lib -->
-    <script src="js/main.js"></script>
-
-    <!-- Custom Chart -->
-    <script src="js/currencyChart.js" type="text/babel"></script>
+    <script src="js/JavaScriptMain.js"></script>
 </body>
 
 </html>

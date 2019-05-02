@@ -1,0 +1,24 @@
+.lite{
+    background: #fff!important;
+}
+.nav-lite{
+    background: #fff!important;
+}
+
+.text-lite{
+    color: rgb(33, 37, 44)!important;
+}
+
+
+
+/* DARK */
+.dark{
+    background: #1a1b1f!important;
+}
+.nav-dark{
+    background: #2a2c33!important;
+}
+
+.text-dark{
+    color: rgb(240, 240, 240)!important;
+}

@@ -27,11 +27,31 @@
 
     <!-- Custom CSS -->
     <link rel=stylesheet type="text/css" href="css/main.css">
+    <link rel=stylesheet type="text/css" href="css/color.css">
+    <link rel=stylesheet type="text/css" href="css/nav.css">
+    <link rel=stylesheet type="text/css" href="css/home.css">
 </header>
 <!-- https://foundation.zurb.com/sites/docs -->
 
 <body>
-    <div th:replace="fragments/header :: headerIndex"></div>
+    <!-- HEADER -->
+    <!-- <div th:replace="fragments/header :: headerIndex"></div> -->
+    <div class="title-bar title-bar-mobile">
+        <div class="title-bar-left">
+            <span class="title-bar-title">Faux Exchange</span>
+        </div>
+        <div class="title-bar-right">
+            <!-- <button href="/login" class=" button success">Login</button> -->
+            <form action="/login">
+                <input class="button success" type="submit" value="Login">
+            </form>
+            <form action="/register">
+                <input class="button warning" type="submit" value="Sign up">
+            </form>
+            <!-- <button href="/register" class=" button warning">Sign Up</button> -->
+        </div>
+    </div>
+    <!-- HEADER -->
     <div class="index-header">
         <div class="index-header-title">
             <h1 class="index-h1">Real Time Trading.</h1>
@@ -43,7 +63,7 @@
         <!-- <div class="button info site-info"><div class="arrow-down"></div></div>
         <span class="read-more">Read more!</span> -->
     </div>
-    <div class="center-DIV window-size index-body center-DIV-mobile" style="min-height: 60vh;">
+    <div class="center-DIV lite window-size index-body center-DIV-mobile" style="min-height: 60vh;">
         <div class="parent-twin parent-twin-mobile">
             <div class="index-body-top index-body-left-mobile">
 
@@ -99,34 +119,34 @@
     </div>
 
 
-        <!-- CODE GOES BELOW -->
+    <!-- CODE GOES BELOW -->
 
 
 
-        <!-- CODE GOES ABOVE -->
+    <!-- CODE GOES ABOVE -->
 
-        <!-- <div th:replace="fragments/footer :: footer-index"></div> -->
-        <!-- JS libs -->
-        <!-- Foundation Libs -->
-        <script src="js/jquery.js"></script>
-        <script src="js/what-input.js"></script>
-        <script src="js/foundation.min.js"></script>
-        <!-- Initialize Foundation -->
-        <script>
-            $(document).foundation();
-        </script>
+    <!-- <div th:replace="fragments/footer :: footer-index"></div> -->
+    <!-- JS libs -->
+    <!-- Foundation Libs -->
+    <script src="js/jquery.js"></script>
+    <script src="js/what-input.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <!-- Initialize Foundation -->
+    <script>
+        $(document).foundation();
+    </script>
 
-        <!-- ReactJS Libs -->
-        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-        <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js" crossorigine>
-        </script>
+    <!-- ReactJS Libs -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js" crossorigine>
+    </script>
 
-        <!-- Graph Lib -->
-        <script src="js/Chart.bundle.js"></script>
+    <!-- Graph Lib -->
+    <script src="js/Chart.bundle.js"></script>
 
-        <!-- Custom Lib -->
-        <script src="js/JavaScriptMain.js"></script>
+    <!-- Custom Lib -->
+    <script src="js/JavaScriptMain.js"></script>
 </body>
 
 </html>
