@@ -42,21 +42,7 @@
             <br>
             <br>
             <!-- NAV -->
-            <div th:fragment="navigation">
-                <ul class="vertical menu">
-                    <li><a href="/"><i class="fi-list"></i> <span>Home</span></a></li>
-                    <li><a href="currencies">Currencies</a></li>
-                </ul>
-                <ul id="dev_nav" class="hide vertical menu">
-                        <li><a href="login">Login</a></li>
-                        <li><a href="register">Register</a></li>
-                        <li><a href="currency">Currency (BTC)</a></li>
-                        <li><a href="dashboard">Dashboard</a></li>
-                        <li><a href="transactions">Transactions</a></li>
-                        <li><a href="orders">Orders</a></li>
-                    </ul>
-            </div>
-            <!-- <div th:replace="fragments/nav :: navigation"></div> -->
+            <div th:replace="fragments/nav :: newNavigation"></div>
             <!-- NAV -->
         </div>
         <div class="off-canvas-content" data-off-canvas-content>
@@ -72,7 +58,7 @@
                     <br />
                     <form>
                         <input type="text" id="username" placeholder="username" />
-                        <input type="password" id="password" placeholder="password" />
+                        <input type="password"  id="password" placeholder="password" />
                         <input type="submit" class="button success" value="Login" />
                     </form>
 
@@ -82,33 +68,14 @@
             </div>
             <!-- FOOTER -->
             <div th:replace="fragments/footer :: footer"></div>
-            
             <!-- FOOTER -->
         </div>
     </div>
-
-
-    <!-- JS libs -->
-    <!-- Foundation Libs -->
-    <script src="js/jquery.js"></script>
-    <script src="js/what-input.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <!-- Initialize Foundation -->
-    <script>
-        $(document).foundation();
-    </script>
-
-    <!-- ReactJS Libs -->
-    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-    <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js" crossorigine>
-    </script>
-
+    <!-- JAVASCRIPT -->
+    <div th:replace="fragments/javascript :: javascript"></div>
+    <!-- JAVASCRIPT -->
     <!-- Graph Lib -->
     <script src="js/Chart.bundle.js"></script>
-
-    <!-- Custom Lib -->
-    <script src="js/JavaScriptMain.js"></script>
 </body>
 
 </html>

@@ -3,6 +3,10 @@ var i = 0;
 class BuyCoin extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            buyQTYVal: 0,
+            buyPriceVal:0
+        }
     }
 
     buyHandleSubmit = (event) => {
@@ -37,6 +41,18 @@ class BuyCoin extends React.Component {
         alert('Sell Order Successful');
     }
 
+    updateBuyQtyVal = (event) => {
+        this.setState({
+            buyQTYVal: event.target.value
+        });
+    }
+
+    updateBuyPriceVal = (event) => {
+        this.setState({
+            buyPriceVal: event.target.value
+        });
+    }
+
     render() {
         return(
             <div className="flex-container">
@@ -44,8 +60,10 @@ class BuyCoin extends React.Component {
                     <h3>Buy</h3>
                     <br />
                     <form onSubmit = {this.buyHandleSubmit}>
-                        <input type="text" id="price" name="price" placeholder="Value" pattern="\d+" />
-                        <input type="text" id="qty" name= "qty" placeholder="Qty" pattern="\d+" />
+                        <input type="text" id="qty" name= "qty" placeholder="Qty" pattern="\d+" value={this.state.buyQTYVal} onChange={event => this.updateBuyQtyVal(event)}/>
+                        <input type="text" id="price" name="price" placeholder="Value" pattern="\d+" value={this.state.buyPriceVal} onChange={event => this.updateBuyPriceVal(event)}/>
+                        {/* <button className="button">Best Buy</button> */}
+                        <h4>{this.buyQTYVal * this.buyPriceVal}</h4>
                         <input type="submit" className="button success" value="Buy" />
                     </form>
                 </div>
@@ -53,8 +71,8 @@ class BuyCoin extends React.Component {
                     <h3>Sell</h3>
                     <br />
                     <form onSubmit = {this.sellHandleSubmit}>
-                        <input type="text" id="price" name="price" placeholder="value" />
                         <input type="text" id="qty" name= "qty" placeholder="Qty" />
+                        <input type="text" id="price" name="price" placeholder="value" />
                         <input type="submit" className="button error" value="Sell" />
                     </form>
                 </div>

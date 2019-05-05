@@ -9,6 +9,10 @@
     color: rgb(33, 37, 44)!important;
 }
 
+.lite tr:nth-child(odd){
+    background: #eae8e8;
+}
+
 
 
 /* DARK */
@@ -21,4 +25,16 @@
 
 .text-dark{
     color: rgb(240, 240, 240)!important;
+}
+
+.dark tr:nth-child(even){
+    background: #3d3f49;
+}
+
+.dark tr:nth-child(odd){
+    background: #21252c;
+}
+
+.dark tr:hover{
+    background: #424551;
 }

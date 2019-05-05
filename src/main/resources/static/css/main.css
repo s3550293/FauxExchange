@@ -53,6 +53,15 @@ body {
     font-size: 20px;
     color: red;
 }
+tbody{
+    border: none;
+}
+
+tbody{
+    border-radius: .5em;
+}
+
+
 
 
 h1,
