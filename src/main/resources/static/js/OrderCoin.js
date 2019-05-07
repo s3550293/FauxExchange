@@ -4,8 +4,10 @@ class BuyCoin extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            buyQTYVal: 0,
-            buyPriceVal:0
+            buyQtyVal:'',
+            buyPriceVal:'',
+            sellQtyVal:'',
+            sellPriceVal:''
         }
     }
 
@@ -41,29 +43,46 @@ class BuyCoin extends React.Component {
         alert('Sell Order Successful');
     }
 
-    updateBuyQtyVal = (event) => {
+    updateInput = (event) => {
+        event.preventDefault();
         this.setState({
-            buyQTYVal: event.target.value
-        });
+            [event.target.name]: event.target.value,
+        })
     }
 
-    updateBuyPriceVal = (event) => {
-        this.setState({
-            buyPriceVal: event.target.value
-        });
+    multiply(val){
+        console.log(val);
+        if(val == "buy"){
+            console.log("This is for buy bitch");
+            return this.state.buyPriceVal * this.state.buyQtyVal;
+        }else{
+            console.log("This is for selling the value yeah idk");
+            return this.state.sellPriceVal * this.state.sellQtyVal;
+        }
     }
+
+    bestPrice(){
+        console.log("Best Price button pressed");
+        this.state.buyPriceVal = 1234;
+    }
+
 
     render() {
+        const {buyQtyVal} = this.state.buyQtyVal;
+        const {buyPriceVal} = this.state.buyPriceVal;
+
+        const {sellQtyVal} = this.state.sellQtyVal;
+        const {sellPriceVal} = this.state.sellPriceVal;
         return(
             <div className="flex-container">
                 <div Style="margin: 5em;">
                     <h3>Buy</h3>
                     <br />
                     <form onSubmit = {this.buyHandleSubmit}>
-                        <input type="text" id="qty" name= "qty" placeholder="Qty" pattern="\d+" value={this.state.buyQTYVal} onChange={event => this.updateBuyQtyVal(event)}/>
-                        <input type="text" id="price" name="price" placeholder="Value" pattern="\d+" value={this.state.buyPriceVal} onChange={event => this.updateBuyPriceVal(event)}/>
-                        {/* <button className="button">Best Buy</button> */}
-                        <h4>{this.buyQTYVal * this.buyPriceVal}</h4>
+                        <input type="text" id="qty" name= "buyQtyVal" placeholder="Qty" pattern="\d+" value={buyQtyVal} onChange={this.updateInput}/>
+                        <input type="text" id="price" name="buyPriceVal" placeholder="Value" pattern="\d+" value={buyPriceVal} onChange={this.updateInput}/>
+                        {/* <button type="button" className="button" onClick={this.bestPrice()}>Best Buy</button> */}
+                        <h4>{this.multiply("buy")}</h4>
                         <input type="submit" className="button success" value="Buy" />
                     </form>
                 </div>
@@ -71,8 +90,9 @@ class BuyCoin extends React.Component {
                     <h3>Sell</h3>
                     <br />
                     <form onSubmit = {this.sellHandleSubmit}>
-                        <input type="text" id="qty" name= "qty" placeholder="Qty" />
-                        <input type="text" id="price" name="price" placeholder="value" />
+                        <input type="text" id="qty" name= "sellQtyVal" placeholder="Qty" value={sellQtyVal} onChange={this.updateInput}/>
+                        <input type="text" id="price" name="sellriceVal" placeholder="value" value={sellPriceVal} onChange={this.updateInput}/>
+                        <h4>{this.multiply("sell")}</h4>
                         <input type="submit" className="button error" value="Sell" />
                     </form>
                 </div>
