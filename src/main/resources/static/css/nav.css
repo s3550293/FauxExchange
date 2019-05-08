@@ -79,7 +79,7 @@
     margin-top: 1em;
     margin-left: .5em;
     margin-right: .5em;
-    background-image: linear-gradient(to top right, rgb(1, 172, 85), rgb(94, 214, 144));
+    background-image: linear-gradient(to top right, rgb(20, 172, 33), rgb(163, 231, 191));
     color: white !important;
     float: right;
 }
@@ -89,7 +89,7 @@
     margin-top: 1em;
     margin-left: .5em;
     margin-right: .5em;
-    background-image: linear-gradient(to top right, rgb(5, 101, 151), rgb(93, 168, 204));
+    background-image: linear-gradient(to top right, rgb(5, 101, 151), rgb(162, 206, 226));
     color: white !important;
     float: right;
 }
