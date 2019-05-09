@@ -2,7 +2,7 @@
 <html>
 <header>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Login</title>
     <!-- foundation-float.min.css: Compressed CSS with legacy Float Grid -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/css/foundation-float.min.css"
@@ -33,49 +33,35 @@
 <!-- https://foundation.zurb.com/sites/docs -->
 
 <body>
-
-    <div class="off-canvas-wrapper">
-        <div class="off-canvas position-left reveal-for-large nav-lite text-lite" id="mobileNav" data-off-canvas data-transition="overlap">
-            <button class="close-button" aria-label="Close Menu" type="button" data-toggle="mobileNav">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <br>
-            <br>
-            <!-- NAV -->
-            <div th:replace="fragments/nav :: newNavigation"></div>
-            <!-- NAV -->
-        </div>
-        <div class="off-canvas-content" data-off-canvas-content>
-            <!-- HEADER -->
-            <div th:replace="fragments/header :: header"></div>
-            <!-- HEADER -->
-            
-            <div class="cell medium-auto medium-cell-block-container">
-                <div class="center-DIV lite">
-
-                    <!-- CODE GOES BELOW -->
-                    <h3>Login</h3>
-                    <br />
-                    <form>
-                        <input type="text" id="username" placeholder="username" />
-                        <input type="password"  id="password" placeholder="password" />
-                        <input type="submit" class="button success" value="Login" />
-                    </form>
-
-                    <!-- CODE GOES ABOVE -->
-
-                </div>
+    <div class="FUCKSAKE">
+        <div class="center-body__bg"></div>
+        <div class="nav-NEW">
+            <div class="nav-title">
+                <h4><a href="/">Faux Exchange</a></h4>
             </div>
-            <!-- FOOTER -->
-            <div th:replace="fragments/footer :: footer"></div>
-            <!-- FOOTER -->
+            <div class="nav-buttons">
+                <!-- <form action="/login">
+                    <input class="button success" type="submit" value="Login">
+                </form> -->
+                <form action="/register">
+                    <input class="button warning" type="submit" value="Sign up">
+                </form>
+            </div>
+        </div>
+        <div class="content-NEW">
+            <div class="login-pane">
+                <h4 style="text-align:center;">Login</h4>
+                <form onsubmit="window.location.href = '/currencies'; return false;">
+                    <input type="email" name="email" placeholder="Email" />
+                    <input type="password" name="password" placeholder="password" />
+                    <input type="submit" class="button" value="Login" style="width: 100%;">
+                </form>
+            </div>
         </div>
     </div>
     <!-- JAVASCRIPT -->
     <div th:replace="fragments/javascript :: javascript"></div>
     <!-- JAVASCRIPT -->
-    <!-- Graph Lib -->
-    <script src="js/Chart.bundle.js"></script>
 </body>
 
 </html>

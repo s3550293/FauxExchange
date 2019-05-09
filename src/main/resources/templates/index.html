@@ -2,7 +2,7 @@
 <html>
 <header>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Home</title>
     <!-- foundation-float.min.css: Compressed CSS with legacy Float Grid -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/css/foundation-float.min.css"
@@ -34,100 +34,78 @@
 <!-- https://foundation.zurb.com/sites/docs -->
 
 <body>
-    <!-- HEADER -->
-    <!-- <div th:replace="fragments/header :: headerIndex"></div> -->
-    <div class="title-bar title-bar-mobile">
-        <div class="title-bar-left">
-            <span class="title-bar-title">Faux Exchange</span>
-        </div>
-        <div class="title-bar-right">
-            <!-- <button href="/login" class=" button success">Login</button> -->
-            <form action="/login">
-                <input class="button success" type="submit" value="Login">
-            </form>
-            <form action="/register">
-                <input class="button warning" type="submit" value="Sign up">
-            </form>
-            <!-- <button href="/register" class=" button warning">Sign Up</button> -->
-        </div>
-    </div>
-    <!-- HEADER -->
-    <div class="index-header">
-        <div class="index-header-title">
-            <h1 class="index-h1">Real Time Trading.</h1>
-            <h1 class="index-h1">No Risk.</h1>
-            <h5 class="">Faux Exchange is a university capstone project<br> developed by 3 idiots</h5>
-        </div>
-    </div>
-    <div class="curved-lid">
-        <!-- <div class="button info site-info"><div class="arrow-down"></div></div>
-        <span class="read-more">Read more!</span> -->
-    </div>
-    <div class="center-DIV lite window-size index-body center-DIV-mobile" style="min-height: 60vh;">
-        <div class="parent-twin parent-twin-mobile">
-            <div class="index-body-top index-body-left-mobile">
-
-                <h3>Learning to trade crypto currency its as easy as 1 2 3.</h3>
-                <h3>Start trading today!</h3>
-                <form action="/register">
-                    <input class="button error" type="submit" value="Sign up">
-                </form>
-            </div>
-            <div class="index-body-bottom index-body-right-mobile">
-                <div class="info-box" onmouseover="showTrade(event)" onmouseout="hideTrade(event)">
-                    <div class="icon trade">
-                        <h3 style="font-size:64px;"><i class="fas fa-cubes"></i></i></h3>
-                    </div>
-                    <h4>Trade</h4>
-                    <div id="_trade" class="info-box-text">
-                        Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to
-                        throw Antwone into a glass motherfuckin'
-                    </div>
-                </div>
-                <div class="info-box" onmouseover="showGrow(event)" onmouseout="hideGrow(event)">
-                    <div class="icon grow">
-                        <h3 style="font-size:64px;"><i class="fas fa-chart-line"></i></h3>
-                    </div>
-                    <h4>Grow</h4>
-                    <div id="_grow" class="info-box-text">
-                        Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to
-                        throw Antwone into a glass motherfuckin'
-                    </div>
-                </div>
-                <div class="info-box" onmouseover="showCompare(event)" onmouseout="hideCompare(event)">
-                    <div class="icon compare">
-                        <h3 style="font-size:64px;"><i class="fas fa-chart-bar"></i></i></h3>
-                    </div>
-                    <h4>Compare</h4>
-                    <div id="_compare" class="info-box-text">
-                        Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to
-                        throw Antwone into a glass motherfuckin'
-                    </div>
-                </div>
-                <div class="info-box" onmouseover="showCompete(event)" onmouseout="hideCompete(event)">
-                    <div class="icon compete">
-                        <h3 style="font-size:56px;"><i class="fas fa-trophy"></i></i></h3>
-                    </div>
-                    <h4>Compete</h4>
-                    <div id="_compete" class="info-box-text">
-                        Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to
-                        throw Antwone into a glass motherfuckin'
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <!-- CODE GOES BELOW -->
+    <header class="index-header">
+        <div class="index-header__bg"></div>
+        <div class="index-nav">
+            <div class="nav-title">
+                <h4>Faux Exchange</h4>
+            </div>
+            <div class="nav-buttons">
+                <form action="/login">
+                    <input class="button success" type="submit" value="Login">
+                </form>
+                <!-- <form action="/register">
+                    <input class="button warning" type="submit" value="Sign up">
+                </form> -->
+            </div>
+        </div>
+        <div class="ih-split-parent">
+            <div class="ih-split-child">
+                <div style="padding-left:1.5em;">
+                    <h2>Real Time Trading.<br>No risk</h2>
+                    <p>A new fun way to learn crypto trading, sign up today and get started!</p>
+                </div>
+            </div>
+            <div class="ih-split-child flex-center">
+                <div class="reg-pane">
+                    <h4>Sign Up for Free</h4>
+                    <form>
+                        <input type="text" name="fname" placeholder="First Name" />
+                        <input type="text" name="lname" placeholder="Last Name" />
+                        <input type="date" name="dob" placeholder="Date of Birth" />
+                        <input type="email" name="email" placeholder="Email" />
+                        <input type="password" name="password" placeholder="password" />
+                        <input type="submit" class="button" value="Register">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
 
+    <div class="index-body">
+        <h4>App Features</h4>
+        <div class="index-content">
+            <div class="index-box">
+                <h3 class="box-icon" style="font-size:64px;"><i class="fas fa-coins"></i></h3>
+                <p class="box-heading">Trade your favourite Crypto</p>
+                <p class="box-info">Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to
+                    throw Antwone into a glass motherfuckin'</p>
+            </div>
+            <div class="index-box">
+                <h3 class="box-icon" style="font-size:64px;"><i class="fas fa-seedling"></i></h3>
+                <p class="box-heading">Grow your Score</p>
+                <p class="box-info">Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to
+                    throw Antwone into a glass motherfuckin'</p>
+            </div>
+            <div class="index-box">
+                <h3 class="box-icon" style="font-size:64px;"><i class="fas fa-brain"></i></h3>
+                <p class="box-heading">World class AI</p>
+                <p class="box-info">Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to
+                    throw Antwone into a glass motherfuckin'</p>
+            </div>
+            <div class="index-box">
+                <h3 class="box-icon" style="font-size:56px;"><i class="fas fa-rocket"></i></h3>
+                <p class="box-heading">Compete with your friends</p>
+                <p class="box-info">Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to
+                    throw Antwone into a glass motherfuckin'</p>
+            </div>
+        </div>
+    </div>
+    <div class="cell shrink footer">
 
-
+    </div>
     <!-- CODE GOES ABOVE -->
-
-    <!-- JAVASCRIPT -->
-    <div th:replace="fragments/javascript :: javascript"></div>
-    <!-- JAVASCRIPT -->
 </body>
 
 </html>

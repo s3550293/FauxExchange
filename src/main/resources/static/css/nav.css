@@ -53,14 +53,6 @@
 
 /* BUTTONS */
 
-.button {
-    border-radius: 2em;
-    border: none;
-    -moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-}
 
 .button:hover {
     background-position: 100% 0;
@@ -68,6 +60,21 @@
     -o-transition: all .4s ease-in-out;
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
+}
+
+.button {
+    border-radius: 2em;
+    border: none;
+    background-size: 300% 100%;
+    margin-top: 1em;
+    margin-left: .5em;
+    margin-right: .5em;
+    background-image: linear-gradient(to top right, rgb(26, 128, 184), rgb(135, 204, 236));
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    color: white !important;
 }
 
 .button:focus {
@@ -89,7 +96,7 @@
     margin-top: 1em;
     margin-left: .5em;
     margin-right: .5em;
-    background-image: linear-gradient(to top right, rgb(5, 101, 151), rgb(162, 206, 226));
+    background-image: linear-gradient(to top right, rgb(182, 120, 40), rgb(233, 176, 90));
     color: white !important;
     float: right;
 }
