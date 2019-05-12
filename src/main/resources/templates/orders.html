@@ -27,94 +27,46 @@
 
     <!-- Custom CSS -->
     <link rel=stylesheet type="text/css" href="css/main.css">
+    <link rel=stylesheet type="text/css" href="css/color.css">
+    <link rel=stylesheet type="text/css" href="css/nav.css">
 </header>
 <!-- https://foundation.zurb.com/sites/docs -->
 
 <body>
 
     <div class="off-canvas-wrapper">
-        <div class="off-canvas position-left reveal-for-large" id="mobileNav" data-off-canvas data-transition="overlap">
+        <div class="off-canvas position-left reveal-for-large nav-lite text-lite" id="mobileNav" data-off-canvas data-transition="overlap">
             <button class="close-button" aria-label="Close Menu" type="button" data-toggle="mobileNav">
                 <span aria-hidden="true">&times;</span>
             </button>
             <br>
             <br>
-            <div th:replace="fragments/nav :: navigation"></div>
+            <!-- NAV -->
+                <div th:replace="fragments/nav :: newNavigation"></div>
+            <!-- NAV -->
         </div>
         <div class="off-canvas-content" data-off-canvas-content>
             <div th:replace="fragments/header :: header"></div>
-            <div class="center-DIV">
+            <div class="center-DIV lite">
 
                 <!-- CODE GOES BELOW -->
                 <table id="Orders" class="hover"></table>
 
 
                 <!-- CODE GOES ABOVE -->
-                
-                <!--<table class="hover">
-                    <tr>
-                        <th class="text-center">In/Out</th>
-                        <th class="text-center">Value</th>
-                        <th class="text-center">Type</th>
-                        <th class="text-center">Currency</th>
-                        <th class="text-center">Volume</th>
-                        <th class="text-center">Wallet</th>
-                        <th class="text-center">Date</th>
-
-                    </tr>
-                    <tr>
-                        <td class="text-center"><i class="fas fa-arrow-left transation-money-in-arrow"></i></td>
-                        <td class="text-center">$100</td>
-                        <td class="text-center">Deposit</td>
-                        <td class="text-center">-</td>
-                        <td class="text-center">-</td>
-                        <td class="text-center">$100</td>
-                        <td class="text-center">01/01/1977</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center"><i class="fas fa-arrow-right transation-money-out-arrow"></i></td>
-                        <td class="text-center">$25.60</td>
-                        <td class="text-center">Purchase</td>
-                        <td class="text-center">BTC</td>
-                        <td class="text-center">0.5</td>
-                        <td class="text-center">$74.4</td>
-                        <td class="text-center">01/01/1977</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center"><i class="fas fa-arrow-left transation-money-in-arrow"></i></td>
-                        <td class="text-center">$47</td>
-                        <td class="text-center">Sale</td>
-                        <td class="text-center">BTC</td>
-                        <td class="text-center">0.5</td>
-                        <td class="text-center">$121.40</td>
-                        <td class="text-center">01/01/1977</td>
-                    </tr>-->
             </div>
+            <!-- FOOTER -->
+            <div th:replace="fragments/footer :: footer"></div>
+            <!-- FOOTER -->
         </div>
     </div>
 
 
-    <!-- JS libs -->
-    <!-- Foundation Libs -->
-    <script src="js/jquery.js"></script>
-    <script src="js/what-input.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <!-- Initialize Foundation -->
-    <script>
-        $(document).foundation();
-    </script>
-
-    <!-- ReactJS Libs -->
-    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-    <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js" crossorigine>
-    </script>
-
-    <!-- Graph Lib -->
-    <script src="js/Chart.bundle.js"></script>
+    <!-- JAVASCRIPT -->
+    <div th:replace="fragments/javascript :: javascript"></div>
+    <!-- JAVASCRIPT -->
 
     <!-- Custom Lib -->
-    <script src="js/main.js"></script>
     <script src="js/TransactionOrders.js" type="text/babel"></script>
 </body>
 

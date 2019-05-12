@@ -43,7 +43,6 @@ class GrabCoinNew extends React.Component {
                     <th>Name</th>
                     <th>Value</th>
                     <th>Change</th>
-                    <th></th>
                 </tr>
                 {this.state.coins.map(coin => (
                     //Key used as a unique identifier otherwise console will spit out warning
@@ -51,8 +50,8 @@ class GrabCoinNew extends React.Component {
                     <tr key={coin.code} >
                         <td className="text-center"><img src={"logos/"+coin.code+".svg"} height="30px" width="30p"></img></td>
                         <td className="text-center">{coin.name}</td>
-                        <td className="text-center">{coin.price}</td>
-                        <td className="text-center">{coin.change}</td>
+                        <td className="text-center">{Math.round(coin.price * 10000) / 10000}</td>
+                        <td className="text-center">{Math.round(coin.change * 10000) / 10000}</td>
                         {/* <td className="text-center"><button className="button primary">Buy/Sell</button></td> */}
                     </tr>
                 ))}
