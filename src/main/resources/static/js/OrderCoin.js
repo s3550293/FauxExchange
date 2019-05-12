@@ -95,10 +95,10 @@ class OrderCoin extends React.Component {
                     <br />
                     <form onSubmit = {this.buyHandleSubmit}>
                         <input type="text" id="buyQtyVal" 
-                        name="qty" placeholder="Qty" required="required" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,999999999})?\s*$" title="Please enter a possitive number"
+                        name="qty" placeholder="Qty" required="required" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,999999999})?\s*$" title="Please enter a positive number"
                         value={buyQtyVal} onChange={this.updateInput}/>
                         <input type="text" id="buyPriceVal" 
-                            name="price" placeholder="Value" required="required" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,999999999})?\s*$" title="Please enter a possitive number"
+                            name="price" placeholder="Value" required="required" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,999999999})?\s*$" title="Please enter a positive number"
                             value={buyPriceVal} onChange={this.updateInput}/>
                         <button type="button" name="bestBuy" className="button" value="bestBuy" onClick={this.bestPrice}>Best Buy</button>
                         <h4>{this.multiply(true)}</h4>
@@ -109,11 +109,11 @@ class OrderCoin extends React.Component {
                     <h3>Sell</h3>
                     <br />
                     <form onSubmit = {this.sellHandleSubmit}>
-                        <input type="number" id="sellQtyVal" 
-                        name="qty" placeholder="Qty"  required="required" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,999999999})?\s*$" title="Please enter a possitive number"
+                        <input type="text" id="sellQtyVal" 
+                        name="qty" placeholder="Qty"  required="required" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,999999999})?\s*$" title="Please enter a positive number"
                         value={sellQtyVal} onChange={this.updateInput}/>
-                        <input type="number" id="sellPriceVal" 
-                        name="price" placeholder="value" required="required" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,999999999})?\s*$" title="Please enter a possitive number"
+                        <input type="text" id="sellPriceVal" 
+                        name="price" placeholder="value" required="required" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,999999999})?\s*$" title="Please enter a positive number"
                         value={sellPriceVal} onChange={this.updateInput}/>
                         <button type="button" name="bestSell" className="button" onClick={this.bestPrice}>Best Sell</button>
                         <h4>{this.multiply(false)}</h4>
