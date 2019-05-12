@@ -31,4 +31,5 @@ public class UserServiceController {
         userService.createUser(user);
         return new ResponseEntity<>("Hello World!", HttpStatus.OK);
     }
+    
 }
