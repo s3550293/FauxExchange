@@ -94,9 +94,11 @@ class OrderCoin extends React.Component {
                     <h3>Buy</h3>
                     <br />
                     <form onSubmit = {this.buyHandleSubmit}>
-                        <input type="text" id="buyQtyVal" name="qty" placeholder="Qty" pattern="\d+" value={buyQtyVal} onChange={this.updateInput}/>
+                        <input type="text" id="buyQtyVal" 
+                        name="qty" placeholder="Qty" required="required" pattern="[1-9][0-9]{0,9999999}" 
+                        value={buyQtyVal} onChange={this.updateInput}/>
                         <input type="text" id="buyPriceVal" 
-                            name="price" placeholder="Value" pattern="\d+" 
+                            name="price" placeholder="Value" required="required" pattern="[1-9][0-9]{0,9999999}" 
                             value={buyPriceVal} onChange={this.updateInput}/>
                         <button type="button" name="bestBuy" className="button" value="bestBuy" onClick={this.bestPrice}>Best Buy</button>
                         <h4>{this.multiply(true)}</h4>
