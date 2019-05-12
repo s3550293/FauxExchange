@@ -51,17 +51,21 @@
         <div class="content-NEW">
             <div class="login-pane">
                 <h4 style="text-align:center;">Login</h4>
-                <form onsubmit="window.location.href = '/currencies'; return false;">
+                <div id="LoginrForm"></div>
+                <!--<form onsubmit="window.location.href = '/currencies'; return false;">
                     <input type="email" name="email" placeholder="Email" />
                     <input type="password" name="password" placeholder="password" />
                     <input type="submit" class="button" value="Login" style="width: 100%;">
-                </form>
+                </form>-->
+
             </div>
         </div>
     </div>
     <!-- JAVASCRIPT -->
     <div th:replace="fragments/javascript :: javascript"></div>
-    <!-- JAVASCRIPT -->
+    
+    <!-- Login JS
+    <script src="js/Login.js" type="text/babel"></script>-->
 </body>
 
 </html>
