@@ -18,6 +18,14 @@
     box-shadow: 0px 4px 10px rgba(50, 50, 50, 0.5); */
 }
 
+.nav-title {
+    display: flex;
+}
+
+.icon-space{
+    padding-right: 1em;
+}
+
 .arrow-down {
     /* border-top-color: #8e8e8e; */
     border-top-color: white;

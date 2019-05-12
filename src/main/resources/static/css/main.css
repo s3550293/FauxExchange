@@ -73,14 +73,20 @@ a {
     font-family: 'Montserrat', sans-serif !important;
 }
 
+.text-center {
+    text-align: center;
+}
+
 
 /* NEW CONTENT */
-.FUCKSAKE {
-    height: 100vh;
-    min-width: 100vw;
+.body-content {
+    min-height: 100vh;
+    min-width: 100%;
     display: flex;
     justify-content: center;
     margin: 0;
+    /* min-height: 50em; */
+    overflow:auto; 
 }
 
 .nav-NEW {
@@ -92,6 +98,18 @@ a {
     justify-content: space-between;
 }
 
+.nav-side {
+    padding-left: 5em;
+    padding-right: 2em;
+    transition: padding 1s;
+}
+
+@media only screen and (max-width: 1000px) {
+    .nav-side {
+        padding: 0;
+    }
+}
+
 .center-body__bg {
     z-index: -1;
     position: absolute;
@@ -100,11 +118,10 @@ a {
     right: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     transform: skewY(-20deg);
     transform-origin: top left;
-    background-image: linear-gradient(to top right, rgb(255, 255, 255), rgba(151, 96, 252, 0.5));
-
+    background-image: linear-gradient(to top right, rgba(123, 175, 189, 0.247), rgba(117, 244, 253, 0.199));
     -webkit-animation: fadein 2s;
     /* Safari, Chrome and Opera > 12.1 */
     -moz-animation: fadein 2s;
@@ -116,14 +133,22 @@ a {
     animation: fadein 2s;
 }
 
-.content-NEW{
-    height: 100vh;
+.content-NEW {
+    height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 50em;
+    flex-direction: column;
+    overflow:hidden;
 }
 
-.login-pane{
+.top-margin{
+    margin-top: 5em;
+}
+
+.login-pane {
     padding: 2.5em;
     border-radius: 2em;
     height: 20em;
@@ -145,6 +170,38 @@ a {
     -o-animation: fadein 3s;
     /* Opera < 12.1 */
     animation: fadein 3s;
+}
+
+.pane {
+    margin: 1em;
+    width: 80%;
+    padding: 2.5em;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: linear-gradient(to top right, rgb(253, 253, 253), rgb(253, 253, 253));
+    -webkit-box-shadow: 0px 9px 60px -41px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 9px 60px -41px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 9px 60px -41px rgba(0, 0, 0, 0.75);
+    transition: all 1s;
+}
+
+.chart-height{
+    min-height: 40em;
+    max-height: 40em;
+}
+
+@media only screen and (max-width: 500px) {
+    .pane {
+        width: 100%;
+        padding: 0;
+        border-radius: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: 14px;
+    }
 }
 
 @keyframes fadein {
