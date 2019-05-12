@@ -1,5 +1,4 @@
 const e = React.createElement;
-var i = 0;
 class Register extends React.Component {
     constructor(props) {
         super(props);
