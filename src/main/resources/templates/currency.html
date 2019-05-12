@@ -27,81 +27,110 @@
 
     <!-- Custom CSS -->
     <link rel=stylesheet type="text/css" href="css/main.css">
+    <link rel=stylesheet type="text/css" href="css/color.css">
+    <link rel=stylesheet type="text/css" href="css/nav.css">
 </header>
 <!-- https://foundation.zurb.com/sites/docs -->
 
 <body>
     <div class="off-canvas-wrapper">
-        <div class="off-canvas position-left reveal-for-large" id="mobileNav" data-off-canvas data-transition="overlap">
+        <div class="off-canvas position-left reveal-for-large nav-lite text-lite" id="mobileNav" data-off-canvas
+            data-transition="overlap">
             <button class="close-button" aria-label="Close Menu" type="button" data-toggle="mobileNav">
                 <span aria-hidden="true">&times;</span>
             </button>
             <br>
             <br>
-            <div th:replace="fragments/nav :: navigation"></div>
+            <!-- NAV -->
+            <div th:replace="fragments/nav :: newNavigation">
+            </div>
+            <!-- NAV -->
         </div>
         <div class="off-canvas-content" data-off-canvas-content>
-            <div th:replace="fragments/header :: header"></div>
-            <style>
-                .flex-container {
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                }
-            </style>
-            <div class="center-DIV">
-
-                <!-- CODE GOES BELOW -->
-                <canvas id="Currency-Chart-Display"></canvas>
-                <div id="OrderForm">
-                    <!-- <div style="margin: 5em;">
-                        <h3>Buy</h3>
-                        <br />
-                        <div id="BuyForm"></div>
+            <div class="center-body__bg"></div>
+            <div class="body-content">
+                <div class="nav-NEW nav-side">
+                    <div class="nav-title">
+                        <h4 class="icon-space"><button class="menu-icon hide-for-large black-icon" type="button"
+                                data-open="mobileNav"></button></h4>
+                        <h4><a href="/">Faux Exchange</a></h4>
                     </div>
-
-                    <div style="margin: 5em;">
-                        <h3>Sell</h3>
-                        <br />
-                        <div id="SellForm"></div>
-                    </div> -->
+                    <div class="nav-buttons">
+                        <form action="/register">
+                            <input class="button warning" type="submit" value="Sign up">
+                        </form>
+                    </div>
                 </div>
-                <!-- CODE GOES ABOVE -->
+                <style>
+                    /* .flex-container {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: center;
+                    } */
+                </style>
+                <div class="content-NEW top-margin">
+                    <div class="pane">
+                        <p>
+                            <h3>BTC</h3>
+                            <h4>Current Price: $9000</h4>
+                            <h4>24 Hour Change: +$345</h4>
+                        </p>
+                    </div>
+                    <!-- CODE GOES BELOW -->
+                    <div class="pane">
+                        <canvas id="Currency-Chart-Display" class="chart-height"></canvas>
+                        <div id="Graph-Controls"></div>
+                    </div>
+                    <div class="pane">
+                        <div id="OrderForm"></div>
+                    </div>
+                    <!-- CODE GOES ABOVE -->
 
+                </div>
             </div>
+            <!-- FOOTER -->
+            <div th:replace="fragments/footer :: footer">
+                <div class="cell shrink footer lite lite-text" style="display: flex;">
+                    <div style="margin-left:1em; display: flex;">
+                        <span style="margin-right:.5em; margin-top:.2em;">Enable Dev Mode</span>
+                        <div class="switch small">
+                            <input class="switch-input" id="dev_Switch" type="checkbox" onclick="devMode()"
+                                name="DevSwitch">
+                            <label class="switch-paddle rounded" for="dev_Switch">
+                            </label>
+                        </div>
+                    </div>
+                    <div style="margin-left:3em; display: flex;">
+                        <span style="margin-right:.5em; margin-top:.2em;">Enable Dark Mode</span>
+                        <div class="switch small">
+                            <input class="switch-input" id="dark_Switch" type="checkbox" onclick="darkTheme()"
+                                name="DarkSwitch">
+                            <label class="switch-paddle rounded" for="dark_Switch"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FOOTER -->
         </div>
     </div>
 
 
+
+    <!-- JAVASCRIPT -->
     <!-- JS libs -->
     <!-- Foundation Libs -->
-    <script src="js/jquery.js"></script>
-    <script src="js/what-input.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <!-- Initialize Foundation -->
-    <script>
-        $(document).foundation();
-    </script>
-
-    <!-- ReactJS Libs -->
-    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-    <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js" crossorigine>
-    </script>
-
+    
+    <!-- JAVASCRIPT -->
+    <div th:replace="fragments/javascript :: javascript"></div>
     <!-- Graph Lib -->
-    <script src="js/Chart.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+    <script src="js/chartjs-plugin-zoom.min.js"></script>
 
-    <!-- Custom Lib -->
-    <!-- <script src="js/JavaScriptMain.js"></script> -->
-
-    <!-- Graph For change over time -->
-    <script src="js/ChartCoin.js" type="text/babel"></script>
-
+    <script src="js/CurrencyChart.js" type="text/babel"></script>
     <!-- Buy/Sell JS-->
-    <!-- <script src="js/BuyCoin.js" type="text/babel"></script>
-    <script src="js/SellCoin.js" type="text/babel"></script> -->
     <script src="js/OrderCoin.js" type="text/babel"></script>
 </body>
 

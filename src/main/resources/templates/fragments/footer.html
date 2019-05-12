@@ -3,20 +3,29 @@
 
 <body>
     <div th:fragment="footer">
-        <div class="title-bar align-self-bottom">
-            <div class="title-bar-left">
-                <h6>RMIT Capstone Group H04 | Copyright 2019</h6>
+        <div class="cell shrink footer lite lite-text" style="display: flex;">
+            <div style="margin-left:1em; display: flex;">
+                <span style="margin-right:.5em; margin-top:.2em;">Enable Dev Mode</span>
+                <div class="switch small">
+                    <input class="switch-input" id="dev_Switch" type="checkbox" onclick="devMode()"
+                        name="DevSwitch">
+                    <label class="switch-paddle rounded" for="dev_Switch">
+                    </label>
+                </div>
             </div>
-            <div class="title-bar-right">
-                <ul class="breadcrumbs">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Features</a></li>
-                    <li class="disabled">Gene Splicing</li>
-                    <li>
-                        <span class="show-for-sr">Current: </span> Cloning
-                    </li>
-                </ul>
+            <div style="margin-left:3em; display: flex;">
+                <span style="margin-right:.5em; margin-top:.2em;">Enable Dark Mode</span>
+                <div class="switch small">
+                    <input class="switch-input" id="dark_Switch" type="checkbox" onclick="darkTheme()"
+                        name="DarkSwitch">
+                    <label class="switch-paddle rounded" for="dark_Switch"></label>
+                </div>
             </div>
+        </div>
+    </div>
+    <div th:fragment="footer-index" class="title-bar align-self-bottom footer">
+        <div class="title-bar-left footer-title">
+            <h6>RMIT Capstone Group H04 | Copyright 2019</h6>
         </div>
     </div>
 </body>

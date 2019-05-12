@@ -1,0 +1,40 @@
+.lite{
+    background: #fff!important;
+}
+.nav-lite{
+    background: #fff!important;
+}
+
+.text-lite{
+    color: rgb(33, 37, 44)!important;
+}
+
+.lite tr:nth-child(odd){
+    background: #eae8e8;
+}
+
+
+
+/* DARK */
+.dark{
+    background: #1a1b1f!important;
+}
+.nav-dark{
+    background: #2a2c33!important;
+}
+
+.text-dark{
+    color: rgb(240, 240, 240)!important;
+}
+
+.dark tr:nth-child(even){
+    background: #3d3f49;
+}
+
+.dark tr:nth-child(odd){
+    background: #21252c;
+}
+
+.dark tr:hover{
+    background: #424551;
+}

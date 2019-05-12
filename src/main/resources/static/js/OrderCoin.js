@@ -1,8 +1,15 @@
 const e = React.createElement;
 var i = 0;
-class BuyCoin extends React.Component {
+class OrderCoin extends React.Component {
     constructor(props) {
         super(props);
+        this.bbp = React.createRef();
+        this.state = {
+            buyQtyVal:'',
+            buyPriceVal:'',
+            sellQtyVal:'',
+            sellPriceVal:''
+        }
     }
 
     buyHandleSubmit = (event) => {
@@ -10,7 +17,7 @@ class BuyCoin extends React.Component {
         const data = new FormData(event.target);
         data.append('type', 'buy');
         data.append('code', 'BTC');
-
+        console.log(stringifyFormData(data));
         fetch('/api/orders', {
             method: "POST",
             headers: {
@@ -37,25 +44,74 @@ class BuyCoin extends React.Component {
         alert('Sell Order Successful');
     }
 
+    updateInput = (event) => {
+        event.preventDefault();
+        // event.target.value = 1000;
+        this.setState({
+            [event.target.id]: event.target.value,
+            [event.target.value]: event.target.id
+        })
+    }
+
+    multiply(bool){
+        if(bool){
+            return this.state.buyPriceVal * this.state.buyQtyVal;
+        }
+        else{
+            return this.state.sellPriceVal * this.state.sellQtyVal;
+        }
+    }
+
+    bestPrice = (event) =>{
+        event.preventDefault();
+        const data = new FormData(event.target);
+        data.append('type', 'buy');
+        data.append('code', 'BTC');
+
+        console.log("Getting Best Price");
+        console.log(stringifyFormData(data));
+        if(event.target.name == "bestBuy"){
+            this.setState({
+                buyPriceVal: 1234
+            });
+        }else{
+            this.setState({
+                sellPriceVal: 4321
+            });
+        }
+    }
+
+
     render() {
+        const {buyQtyVal} = this.state.buyQtyVal;
+        const {buyPriceVal} = this.state.buyPriceVal;
+
+        const {sellQtyVal} = this.state.sellQtyVal;
+        const {sellPriceVal} = this.state.sellPriceVal;
         return(
             <div className="flex-container">
                 <div Style="margin: 5em;">
                     <h3>Buy</h3>
                     <br />
                     <form onSubmit = {this.buyHandleSubmit}>
-                        <input type="text" id="price" name="price" placeholder="Value" pattern="\d+" />
-                        <input type="text" id="qty" name= "qty" placeholder="Qty" pattern="\d+" />
-                        <input type="submit" className="button success" value="Buy" />
+                        <input type="text" id="buyQtyVal" name="qty" placeholder="Qty" pattern="\d+" value={buyQtyVal} onChange={this.updateInput}/>
+                        <input type="text" id="buyPriceVal" 
+                            name="price" placeholder="Value" pattern="\d+" 
+                            value={buyPriceVal} onChange={this.updateInput}/>
+                        <button type="button" name="bestBuy" className="button" value="bestBuy" onClick={this.bestPrice}>Best Buy</button>
+                        <h4>{this.multiply(true)}</h4>
+                        <button type="submit" name="submitBuy" className="button success" value="Buy">Buy</button>
                     </form>
                 </div>
                 <div Style="margin: 5em;">
                     <h3>Sell</h3>
                     <br />
                     <form onSubmit = {this.sellHandleSubmit}>
-                        <input type="text" id="price" name="price" placeholder="value" />
-                        <input type="text" id="qty" name= "qty" placeholder="Qty" />
-                        <input type="submit" className="button error" value="Sell" />
+                        <input type="number" id="sellQtyVal" name="qty" placeholder="Qty" value={sellQtyVal} onChange={this.updateInput}/>
+                        <input type="number" id="sellPriceVal" name="price" placeholder="value" value={sellPriceVal} onChange={this.updateInput}/>
+                        <button type="button" name="bestSell" className="button" onClick={this.bestPrice}>Best Sell</button>
+                        <h4>{this.multiply(false)}</h4>
+                        <button type="submit" className="button error">Sell</button>
                     </form>
                 </div>
             </div>
@@ -63,7 +119,7 @@ class BuyCoin extends React.Component {
     }
 }
 const windowElement = document.getElementById('OrderForm');
-ReactDOM.render(e(BuyCoin),windowElement);
+ReactDOM.render(e(OrderCoin),windowElement);
 
 function stringifyFormData(fd) {
     const data = {};
