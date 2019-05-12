@@ -6,8 +6,7 @@ import java.net.URL;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.apache.commons.io.IOUtils;
-import org.json.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.g4.fauxexchange.model.User;
 import com.g4.fauxexchange.service.UserService;
