@@ -59,12 +59,12 @@ public class OrderServiceImpl implements OrderService {
         for(Currency currency : currencyRepository.findAll()) {
             for(Order order : orderRepository.findByCode(currency.code)) {
                 if(order.type.equals("buy")) {
-                    if(order.price >= currency.price.peekLast() * order.coin) {
+                    if(order.price >= currency.price.peekLast() * order.qty) {
                         System.out.println("Buying: " + order);
                         deleteOrder(order);
                     }
                 } else {
-                    if(order.price <= currency.price.peekLast() * order.coin) {
+                    if(order.price <= currency.price.peekLast() * order.qty) {
                         System.out.println("Selling: " + order);
                         deleteOrder(order);
                     }

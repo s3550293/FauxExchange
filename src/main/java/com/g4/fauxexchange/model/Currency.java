@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Currency {
 	
 	@Id
-	public String id;
+	public String currencyId;
 
 	public String code;
 	public String name;
