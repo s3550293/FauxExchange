@@ -31,14 +31,6 @@ class Register extends React.Component {
         }
     }
 
-    updateInput = (event) => {
-        event.preventDefault();
-        this.setState({
-            [event.target.id]: event.target.value
-        })
-        console.log(this.state)
-    }
-
     updateUpdatePassword = (event) => {
         event.preventDefault();
         if(this.state.password != this.state.passwordConfirm) {
@@ -47,6 +39,14 @@ class Register extends React.Component {
         else {
             event.target.setCustomValidity("");
         }
+    }
+
+    updateInput = (event) => {
+        event.preventDefault();
+        this.setState({
+            [event.target.id]: event.target.value
+        })
+        console.log(this.state)
     }
 
     render() {
