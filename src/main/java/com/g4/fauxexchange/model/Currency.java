@@ -27,7 +27,7 @@ public class Currency {
 
 	@Override
 	public String toString() {
-		return String.format("Currency[id=%s, code='%s', name='%s', price='%s']", id, code, name, price.peekLast());
+		return String.format("Currency[id=%s, code='%s', name='%s', price='%s']", currencyId, code, name, price.peekLast());
 	}
 
 }

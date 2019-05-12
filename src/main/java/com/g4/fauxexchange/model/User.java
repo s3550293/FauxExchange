@@ -6,7 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class Users {
+public class User {
 	
 	@Id
 	public String userId;
@@ -19,15 +19,19 @@ public class Users {
 
     public LinkedList<Currency> wallet;
 
-    public Users() {}
+    public User() {}
 
-	public Users(String name, String email, String password) {
-
+	public User(String fName, String lName, String dob, String email, String password) {
+        this.fName = fName;
+        this.lName = lName;
+        this.dob = dob;
+        this.email = email;
+        this.password = password;
     }
 
 	@Override
 	public String toString() {
-		return String.format("Users[id=%s, fName, lName, dob, email, password]", id, fName, lName, dob, email, password);
+		return String.format("User[id=%s, fName='%s', lName='%s', dob='%s', email='%s', password='%s']", userId, fName, lName, dob, email, password);
 	}
 
 }
