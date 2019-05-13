@@ -13,12 +13,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.*;
+
 @RestController
 public class SessionsServiceController {
 
     @RequestMapping(value = "/api/session", method = RequestMethod.GET)
     public ResponseEntity<Object> uid(HttpSession session) {
-        return new ResponseEntity<>(session.getId(), HttpStatus.OK);
+        JSONObject json = new JSONObject();
+        json.put("sessionid", session.getId());
+
+        System.out.println(json.toString());
+        return new ResponseEntity<>(json.toString(), HttpStatus.OK);
     }
 
 }
