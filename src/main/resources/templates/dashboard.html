@@ -3,7 +3,7 @@
 <header>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title>Home</title>
     <!-- foundation-float.min.css: Compressed CSS with legacy Float Grid -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/css/foundation-float.min.css"
         integrity="sha256-sP0p6J7SbJGiJ2gkdY1nkVsLgdwiFN2kI370lU+zacQ= sha384-yZLxxcD8nfiSt1qfKJWwHwtkL58WZDTlkBnZN60qr3ZS35+LDsmUF2JHLxdyZ+KU sha512-Z3WbpfWFSsK2dBvoSYZnMvPmxSJUa5cxj3TYlmyj6cq8IXy7iB2nlUk+jjms8gnz4HmpQk/yhRSlRzW7keoSlg=="
@@ -29,83 +29,173 @@
     <link rel=stylesheet type="text/css" href="css/main.css">
     <link rel=stylesheet type="text/css" href="css/color.css">
     <link rel=stylesheet type="text/css" href="css/nav.css">
+    <link rel=stylesheet type="text/css" href="css/dash.css">
 </header>
 <!-- https://foundation.zurb.com/sites/docs -->
 
 <body>
-
     <div class="off-canvas-wrapper">
-        <div class="off-canvas position-left reveal-for-large nav-lite text-lite" id="mobileNav" data-off-canvas data-transition="overlap">
+        <div class="off-canvas position-left reveal-for-large nav-lite text-lite" id="mobileNav" data-off-canvas
+            data-transition="overlap">
             <button class="close-button" aria-label="Close Menu" type="button" data-toggle="mobileNav">
                 <span aria-hidden="true">&times;</span>
             </button>
             <br>
             <br>
             <!-- NAV -->
-            <div th:replace="fragments/nav :: newNavigation"></div>
+            <div th:replace="fragments/nav :: newNavigation">
+            </div>
             <!-- NAV -->
         </div>
         <div class="off-canvas-content" data-off-canvas-content>
-            <!-- HEADER -->
-            <div th:replace="fragments/header :: header"></div>
-            <!-- HEADER -->
-            <div class="center-DIV lite">
-                <!-- CODE GOES BELOW -->
+            <div class="center-body__bg"></div>
+            <div class="body-content">
+                <div class="nav-NEW nav-side">
+                    <div th:replace="fragments/header :: headerLoggedInUser">
+                </div>
+                <div class="content-NEW top-margin">
+                    <div class="content-split-two">
+                        <div class="pane pain-split-two profile">
+                            <h4 class="box-icon" style="font-size:104px;"><i class="fas fa-user"></i></i></h4>
+                            <span>Name</span>
+                            <span>Rank</span>
+                            <span>Cash</span>
+                        </div>
+                        <div class="pane pain-split-two account-value">
+                            <h5>Account Value</h5>
+                            <ul class="stats-list">
+                                <li>
+                                    $2030 <span class="stats-list-label">Account Value</span>
+                                </li>
+                                <li class="stats-list-positive">
+                                    $30 <span class="stats-list-label">Gains</span>
+                                </li>
+                                <li class="stats-list-negative">
+                                    $0 <span class="stats-list-label">Loss</span>
+                                </li>
+                            </ul>
 
+                        </div>
+                        <div class="pane pain-split-two">
+                            <h5>Invested Crypto</h5>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <ht></ht>
+                                        <th>
+                                            Code
+                                        </th>
+                                        <th>
+                                            Price
+                                        </th>
+                                        <th>
+                                            Qty
+                                        </th>
+                                        <th>
+                                            Value
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>BTC</td>
+                                        <td>9000</td>
+                                        <td>3</td>
+                                        <td>27000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pane pain-split-two">
+                            <h5>Current orders</h5>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <ht></ht>
+                                        <th>Code</th>
+                                        <th>Price</th>
+                                        <th>Qty</th>
+                                        <th>Value</th>
+                                        <th>Buy/Sell</th>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>BTC</td>
+                                        <td>9010</td>
+                                        <td>1</td>
+                                        <td>9010</td>
+                                        <td>Sell</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>BTC</td>
+                                        <td>8500</td>
+                                        <td>2</td>
+                                        <td>17000</td>
+                                        <td>Sell</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
+                    <div class="pane">
+                        <div class="uas-header">
+                            <h5>Account Settings</h5>
+                            <span style="margin-right:.5em; margin-top:.2em;">Hide/Show</span>
+                            <div class="switch small">
+                                <input class="switch-input" id="uas_Switch" type="checkbox" onclick="uas()"
+                                    name="userAccSet">
+                                <label class="switch-paddle rounded" for="uas_Switch">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="uas-content">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                                sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+                                est laborum.</p>
+                        </div>
+                    </div>
 
-                <!-- CODE GOES ABOVE -->
-
-                <p>
-                    Dui, sed elit felis urna convallis eget dignissim lectus potenti metus. Hac sociis himenaeos aliquet
-                    hac! Diam non dui, placerat sociosqu hac per bibendum! Mattis imperdiet integer tristique egestas
-                    praesent arcu aliquam vivamus, porta molestie parturient justo. Dictumst eu consectetur leo sodales
-                    nibh. Habitant lobortis fusce in per volutpat cursus sollicitudin ridiculus condimentum mi!
-                </p>
-                <p>
-                    Volutpat taciti, viverra sociis vitae justo blandit turpis metus elementum! Rhoncus, fames platea
-                    proin et sollicitudin litora maecenas morbi! Rhoncus facilisi aenean sociosqu. Nisl himenaeos dictum
-                    eget convallis est hendrerit. Vehicula amet ornare turpis arcu. Interdum justo ultrices taciti
-                    primis lobortis nunc lectus posuere taciti ut. Blandit lacus magnis, ornare fames eget sociosqu
-                    nascetur curabitur amet fringilla. Facilisi inceptos facilisis adipiscing curabitur, vitae vel
-                    sociosqu.
-                </p>
-                <p>
-                    Etiam duis vestibulum elementum, enim montes augue sollicitudin euismod dapibus consequat! Vulputate
-                    proin gravida himenaeos nostra conubia magna erat litora curabitur porta torquent! Leo at torquent
-                    nostra integer. Erat nunc eu curabitur turpis urna senectus, interdum quisque consequat praesent.
-                    Sociosqu tortor pulvinar odio fringilla eu fusce sociosqu porttitor blandit potenti est iaculis.
-                    Egestas vivamus id sit. Leo.
-                </p>
-                <p>
-                    Elit consequat pharetra vulputate mauris ac fames vulputate curae; iaculis. Lobortis etiam proin cum
-                    leo. Suscipit class tempus phasellus class. Maecenas ultricies euismod elit ultricies scelerisque
-                    facilisis porta imperdiet fringilla. Amet morbi cursus mattis magnis proin ornare proin vehicula est
-                    sagittis, morbi venenatis! Ad tempor at malesuada natoque. Rutrum magnis facilisi sociosqu. Accumsan
-                    curae; netus id tristique penatibus. Taciti feugiat suscipit eget?
-                </p>
-                <p>
-                    Feugiat non, sociis sapien. Diam tempor praesent ultrices non montes pretium vivamus rhoncus? Ligula
-                    massa dignissim gravida blandit massa vestibulum vehicula vel maecenas! Ultricies sit tempus nisl
-                    rhoncus. Leo pulvinar convallis commodo a ullamcorper convallis. Congue convallis libero massa
-                    tortor nascetur tortor in. Fringilla blandit diam neque dis! Turpis pharetra, varius imperdiet
-                    lacinia. Lorem luctus.
-                </p>
-
+                </div>
             </div>
             <!-- FOOTER -->
-            <div th:replace="fragments/footer :: footer"></div>
+            <div th:replace="fragments/footer :: footer">
+                <div class="cell shrink footer lite lite-text" style="display: flex;">
+                    <div style="margin-left:1em; display: flex;">
+                        <span style="margin-right:.5em; margin-top:.2em;">Enable Dev Mode</span>
+                        <div class="switch small">
+                            <input class="switch-input" id="dev_Switch" type="checkbox" onclick="devMode()"
+                                name="DevSwitch">
+                            <label class="switch-paddle rounded" for="dev_Switch">
+                            </label>
+                        </div>
+                    </div>
+                    <div style="margin-left:3em; display: flex;">
+                        <span style="margin-right:.5em; margin-top:.2em;">Enable Dark Mode</span>
+                        <div class="switch small">
+                            <input class="switch-input" id="dark_Switch" type="checkbox" onclick="darkTheme()"
+                                name="DarkSwitch">
+                            <label class="switch-paddle rounded" for="dark_Switch"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- FOOTER -->
         </div>
     </div>
 
 
+
     <!-- JAVASCRIPT -->
-    <div th:replace="fragments/javascript :: javascript"></div>
+    <!-- JS libs -->
+    <!-- Foundation Libs -->
+
     <!-- JAVASCRIPT -->
-    
-    <!-- Graph Lib -->
-    <script src="js/Chart.bundle.js"></script>
+    <div th:replace="fragments/javascript :: javascript">
+    </div>
 </body>
 
 </html>

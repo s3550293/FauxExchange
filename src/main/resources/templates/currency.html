@@ -42,8 +42,7 @@
             <br>
             <br>
             <!-- NAV -->
-            <div th:replace="fragments/nav :: newNavigation">
-            </div>
+            <div th:replace="fragments/nav :: newNavigation"></div>
             <!-- NAV -->
         </div>
         <div class="off-canvas-content" data-off-canvas-content>
@@ -90,27 +89,7 @@
                 </div>
             </div>
             <!-- FOOTER -->
-            <div th:replace="fragments/footer :: footer">
-                <div class="cell shrink footer lite lite-text" style="display: flex;">
-                    <div style="margin-left:1em; display: flex;">
-                        <span style="margin-right:.5em; margin-top:.2em;">Enable Dev Mode</span>
-                        <div class="switch small">
-                            <input class="switch-input" id="dev_Switch" type="checkbox" onclick="devMode()"
-                                name="DevSwitch">
-                            <label class="switch-paddle rounded" for="dev_Switch">
-                            </label>
-                        </div>
-                    </div>
-                    <div style="margin-left:3em; display: flex;">
-                        <span style="margin-right:.5em; margin-top:.2em;">Enable Dark Mode</span>
-                        <div class="switch small">
-                            <input class="switch-input" id="dark_Switch" type="checkbox" onclick="darkTheme()"
-                                name="DarkSwitch">
-                            <label class="switch-paddle rounded" for="dark_Switch"></label>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div th:replace="fragments/footer :: footer"></div>
             <!-- FOOTER -->
         </div>
     </div>

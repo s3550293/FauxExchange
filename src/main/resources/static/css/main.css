@@ -151,7 +151,7 @@ a {
 .login-pane {
     padding: 2.5em;
     border-radius: 2em;
-    height: 20em;
+    height: 23em;
     width: 20em;
     display: flex;
     flex-direction: column;
@@ -174,8 +174,8 @@ a {
 
 .pane {
     margin: 1em;
-    width: 80%;
-    padding: 2.5em;
+    width: 90%;
+    padding: 2em;
     border-radius: 1em;
     display: flex;
     flex-direction: column;
@@ -185,6 +185,31 @@ a {
     -moz-box-shadow: 0px 9px 60px -41px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 9px 60px -41px rgba(0, 0, 0, 0.75);
     transition: all 1s;
+}
+
+.pain-split-two{
+    align-items: center;
+    margin: 0;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    width: 47%;
+}
+
+.profile{
+    width: 28%;
+    
+}
+.account-value{
+    width: 68%;
+}
+
+
+.content-split-two{
+    width: 90%;
+    display: flex;
+    /* flex-flow: column wrap; */
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .chart-height{

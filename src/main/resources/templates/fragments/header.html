@@ -7,8 +7,7 @@
 
             <div class="title-bar lite lite-text">
                 <div class="title-bar-left">
-                    <button class="menu-icon hide-for-large black-icon" type="button"
-                        data-open="mobileNav"></button>
+                    <button class="menu-icon hide-for-large black-icon" type="button" data-open="mobileNav"></button>
                     <span class="title-bar-title">Faux Exchange</span>
                 </div>
                 <div class="title-bar-right">
@@ -34,6 +33,22 @@
             </div>
         </div>
     </div>
+    <div th:fragment="headerLoggedInUser">
+        <div class="nav-title">
+            <h4 class="icon-space"><button class="menu-icon hide-for-large black-icon" type="button"
+                    data-open="mobileNav"></button></h4>
+            <h4 class="box-icon" style="font-size:24px;"><i class="fas fa-user"></i></i></h4>
+            <div id="User-Holdings">
+                <h5>$2000</h5>
+            </div>
+        </div>
+        <div class="nav-buttons">
+            <form action="/register">
+                <input class="button" type="submit" value="Logout">
+            </form>
+        </div>
+    </div>
+
 </body>
 
 </html>

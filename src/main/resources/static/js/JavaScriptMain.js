@@ -36,24 +36,24 @@ function darkTheme() {
     if (isOn) {
         var els = document.getElementsByClassName('lite');
         while (els.length) {
-            els[0].classList.add("dark","text-dark");
-            els[0].classList.remove("lite","text-lite");
+            els[0].classList.add("dark", "text-dark");
+            els[0].classList.remove("lite", "text-lite");
         }
         els = document.getElementsByClassName('nav-lite');
         while (els.length) {
-            els[0].classList.add("nav-dark","text-dark");
-            els[0].classList.remove("nav-lite","text-lite");
+            els[0].classList.add("nav-dark", "text-dark");
+            els[0].classList.remove("nav-lite", "text-lite");
         }
     } else {
         var els = document.getElementsByClassName('dark');
         while (els.length) {
-            els[0].classList.add("lite","text-lite");
-            els[0].classList.remove("dark","text-dark");
+            els[0].classList.add("lite", "text-lite");
+            els[0].classList.remove("dark", "text-dark");
         }
         els = document.getElementsByClassName('nav-dark');
         while (els.length) {
-            els[0].classList.add("nav-lite","text-lite");
-            els[0].classList.remove("nav-dark","text-dark");
+            els[0].classList.add("nav-lite", "text-lite");
+            els[0].classList.remove("nav-dark", "text-dark");
         }
     }
 }
@@ -67,5 +67,14 @@ function devMode() {
     } else {
         document.getElementById("dev_nav").classList.add("hide");
         // $('#dev_nav').load(document.URL +  ' #dev_nav');
+    }
+}
+
+function uas() {
+    var isOn = $('#uas_Switch').is(':checked');
+    if(isOn){
+
+    } else {
+        
     }
 }
