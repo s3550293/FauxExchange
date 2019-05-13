@@ -17,8 +17,8 @@ import javax.servlet.http.HttpSession;
 public class SessionsServiceController {
 
     @RequestMapping(value = "/api/session", method = RequestMethod.GET)
-    String uid(HttpSession session) {
-        return session.getId();
+    public ResponseEntity<Object> uid(HttpSession session) {
+        return new ResponseEntity<>(session.getId(), HttpStatus.OK);
     }
 
 }
