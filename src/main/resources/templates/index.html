@@ -60,14 +60,7 @@
             <div class="ih-split-child flex-center">
                 <div class="reg-pane">
                     <h4>Sign Up for Free</h4>
-                    <form>
-                        <input type="text" name="fname" placeholder="First Name" />
-                        <input type="text" name="lname" placeholder="Last Name" />
-                        <input type="date" name="dob" placeholder="Date of Birth" />
-                        <input type="email" name="email" placeholder="Email" />
-                        <input type="password" name="password" placeholder="password" />
-                        <input type="submit" class="button" value="Register">
-                    </form>
+                    <div id="RegisterForm"></div>
                 </div>
             </div>
         </div>
@@ -106,6 +99,26 @@
 
     </div>
     <!-- CODE GOES ABOVE -->
+
+    <!-- JAVASCRIPT -->
+    <div th:replace="fragments/javascript :: javascript">
+        <script src="js/jquery.js"></script>
+        <script src="js/what-input.js"></script>
+        <script src="js/foundation.min.js"></script>
+        <!-- Initialize Foundation -->
+        <script>
+            $(document).foundation();
+        </script>
+
+        <!-- ReactJS Libs -->
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js" crossorigine>
+        </script>
+    </div>
+
+    <!-- Register JS-->
+    <script src="js/Register.js" type="text/babel"></script>
 </body>
 
 </html>
