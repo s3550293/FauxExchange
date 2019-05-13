@@ -29,7 +29,7 @@ public class User {
         this.dob = dob;
         this.email = email;
         this.password = password;
-        role = "generic";
+        role = "GENERIC";
         wallet = new LinkedList<Currency>();
     }
 
@@ -92,6 +92,10 @@ public class User {
 
     public void setWallet(LinkedList<Currency> wallet) {
         this.wallet = wallet;
+    }
+
+    public void createWallet() {
+        wallet = new LinkedList<Currency>();
     }
 
 }
