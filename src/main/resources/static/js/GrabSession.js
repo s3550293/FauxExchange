@@ -22,12 +22,11 @@ class GrabSession extends React.Component {
 
     render() {
         if(this.state.loading){
-            return <tbody><tr><td>loading...</td></tr></tbody>;
+            return <p>loading...</p>;
         }
         return(
             <div>
-                <label>Welcome Session:</label>
-                <p>{this.state.session}</p>
+                <label>Welcome Session: {this.state.session.sessionid}</label>
             </div>
         );
     }
