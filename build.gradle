@@ -13,6 +13,12 @@ repositories {
 	mavenCentral()
 }
 
+dependencyManagement {
+  imports {
+    mavenBom 'org.springframework.session:spring-session-bom:Bean-SR3'
+  }
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
@@ -23,6 +29,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compile group: 'org.json', name: 'json', version: '20180813'
 	compile group: 'commons-io', name: 'commons-io', version: '2.6'
+    compile 'org.springframework.session:spring-session-data-mongodb'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 }
