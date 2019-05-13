@@ -44,6 +44,20 @@
             <br>
             <!-- NAV -->
             <div th:replace="fragments/nav :: newNavigation">
+                <ul class="vertical menu">
+                    <li><a href="/"><i class="fi-list"></i> <span>Home</span></a></li>
+                    <li><a href="currencies">Currencies</a></li>
+                </ul>
+                <ul id="dev_nav" class="hide vertical menu">
+                    <li><a href="login">Login</a></li>
+                    <li><a href="register">Register</a></li>
+                    <li><a href="currency">Currency (BTC)</a></li>
+                    <li><a href="dashboard">Dashboard</a></li>
+                    <li><a href="transactions">Transactions</a></li>
+                    <li><a href="orders">Orders</a></li>
+                    <li><a href="leaderboards">Leaderboards</a></li>
+                    <li><a href="friends">Friends</a></li>
+                </ul>
             </div>
             <!-- NAV -->
         </div>
@@ -51,10 +65,23 @@
             <div class="center-body__bg"></div>
             <div class="body-content">
                 <div class="nav-NEW nav-side">
-                    <div th:replace="fragments/header :: headerLoggedInUser">
+                    <div class="nav-title">
+                        <h4 class="icon-space"><button class="menu-icon hide-for-large black-icon" type="button"
+                                data-open="mobileNav"></button></h4>
+                        <h4 class="box-icon" style="font-size:24px;"><i class="fas fa-user"></i></i></h4>
+                        <div id="User-Holdings">
+                            <h5>$2000</h5>
+                        </div>
+                    </div>
+                    <div class="nav-buttons">
+                        <form action="/register">
+                            <input class="button" type="submit" value="Logout">
+                        </form>
+                    </div>
                 </div>
                 <div class="content-NEW top-margin">
-                    <div class="content-split-two">
+                    <!-- STATIC -->
+                    <!-- <div class="content-split-two">
                         <div class="pane pain-split-two profile">
                             <h4 class="box-icon" style="font-size:104px;"><i class="fas fa-user"></i></i></h4>
                             <span>Name</span>
@@ -136,20 +163,22 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-
+                    </div> -->
+                    <!-- STATIC -->
+                    <div id="Dash-Content" class="render-width"></div>
                     <div class="pane">
                         <div class="uas-header">
                             <h5>Account Settings</h5>
-                            <span style="margin-right:.5em; margin-top:.2em;">Hide/Show</span>
-                            <div class="switch small">
-                                <input class="switch-input" id="uas_Switch" type="checkbox" onclick="uas()"
+                            <div class="switch medium" style="margin-left:2em;">
+                                <input class="switch-input" id="uas_Switch" type="checkbox" onclick="showUAS()"
                                     name="userAccSet">
                                 <label class="switch-paddle rounded" for="uas_Switch">
+                                    <!-- <span class='switch-active' aria-hidden='true'>H</span>
+                                    <span class='switch-inactive' aria-hidden='true' style="text-align:right;">S</span> -->
                                 </label>
                             </div>
                         </div>
-                        <div class="uas-content">
+                        <div id="UAS-Content" class="showUAS hideUAS">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                                 ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                                 ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
@@ -195,7 +224,23 @@
 
     <!-- JAVASCRIPT -->
     <div th:replace="fragments/javascript :: javascript">
+        <script src="js/jquery.js"></script>
+        <script src="js/what-input.js"></script>
+        <script src="js/foundation.min.js"></script>
+        <!-- Initialize Foundation -->
+        <script>
+            $(document).foundation();
+        </script>
+
+        <!-- ReactJS Libs -->
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js" crossorigine>
+        </script>
+        <script src="js/JavaScriptMain.js"></script>
     </div>
+
+    <script src="js/Dashboard.js" type="text/babel"></script>
 </body>
 
 </html>

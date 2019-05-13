@@ -195,17 +195,8 @@ a {
     width: 47%;
 }
 
-.profile{
-    width: 28%;
-    
-}
-.account-value{
-    width: 68%;
-}
-
-
 .content-split-two{
-    width: 90%;
+    /* width: 90%; */
     display: flex;
     /* flex-flow: column wrap; */
     flex-wrap: wrap;
@@ -216,6 +207,39 @@ a {
     min-height: 40em;
     max-height: 40em;
 }
+
+/* DASH */
+.profile{
+    width: 28%;
+    
+}
+.account-value{
+    width: 68%;
+}
+
+.uas-header{
+    display: flex;
+    align-items: flex-start;
+}
+
+.showUAS{
+    height: 15em;
+    transition: height 2s;
+    transform: scaleY(1);
+    transition: all 1s;
+    opacity: 1;
+}
+
+.hideUAS{
+    height: 0em;
+    opacity: 0;
+    transform: scaleY(0);
+}
+
+.render-width{
+    width: 90%;
+}
+
 
 @media only screen and (max-width: 500px) {
     .pane {
