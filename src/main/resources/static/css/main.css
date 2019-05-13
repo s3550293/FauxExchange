@@ -151,7 +151,7 @@ a {
 .login-pane {
     padding: 2.5em;
     border-radius: 2em;
-    height: 20em;
+    height: 23em;
     width: 20em;
     display: flex;
     flex-direction: column;
@@ -174,8 +174,8 @@ a {
 
 .pane {
     margin: 1em;
-    width: 80%;
-    padding: 2.5em;
+    width: 90%;
+    padding: 2em;
     border-radius: 1em;
     display: flex;
     flex-direction: column;
@@ -187,10 +187,59 @@ a {
     transition: all 1s;
 }
 
+.pain-split-two{
+    align-items: center;
+    margin: 0;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    width: 47%;
+}
+
+.content-split-two{
+    /* width: 90%; */
+    display: flex;
+    /* flex-flow: column wrap; */
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 .chart-height{
     min-height: 40em;
     max-height: 40em;
 }
+
+/* DASH */
+.profile{
+    width: 28%;
+    
+}
+.account-value{
+    width: 68%;
+}
+
+.uas-header{
+    display: flex;
+    align-items: flex-start;
+}
+
+.showUAS{
+    height: 15em;
+    transition: height 2s;
+    transform: scaleY(1);
+    transition: all 1s;
+    opacity: 1;
+}
+
+.hideUAS{
+    height: 0em;
+    opacity: 0;
+    transform: scaleY(0);
+}
+
+.render-width{
+    width: 90%;
+}
+
 
 @media only screen and (max-width: 500px) {
     .pane {
