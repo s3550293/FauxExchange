@@ -9,12 +9,12 @@ class GrabSession extends React.Component {
     }
     
     //Fetchs from rest API
-    componentDidMount() {
-        this.interval = setInterval(() => {
-            fetch("/api/session")
-            .then(response => response.json())
-            .then(data => this.setState({session: data, loading: false})), 3000
-        });
+    async componentDidMount() {
+        const url = "/api/session";
+        const response = await fetch(url);
+        const data = await response.json();
+        this.setState({session: data, loading: false});
+        //console.log(data.ticker);
     }
     componentWillUnmount() {
         clearInterval(this.interval);
