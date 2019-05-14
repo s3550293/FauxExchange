@@ -46,7 +46,6 @@ class CurrencyChart extends React.Component {
       }
 
     convertDate(value) {
-        console.log(value);
         var dateTime = new Date(Math.floor(value * 1000))
         var time = this.convertTime12to24(dateTime.toLocaleTimeString());
         var date = dateTime.toLocaleDateString();
