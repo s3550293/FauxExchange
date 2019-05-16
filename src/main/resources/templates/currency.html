@@ -34,7 +34,7 @@
 
 <body>
     <div class="off-canvas-wrapper">
-        <div class="off-canvas position-left reveal-for-large nav-lite text-lite" id="mobileNav" data-off-canvas
+        <div class="off-canvas position-left reveal-for-large nav-dark" id="mobileNav" data-off-canvas
             data-transition="overlap">
             <button class="close-button" aria-label="Close Menu" type="button" data-toggle="mobileNav">
                 <span aria-hidden="true">&times;</span>
@@ -42,35 +42,20 @@
             <br>
             <br>
             <!-- NAV -->
-            <div th:replace="fragments/nav :: newNavigation"></div>
+            <div th:replace="fragments/nav :: navigation"></div>
             <!-- NAV -->
         </div>
         <div class="off-canvas-content" data-off-canvas-content>
             <div class="center-body__bg"></div>
             <div class="body-content">
                 <div class="nav-NEW nav-side">
-                    <div class="nav-title">
-                        <h4 class="icon-space"><button class="menu-icon hide-for-large black-icon" type="button"
-                                data-open="mobileNav"></button></h4>
-                        <h4><a href="/">Faux Exchange</a></h4>
-                    </div>
-                    <div class="nav-buttons">
-                        <form action="/register">
-                            <input class="button warning" type="submit" value="Sign up">
-                        </form>
-                    </div>
+                    <div th:replace="fragments/header :: headerLoggedInUser"></div>
                 </div>
                 <style>
                 </style>
                 <div class="content-NEW top-margin">
-                    <div class="pane">
-                        <p>
-                            <div id = "SessionJS"></div>
-                            <h3>BTC</h3>
-                            <h4>Current Price: $9000</h4>
-                            <h4>24 Hour Change: +$345</h4>
-                        </p>
-                    </div>
+                    <div id="SessionJS"></div>
+                    <div id="Coin-Data" class="pane"></div>
                     <!-- CODE GOES BELOW -->
                     <div class="pane">
                         <!-- <canvas id="Currency-Chart-Display" class="chart-height"></canvas> -->
@@ -85,7 +70,6 @@
                 </div>
             </div>
             <!-- FOOTER -->
-            <div th:replace="fragments/footer :: footer"></div>
             <!-- FOOTER -->
         </div>
     </div>
@@ -95,13 +79,13 @@
     <!-- JAVASCRIPT -->
     <!-- JS libs -->
     <!-- Foundation Libs -->
-    
+
     <!-- JAVASCRIPT -->
     <div th:replace="fragments/javascript :: javascript"></div>
     <!-- Graph Lib -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-	<script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
     <script src="js/chartjs-plugin-zoom.min.js"></script>
 
     <script src="https://code.highcharts.com/highcharts.src.js"></script>

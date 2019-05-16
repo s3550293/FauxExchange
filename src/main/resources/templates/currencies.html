@@ -35,7 +35,7 @@
 <body>
 
     <div class="off-canvas-wrapper">
-        <div class="off-canvas position-left reveal-for-large nav-lite text-lite" id="mobileNav" data-off-canvas
+        <div class="off-canvas position-left reveal-for-large nav-dark" id="mobileNav" data-off-canvas
             data-transition="overlap">
             <button class="close-button" aria-label="Close Menu" type="button" data-toggle="mobileNav">
                 <span aria-hidden="true">&times;</span>
@@ -43,7 +43,7 @@
             <br>
             <br>
             <!-- NAV -->
-            <div th:replace="fragments/nav :: newNavigation">
+            <div th:replace="fragments/nav :: navigation">
             </div>
             <!-- NAV -->
         </div>
@@ -51,19 +51,7 @@
             <div class="center-body__bg"></div>
             <div class="body-content">
                 <div class="nav-NEW nav-side">
-                    <div class="nav-title">
-                        <h4 class="icon-space"><button class="menu-icon hide-for-large black-icon" type="button"
-                                data-open="mobileNav"></button></h4>
-                        <h4><a href="/">Faux Exchange</a></h4>
-                    </div>
-                    <div class="nav-buttons">
-                        <!-- <form action="/login">
-                                    <input class="button success" type="submit" value="Login">
-                                </form> -->
-                        <form action="/register">
-                            <input class="button warning" type="submit" value="Sign up">
-                        </form>
-                    </div>
+                    <div th:replace="fragments/header :: headerLoggedInUser"></div>
                 </div>
                 <!-- <div th:replace="fragments/header :: header"></div> -->
                 <!-- <div class="center-DIV lite"> -->
@@ -81,7 +69,6 @@
 
             </div>
             <!-- FOOTER -->
-            <div th:replace="fragments/footer :: footer">
             </div>
             <!-- FOOTER -->
         </div>
@@ -94,7 +81,7 @@
     <!-- JAVASCRIPT -->
 
     <!-- Custom Lib -->
-    <script src="js/GrabCoinNew.js" type="text/babel"></script>
+    <script src="js/CurrenciesData.js" type="text/babel"></script>
     <script src="js/GrabSession.js" type="text/babel"></script>
 </body>
 
