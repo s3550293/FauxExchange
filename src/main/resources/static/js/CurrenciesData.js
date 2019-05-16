@@ -10,7 +10,7 @@ class CurrenciesData extends React.Component {
     
     //Fetchs from rest API
     componentDidMount = () => {
-        fetch("http://fauxexchange.tk/api/currencies")
+        fetch("/api/currencies")
         .then(response => response.json())
         .then(data => this.setState({coins: data, loading: false}))
         setTimeout(this.componentDidMount, 3000)

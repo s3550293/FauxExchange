@@ -24,7 +24,7 @@ class CurrenciesInfo extends React.Component {
             })
         }else{
             const coin = this.state.coin;
-            fetch("http://fauxexchange.tk/api/currencies/"+coin)
+            fetch("/api/currencies/"+coin)
             .then(response => response.json())
             .then(data => this.setState({data: data}))
         }
