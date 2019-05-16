@@ -84,7 +84,7 @@ class CurrencyChart extends React.Component {
     render() {
         if(this.state.loading){
             return(
-                <div>Loading...</div>
+                null
             );
         } else {
             this.graphConfig();
