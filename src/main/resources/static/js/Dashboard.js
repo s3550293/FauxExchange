@@ -95,6 +95,48 @@ class Dashboard extends React.Component {
                         </tbody>
                     </table>
                 </div>
+                <div className="pane pain-split-two">
+                    <h5>Leader Board</h5>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th></th>
+                                <th>Code</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Value</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>BTC</td>
+                                <td>9000</td>
+                                <td>3</td>
+                                <td>27000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div className="pane pain-split-two">
+                    <h5>Friends</h5>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th></th>
+                                <th>Code</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Value</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>BTC</td>
+                                <td>9000</td>
+                                <td>3</td>
+                                <td>27000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         );
     }

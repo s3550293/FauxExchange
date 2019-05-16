@@ -61,12 +61,6 @@
                     </div>
                 </div>
                 <style>
-                    /* .flex-container {
-                        display: flex;
-                        flex-direction: row;
-                        align-items: center;
-                        justify-content: center;
-                    } */
                 </style>
                 <div class="content-NEW top-margin">
                     <div class="pane">
@@ -79,7 +73,8 @@
                     </div>
                     <!-- CODE GOES BELOW -->
                     <div class="pane">
-                        <canvas id="Currency-Chart-Display" class="chart-height"></canvas>
+                        <!-- <canvas id="Currency-Chart-Display" class="chart-height"></canvas> -->
+                        <div id="Currency-Chart-Display" class="chart-height"></div>
                         <div id="Graph-Controls"></div>
                     </div>
                     <div class="pane">
@@ -109,7 +104,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
     <script src="js/chartjs-plugin-zoom.min.js"></script>
 
-    <script src="js/CurrencyChart.js" type="text/babel"></script>
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+
+    <script src="js/CurrencyChart.js"></script>
     <!-- Buy/Sell JS-->
     <script src="js/OrderCoin.js" type="text/babel"></script>
     <script src="js/GrabSession.js" type="text/babel"></script>
