@@ -13,7 +13,7 @@ public class CurrencyController {
     *   Calls the currency Page that displays a signal currency
     */
     @GetMapping("/currency")
-    public String Currency(){
+    public String Currency() {
         return "currency";
     }
     

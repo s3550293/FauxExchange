@@ -9,12 +9,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Order {
 	
 	@Id
-	public String id;
+	public String orderId;
 
 	public String type;
     public String code;
     public double price;
 	public double qty;
+    public String userId;
 
     public Order() {}
 
@@ -23,11 +24,12 @@ public class Order {
         this.code = code;
         this.price = price;
         this.qty = qty;
+        this.userId = null;
     }
 
 	@Override
 	public String toString() {
-		return String.format("Order[id=%s, type='%s', code='%s', price='%f', qty='%f']", id, type, code, price, qty);
+		return String.format("Order[id=%s, type='%s', code='%s', price='%f', qty='%f']", orderId, type, code, price, qty, userId);
 	}
 
 }

@@ -41,6 +41,17 @@ public class OrderServiceImpl implements OrderService {
     }
 
 
+    /* Expand on this function
+        VoO & 1 coin or GT >= MarketValue * coin = Process Order
+        vice versa
+        VoO & 1 coin or GT <= MarketValue * coin = Process Order
+
+        BUT
+
+        VoO & 0.x coin % MarketValue * coin = Proces Order
+        vice versa
+        VoO & 0.x coin % MarketValue * coin = Process Order
+     */
     @Override
     @Scheduled(fixedRate=60000, initialDelay = 60000)
     public void processOrders() {
@@ -48,13 +59,13 @@ public class OrderServiceImpl implements OrderService {
         for(Currency currency : currencyRepository.findAll()) {
             for(Order order : orderRepository.findByCode(currency.code)) {
                 if(order.type.equals("buy")) {
-                    if(order.price <= currency.price.peekLast()) {
-                        System.out.println("Deleting: " + order);
+                    if(order.price >= currency.price.peekLast() * order.qty) {
+                        System.out.println("Buying: " + order);
                         deleteOrder(order);
                     }
                 } else {
-                    if(order.price >= currency.price.peekLast()) {
-                        System.out.println("Deleting: " + order);
+                    if(order.price <= currency.price.peekLast() * order.qty) {
+                        System.out.println("Selling: " + order);
                         deleteOrder(order);
                     }
                 }

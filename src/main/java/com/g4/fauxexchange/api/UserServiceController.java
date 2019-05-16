@@ -11,24 +11,25 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.g4.fauxexchange.service.OrderService;
-import com.g4.fauxexchange.model.Order;
+import com.g4.fauxexchange.service.UserService;
+import com.g4.fauxexchange.model.User;
 
 @RestController
-public class OrderServiceController {
+public class UserServiceController {
     
     @Autowired
-    OrderService orderService;
+    UserService userService;
 
-    @RequestMapping(value = "/api/orders", method = RequestMethod.GET)
-    public ResponseEntity<Object> getOrders() {
-        return new ResponseEntity<>(orderService.getOrders(), HttpStatus.OK);
+    @RequestMapping(value = "/api/user/all", method = RequestMethod.GET)
+    public ResponseEntity<Object> getUsers() {
+        return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
     }
 
 
-    @RequestMapping(value = "/api/orders", method = RequestMethod.POST)
-    public ResponseEntity<Object> createOrder(@RequestBody Order order) {
-        orderService.createOrder(order);
+    @RequestMapping(value = "/api/user/registration", method = RequestMethod.POST)
+    public ResponseEntity<Object> createUser(@RequestBody User user) {
+        userService.createUser(user);
         return new ResponseEntity<>("Hello World!", HttpStatus.OK);
     }
+    
 }
