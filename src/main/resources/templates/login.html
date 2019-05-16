@@ -52,11 +52,11 @@
             <div class="login-pane">
                 <h4 style="text-align:center;">Login</h4>
                 <div id="LoginrForm"></div>
-                <!--<form onsubmit="window.location.href = '/currencies'; return false;">
+                <form th:action="@{/login}" method="post">
                     <input type="email" name="email" placeholder="Email" />
                     <input type="password" name="password" placeholder="password" />
                     <input type="submit" class="button" value="Login" style="width: 100%;">
-                </form>-->
+                </form>
 
             </div>
         </div>
