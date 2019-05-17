@@ -1,5 +1,5 @@
 const e = React.createElement;
-class CurrenciesInfo extends React.Component {
+class CurrencyInfo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -9,11 +9,9 @@ class CurrenciesInfo extends React.Component {
         };
     }
     getUrlVars = () =>{
-        var vars = {};
-        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-            vars[key] = value;
-        });
-        return vars.code;
+        const url_string = window.location.href;
+        const url = new URL(url_string);
+        return url.searchParams.get("code");
     }
 
     componentDidMount = () => {
@@ -21,14 +19,16 @@ class CurrenciesInfo extends React.Component {
             this.setState({
                 coin: this.getUrlVars(),
                 loading: false
+                
             })
+            setTimeout(this.componentDidMount, 500);
         }else{
             const coin = this.state.coin;
             fetch("/api/currencies/"+coin)
             .then(response => response.json())
             .then(data => this.setState({data: data}))
+            setTimeout(this.componentDidMount, 3000)
         }
-        setTimeout(this.componentDidMount, 3000)
     }
 
     updateView = (event) =>{
@@ -49,4 +49,4 @@ class CurrenciesInfo extends React.Component {
     }
 }
 const windowElement = document.getElementById('Coin-Data');
-ReactDOM.render(e(CurrenciesInfo), windowElement);
+ReactDOM.render(e(CurrencyInfo), windowElement);

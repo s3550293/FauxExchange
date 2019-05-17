@@ -26,7 +26,7 @@ class Register extends React.Component {
                 },
                 body: stringifyFormData(data),
             });
-            alert('Registration successful');
+            window.location.href = '/login?code=successful';
         }
     }
 

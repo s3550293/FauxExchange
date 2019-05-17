@@ -12,21 +12,16 @@ class CurrencyChart extends React.Component {
             duration: 'minute'
         };
     }
-    getUrlVars = () =>{
-        var vars = {};
-        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-            vars[key] = value;
-        });
-        return vars.code;
-    }
 
     componentDidMount = () => {
         if(this.state.loading){
+            const url_string = window.location.href;
+            const url = new URL(url_string);
             this.setState({
-                coin: this.getUrlVars(),
+                coin: url.searchParams.get("code"),
                 loading: false
             })
-            setTimeout(this.componentDidMount, 3000)
+            setTimeout(this.componentDidMount, 500);
         }else{
             const coin = this.state.coin;
             const duration = this.state.duration;
@@ -35,13 +30,9 @@ class CurrencyChart extends React.Component {
             .then(data => this.setState({
                 coins: data.Data
             }));
-            setTimeout(this.componentDidMount, 30000)
+            setTimeout(this.componentDidMount, 30000);
         }
     }
-
-    // componentWillUnmount() {
-    //     clearInterval(this.interval);
-    // }
 
     convertTime12to24 = (time12h) => {
         const [time, modifier] = time12h.split(' ');

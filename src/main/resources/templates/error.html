@@ -2,8 +2,8 @@
 <html>
 <header>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Transactions</title>
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Home</title>
     <!-- foundation-float.min.css: Compressed CSS with legacy Float Grid -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/css/foundation-float.min.css"
         integrity="sha256-sP0p6J7SbJGiJ2gkdY1nkVsLgdwiFN2kI370lU+zacQ= sha384-yZLxxcD8nfiSt1qfKJWwHwtkL58WZDTlkBnZN60qr3ZS35+LDsmUF2JHLxdyZ+KU sha512-Z3WbpfWFSsK2dBvoSYZnMvPmxSJUa5cxj3TYlmyj6cq8IXy7iB2nlUk+jjms8gnz4HmpQk/yhRSlRzW7keoSlg=="
@@ -29,44 +29,44 @@
     <link rel=stylesheet type="text/css" href="css/main.css">
     <link rel=stylesheet type="text/css" href="css/color.css">
     <link rel=stylesheet type="text/css" href="css/nav.css">
+    <link rel=stylesheet type="text/css" href="css/home.css">
 </header>
 <!-- https://foundation.zurb.com/sites/docs -->
 
 <body>
-
-    <div class="off-canvas-wrapper">
-        <div class="off-canvas position-left reveal-for-large nav-dark" id="mobileNav" data-off-canvas data-transition="overlap">
-            <button class="close-button" aria-label="Close Menu" type="button" data-toggle="mobileNav">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <br>
-            <br>
-            <!-- NAV -->
-                <div th:replace="fragments/nav :: navigation"></div>
-            <!-- NAV -->
+    <!-- CODE GOES BELOW -->
+    <header class="index-header">
+        <div class="error-header__bg"></div>
+        <div class="pane" style="height:20em; margin-top:30em; color: #000;">
+            <h1>Something went wrong! </h1>
+            <h2>Our Engineers are on it</h2>
+            <a href="/">Go Home</a>
         </div>
-        <div class="off-canvas-content" data-off-canvas-content>
-            <div th:replace="fragments/header :: header"></div>
-            <div class="center-DIV lite">
+    </header>
 
-                <!-- CODE GOES BELOW -->
-                <table id="Orders" class="hover"></table>
+    <div class="index-body">
+    </div>
+    <!-- CODE GOES ABOVE -->
 
+    <!-- JAVASCRIPT -->
+    <div th:replace="fragments/javascript :: javascript">
+        <script src="js/jquery.js"></script>
+        <script src="js/what-input.js"></script>
+        <script src="js/foundation.min.js"></script>
+        <!-- Initialize Foundation -->
+        <script>
+            $(document).foundation();
+        </script>
 
-                <!-- CODE GOES ABOVE -->
-            </div>
-            <!-- FOOTER -->
-            <!-- FOOTER -->
-        </div>
+        <!-- ReactJS Libs -->
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js" crossorigine>
+        </script>
     </div>
 
-
-    <!-- JAVASCRIPT -->
-    <div th:replace="fragments/javascript :: javascript"></div>
-    <!-- JAVASCRIPT -->
-
-    <!-- Custom Lib -->
-    <script src="js/TransactionOrders.js" type="text/babel"></script>
+    <!-- Register JS-->
+    <script src="js/Register.js" type="text/babel"></script>
 </body>
 
 </html>
