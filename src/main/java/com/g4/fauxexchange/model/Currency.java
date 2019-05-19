@@ -13,21 +13,36 @@ public class Currency {
 
 	public String code;
 	public String name;
-	public LinkedList<Double> price;
-	public double change;
+    public LinkedList<Price> price;
 
 	public Currency() {}
 
 	public Currency(String code, String name) {
 		this.code = code;
 		this.name = name;
-        this.price = new LinkedList<Double>();
-        this.price.add(new Double(0.0));
+        this.price = new LinkedList<Price>();
 	}
+
+    public void addPrice(double value, double oldvalue) {
+        price.addValue(value, oldvalue);
+    }
+
+    public double getPrice() {
+        return this.price.peekLast().getValue();
+    }
+
+    public String getCode() {
+        return this.code;
+    }
+
+    public String getName() {
+        return this.name;
+    }
 
 	@Override
 	public String toString() {
-		return String.format("Currency[id=%s, code='%s', name='%s', price='%s']", currencyId, code, name, price.peekLast());
+		return String.format("Currency[id=%s, code='%s', name='%s', %s]", 
+            currencyId, code, name, price.toString());
 	}
 
 }

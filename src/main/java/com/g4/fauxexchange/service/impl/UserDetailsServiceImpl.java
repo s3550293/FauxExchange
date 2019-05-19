@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
     @Autowired
@@ -29,8 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
         } else if("ADMIN".equals(user.getRole())) {
             grantedAuthorities.add(new SimpleGrantedAuthority(user.getRole()));
         }
-            
-
+        
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), grantedAuthorities);
     }
 }

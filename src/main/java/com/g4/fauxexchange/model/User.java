@@ -20,6 +20,7 @@ public class User {
     private String role;
 
     public LinkedList<Currency> wallet;
+    public LinkedList<String> friends;
 
     public User() {}
 
@@ -37,6 +38,10 @@ public class User {
 	public String toString() {
 		return String.format("User[id=%s, fName='%s', lName='%s', dob='%s', email='%s', password='%s']", userId, fName, lName, dob, email, password);
 	}
+
+    public String getUserId() {
+        return this.userId;
+    }
 
     public String getFName() {
         return this.fName;
@@ -96,6 +101,10 @@ public class User {
 
     public void createWallet() {
         wallet = new LinkedList<Currency>();
+    }
+
+    public void createFriendsList() {
+        friends = new LinkedList<String>();
     }
 
 }

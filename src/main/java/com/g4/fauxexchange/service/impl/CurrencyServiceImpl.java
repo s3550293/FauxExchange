@@ -32,16 +32,16 @@ public class CurrencyServiceImpl implements CurrencyService {
         for(Currency currency : currencyRepository.findAll()) {
             JSONObject json = null;
             try {
-                json = new JSONObject(IOUtils.toString(new URL("https://api.cryptonator.com/api/ticker/"+currency.code+"-aud")));
+                System.setProperty("http.agent", "curl/7.51.0");
+                json = new JSONObject(
+                    IOUtils.toString(
+                        new URL("https://api.cryptonator.com/api/ticker/"+ currency.getCode() + "-AUD")));
             } catch(Exception e) {
                 e.printStackTrace();
             }
 
             if(json != null) {
-                Double oldPrice = currency.price.peekLast();
-                currency.price.add(new Double(json.getJSONObject("ticker").getDouble("price")));
-                Double newPrice = currency.price.peekLast();
-                currency.change = newPrice - oldPrice;
+                currency.addPrice(json.getJSONObject("ticker").getDouble("price"), );
                 currencyRepository.save(currency);
             }
 

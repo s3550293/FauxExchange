@@ -12,19 +12,34 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.LinkedList;
 
 import org.json.*;
+
+import com.g4.fauxexchange.model.SessionInfo;
 
 @RestController
 public class SessionsServiceController {
 
     @RequestMapping(value = "/api/session", method = RequestMethod.GET)
     public ResponseEntity<Object> uid(HttpSession session) {
-        JSONObject json = new JSONObject();
-        json.put("sessionid", session.getId());
+        // System.out.println(session);
+        // JSONObject json = new JSONObject();
+        // json.put("sessionid", session.getId());
 
-        System.out.println(json.toString());
-        return new ResponseEntity<>(json.toString(), HttpStatus.OK);
+        // System.out.println(json.toString());
+        List<JSONObject> ents = new LinkedList<JSONObject>();
+        JSONObject ent = new JSONObject();
+        ent.put("sessionid", session.getId());
+        ents.add(ent);
+        return new ResponseEntity<>(ents, HttpStatus.OK);
+    }
+
+    /* Post Request for Session Creation */
+    @RequestMapping(value = "/api/session", method = RequestMethod.POST) 
+    public ResponseEntity<Object> createSession(@RequestBody SessionInfo si, HttpSession session) {
+        return new ResponseEntity<>("Created Session Successfully", HttpStatus.OK);
     }
 
 }
