@@ -27,9 +27,9 @@ public class SessionsServiceController {
         // System.out.println(session);
         JSONObject json = new JSONObject();
         json.put("sessionId", session.getId());
-        json.put("userEmail", session.getAttribute("userEmail"));
+        json.put("userEmail", (String)session.getAttribute("userEmail"));
 
-        // System.out.println(json.toString());
+        System.out.println(json.toString());
         return new ResponseEntity<>(json.toString(), HttpStatus.OK);
     }
 
