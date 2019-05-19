@@ -12,7 +12,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface CurrencyRepository extends MongoRepository<Currency, String> {
 
-    @Query(value = "{ 'code': ?0 }")
+    @Query(value = "{ 'code': ?0 }", fields="{ 'name': 1, 'code': 1, 'price': 1 }")
 	Currency findByCode(String code);
 
     @Query(value = "{}", fields="{ 'name': 1, 'code': 1, 'price': { $slice: -1 }, 'change': 1 }")

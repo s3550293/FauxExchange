@@ -13,7 +13,7 @@ public class DashboardController {
     *   Calls the login page
     */
     @GetMapping("/dashboard")
-    public String Dashboard(){
+    public String Dashboard() {
         return "dashboard";
     }
     

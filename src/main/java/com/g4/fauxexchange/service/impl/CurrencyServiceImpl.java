@@ -41,7 +41,7 @@ public class CurrencyServiceImpl implements CurrencyService {
             }
 
             if(json != null) {
-                currency.addPrice(json.getJSONObject("ticker").getDouble("price"), currency.getPrice());
+                currency.addPrice(new Double(json.getJSONObject("ticker").getDouble("price")));
                 currencyRepository.save(currency);
             }
 

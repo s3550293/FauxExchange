@@ -23,22 +23,21 @@ import com.g4.fauxexchange.model.SessionInfo;
 public class SessionsServiceController {
 
     @RequestMapping(value = "/api/session", method = RequestMethod.GET)
-    public ResponseEntity<Object> uid(HttpSession session) {
+    public ResponseEntity<Object> getSession(HttpSession session) {
         // System.out.println(session);
-        // JSONObject json = new JSONObject();
-        // json.put("sessionid", session.getId());
+        JSONObject json = new JSONObject();
+        json.put("sessionId", session.getId());
+        json.put("userEmail", session.getAttribute("userEmail"));
 
         // System.out.println(json.toString());
-        List<JSONObject> ents = new LinkedList<JSONObject>();
-        JSONObject ent = new JSONObject();
-        ent.put("sessionid", session.getId());
-        ents.add(ent);
-        return new ResponseEntity<>(ents, HttpStatus.OK);
+        return new ResponseEntity<>(json.toString(), HttpStatus.OK);
     }
 
     /* Post Request for Session Creation */
     @RequestMapping(value = "/api/session", method = RequestMethod.POST) 
     public ResponseEntity<Object> createSession(@RequestBody SessionInfo si, HttpSession session) {
+        System.out.println(si);
+        session.setAttribute("userEmail", si.userEmail);
         return new ResponseEntity<>("Created Session Successfully", HttpStatus.OK);
     }
 
