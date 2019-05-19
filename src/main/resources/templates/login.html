@@ -47,23 +47,49 @@
             <div class="login-pane">
                 <h4 style="text-align:center;">Login</h4>
                 <div id="LoginrForm"></div>
-                <form th:action="@{/login}" method="post">
-                    <input type="email" name="email" placeholder="Email" />
+                <form th:action="@{/login}" method="post" id="loginForm">
+                    <input type="email" id="inputEmail" name="email" placeholder="Email"/>
                     <input type="password" name="password" placeholder="password" />
                     <input type="submit" class="button" value="Login" style="width: 100%; margin-right: 0.5em">
                 </form>
                 <form action="/">
                     <input class="button warning" type="submit" value="Register" style="width: 100%; margin-left: 0.5em">
                 </form>
-
             </div>
         </div>
     </div>
     <!-- JAVASCRIPT -->
     <div th:replace="fragments/javascript :: javascript"></div>
+
     
     <!-- Login JS
     <script src="js/Login.js" type="text/babel"></script>-->
+    <script>
+        var x = document.getElementById("inputEmail");
+        x.addEventListener("focusout", postEmail);
+        function postEmail() {
+            console.log("Hello World");
+            var email = document.getElementById('inputEmail').value;
+            var data = new FormData();
+            data.append('sessionId', 'empty');
+            data.append('userEmail', email);
+            fetch('/api/session', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: stringifyFormData(data),
+            });
+            alert('JSON Request successful');
+        }
+        function stringifyFormData(fd) {
+            const data = {};
+            for (let key of fd.keys()) {
+                data[key] = fd.get(key);
+            }
+            return JSON.stringify(data, null, 2);
+        }
+    </script>
 </body>
 
 </html>
