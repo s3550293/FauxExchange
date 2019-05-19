@@ -21,7 +21,7 @@ class Register extends React.Component {
             body: stringifyFormData(data),
         });
         alert('Login successful');
-        window.location.href = '/currencies';
+        window.location.href = '/dashboard';
     }
 
 

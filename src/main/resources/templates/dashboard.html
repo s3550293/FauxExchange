@@ -35,7 +35,7 @@
 
 <body>
     <div class="off-canvas-wrapper">
-        <div class="off-canvas position-left reveal-for-large nav-lite text-lite" id="mobileNav" data-off-canvas
+        <div class="off-canvas position-left reveal-for-large nav-dark text-lite" id="mobileNav" data-off-canvas
             data-transition="overlap">
             <button class="close-button" aria-label="Close Menu" type="button" data-toggle="mobileNav">
                 <span aria-hidden="true">&times;</span>
@@ -43,21 +43,7 @@
             <br>
             <br>
             <!-- NAV -->
-            <div th:replace="fragments/nav :: newNavigation">
-                <ul class="vertical menu">
-                    <li><a href="/"><i class="fi-list"></i> <span>Home</span></a></li>
-                    <li><a href="currencies">Currencies</a></li>
-                </ul>
-                <ul id="dev_nav" class="hide vertical menu">
-                    <li><a href="login">Login</a></li>
-                    <li><a href="register">Register</a></li>
-                    <li><a href="currency">Currency (BTC)</a></li>
-                    <li><a href="dashboard">Dashboard</a></li>
-                    <li><a href="transactions">Transactions</a></li>
-                    <li><a href="orders">Orders</a></li>
-                    <li><a href="leaderboards">Leaderboards</a></li>
-                    <li><a href="friends">Friends</a></li>
-                </ul>
+            <div th:replace="fragments/nav :: navigation">
             </div>
             <!-- NAV -->
         </div>
@@ -65,106 +51,9 @@
             <div class="center-body__bg"></div>
             <div class="body-content">
                 <div class="nav-NEW nav-side">
-                    <div class="nav-title">
-                        <h4 class="icon-space"><button class="menu-icon hide-for-large black-icon" type="button"
-                                data-open="mobileNav"></button></h4>
-                        <h4 class="box-icon" style="font-size:24px;"><i class="fas fa-user"></i></i></h4>
-                        <div id="User-Holdings">
-                            <h5>$2000</h5>
-                        </div>
-                    </div>
-                    <div class="nav-buttons">
-                        <form action="/register">
-                            <input class="button" type="submit" value="Logout">
-                        </form>
-                    </div>
+                    <div th:replace="fragments/header :: headerLoggedInUser"></div>
                 </div>
                 <div class="content-NEW top-margin">
-                    <!-- STATIC -->
-                    <!-- <div class="content-split-two">
-                        <div class="pane pain-split-two profile">
-                            <h4 class="box-icon" style="font-size:104px;"><i class="fas fa-user"></i></i></h4>
-                            <span>Name</span>
-                            <span>Rank</span>
-                            <span>Cash</span>
-                        </div>
-                        <div class="pane pain-split-two account-value">
-                            <h5>Account Value</h5>
-                            <ul class="stats-list">
-                                <li>
-                                    $2030 <span class="stats-list-label">Account Value</span>
-                                </li>
-                                <li class="stats-list-positive">
-                                    $30 <span class="stats-list-label">Gains</span>
-                                </li>
-                                <li class="stats-list-negative">
-                                    $0 <span class="stats-list-label">Loss</span>
-                                </li>
-                            </ul>
-
-                        </div>
-                        <div class="pane pain-split-two">
-                            <h5>Invested Crypto</h5>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <ht></ht>
-                                        <th>
-                                            Code
-                                        </th>
-                                        <th>
-                                            Price
-                                        </th>
-                                        <th>
-                                            Qty
-                                        </th>
-                                        <th>
-                                            Value
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>BTC</td>
-                                        <td>9000</td>
-                                        <td>3</td>
-                                        <td>27000</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="pane pain-split-two">
-                            <h5>Current orders</h5>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <ht></ht>
-                                        <th>Code</th>
-                                        <th>Price</th>
-                                        <th>Qty</th>
-                                        <th>Value</th>
-                                        <th>Buy/Sell</th>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>BTC</td>
-                                        <td>9010</td>
-                                        <td>1</td>
-                                        <td>9010</td>
-                                        <td>Sell</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>BTC</td>
-                                        <td>8500</td>
-                                        <td>2</td>
-                                        <td>17000</td>
-                                        <td>Sell</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div> -->
-                    <!-- STATIC -->
                     <div id="Dash-Content" class="render-width"></div>
                     <div class="pane">
                         <div class="uas-header">
@@ -191,27 +80,6 @@
                 </div>
             </div>
             <!-- FOOTER -->
-            <div th:replace="fragments/footer :: footer">
-                <div class="cell shrink footer lite lite-text" style="display: flex;">
-                    <div style="margin-left:1em; display: flex;">
-                        <span style="margin-right:.5em; margin-top:.2em;">Enable Dev Mode</span>
-                        <div class="switch small">
-                            <input class="switch-input" id="dev_Switch" type="checkbox" onclick="devMode()"
-                                name="DevSwitch">
-                            <label class="switch-paddle rounded" for="dev_Switch">
-                            </label>
-                        </div>
-                    </div>
-                    <div style="margin-left:3em; display: flex;">
-                        <span style="margin-right:.5em; margin-top:.2em;">Enable Dark Mode</span>
-                        <div class="switch small">
-                            <input class="switch-input" id="dark_Switch" type="checkbox" onclick="darkTheme()"
-                                name="DarkSwitch">
-                            <label class="switch-paddle rounded" for="dark_Switch"></label>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <!-- FOOTER -->
         </div>
     </div>
@@ -219,26 +87,8 @@
 
 
     <!-- JAVASCRIPT -->
-    <!-- JS libs -->
-    <!-- Foundation Libs -->
-
+    <div th:replace="fragments/javascript :: javascript"></div>
     <!-- JAVASCRIPT -->
-    <div th:replace="fragments/javascript :: javascript">
-        <script src="js/jquery.js"></script>
-        <script src="js/what-input.js"></script>
-        <script src="js/foundation.min.js"></script>
-        <!-- Initialize Foundation -->
-        <script>
-            $(document).foundation();
-        </script>
-
-        <!-- ReactJS Libs -->
-        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-        <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js" crossorigine>
-        </script>
-        <script src="js/JavaScriptMain.js"></script>
-    </div>
 
     <script src="js/Dashboard.js" type="text/babel"></script>
 </body>

@@ -35,14 +35,14 @@
 <body>
 
     <div class="off-canvas-wrapper">
-        <div class="off-canvas position-left reveal-for-large nav-lite text-lite" id="mobileNav" data-off-canvas data-transition="overlap">
+        <div class="off-canvas position-left reveal-for-large nav-dark" id="mobileNav" data-off-canvas data-transition="overlap">
             <button class="close-button" aria-label="Close Menu" type="button" data-toggle="mobileNav">
                 <span aria-hidden="true">&times;</span>
             </button>
             <br>
             <br>
             <!-- NAV -->
-                <div th:replace="fragments/nav :: newNavigation"></div>
+                <div th:replace="fragments/nav :: navigation"></div>
             <!-- NAV -->
         </div>
         <div class="off-canvas-content" data-off-canvas-content>
@@ -56,7 +56,6 @@
                 <!-- CODE GOES ABOVE -->
             </div>
             <!-- FOOTER -->
-            <div th:replace="fragments/footer :: footer"></div>
             <!-- FOOTER -->
         </div>
     </div>
