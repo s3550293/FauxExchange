@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.g4.fauxexchange.model.User;
+import com.g4.fauxexchange.model.Currency;
 import com.g4.fauxexchange.service.UserService;
 import com.g4.fauxexchange.dao.UserRepository;
 
@@ -44,6 +45,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public User getUserInfo(String id) {
+        User user = userRepository.findByUserId(id);
+        User result = new User();
+        result.setFName(user.getFName());
+        for(Currency c : user.getWallet()) {
+            if(c.getCode().equals("AUD")) {
+                result.createBlankWallet();
+                result.getWallet().add(c);
+            }
+        }
+        
+        return result;
     }
 
 }

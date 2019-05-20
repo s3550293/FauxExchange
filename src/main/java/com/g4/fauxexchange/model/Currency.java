@@ -31,6 +31,15 @@ public class Currency {
         this.time = new LinkedList<Long>();
 	}
 
+    public Currency(String code, String name, double price) {
+        this.code = code;
+        this.name = name;
+        this.price = new LinkedList<Double>();
+        this.price.add(new Double(price));
+        this.time = new LinkedList<Long>();
+        this.time.add(new Long(Instant.now().getEpochSecond()));
+    }
+
     public void addPrice(Double value) {
         if(this.price.peekLast() != null) {
             this.change.add(new Double(value - this.price.peekLast()));

@@ -8,4 +8,5 @@ public interface UserService {
     public abstract void deleteUser(User user);
     public abstract List<User> getUsers();
     public abstract User getUserByEmail(String email);
+    public abstract User getUserInfo(String id);
 }

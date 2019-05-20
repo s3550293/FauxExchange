@@ -32,6 +32,7 @@ public class User {
         this.password = password;
         role = "GENERIC";
         wallet = new LinkedList<Currency>();
+        wallet.add(new Currency("AUD", "Australian Dollar", 1000.0));
     }
 
 	@Override
@@ -100,6 +101,11 @@ public class User {
     }
 
     public void createWallet() {
+        wallet = new LinkedList<Currency>();
+        wallet.add(new Currency("AUD", "Australian Dollar", 1000.0));
+    }
+
+    public void createBlankWallet() {
         wallet = new LinkedList<Currency>();
     }
 
