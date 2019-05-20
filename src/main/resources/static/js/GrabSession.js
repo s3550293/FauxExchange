@@ -26,7 +26,7 @@ class GrabSession extends React.Component {
         }
         return(
             <div>
-                <label>Welcome Session: {this.state.session.sessionid}</label>
+                <label>Welcome Email: {this.state.session.userEmail}</label>
             </div>
         );
     }
