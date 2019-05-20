@@ -10,4 +10,5 @@ public interface OrderService {
     public abstract void processOrders();
     public abstract List<Order> getOrders();
     public abstract List<Order> getOrders(String code);
+    public abstract List<Order> getOrdersByUserId(String id);
 }

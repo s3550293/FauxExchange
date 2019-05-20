@@ -10,10 +10,12 @@ import org.apache.commons.io.IOUtils;
 import org.json.*;
 
 import com.g4.fauxexchange.model.Order;
+import com.g4.fauxexchange.model.User;
 import com.g4.fauxexchange.model.Currency;
 import com.g4.fauxexchange.service.OrderService;
 import com.g4.fauxexchange.dao.OrderRepository;
 import com.g4.fauxexchange.dao.CurrencyRepository;
+import com.g4.fauxexchange.dao.UserRepository;
 
 
 @Service
@@ -25,8 +27,12 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private CurrencyRepository currencyRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
     public void createOrder(Order order) {
+        System.out.println("Creating -" + order);
         orderRepository.save(order);
     }
 
@@ -61,11 +67,27 @@ public class OrderServiceImpl implements OrderService {
                 if(order.type.equals("buy")) {
                     if(order.price >= currency.getPrice() * order.qty) {
                         System.out.println("Buying: " + order);
+                        User user = userRepository.findByUserId(order.getUserId());
+                        if(user.getWallet(order.code) != null) {
+                            user.updateWallet(order.code, currency.getPrice(), user.getWallet(order.code).getQty() + order.qty);
+                        } else {
+                            user.addWallet(order.code, currency.getPrice(), order.qty);
+                        }
+                        user.updateWallet("AUD", 1, user.getWallet("AUD").getQty() - order.price);
+                        userRepository.save(user);
                         deleteOrder(order);
                     }
                 } else {
                     if(order.price <= currency.getPrice() * order.qty) {
                         System.out.println("Selling: " + order);
+                        User user = userRepository.findByUserId(order.getUserId());
+                        if(user.getWallet(order.code) != null) {
+                            user.updateWallet(order.code, currency.getPrice(), user.getWallet(order.code).getQty() - order.qty);
+                        } else {
+                            user.addWallet(order.code, currency.getPrice(), order.qty);
+                        }
+                        user.updateWallet("AUD", 1, user.getWallet("AUD").getQty() + order.price);
+                        userRepository.save(user);
                         deleteOrder(order);
                     }
                 }
@@ -82,6 +104,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getOrders(String code) {
         return orderRepository.findAll();
+    }
+
+    @Override
+    public List<Order> getOrdersByUserId(String id) {
+        return orderRepository.findByUserId(id);
     }
 
 }

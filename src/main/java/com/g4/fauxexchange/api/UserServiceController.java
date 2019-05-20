@@ -28,6 +28,7 @@ public class UserServiceController {
 
     @RequestMapping(value = "/api/user/registration", method = RequestMethod.POST)
     public ResponseEntity<Object> createUser(@RequestBody User user) {
+        System.out.println("Creating User - ");
         userService.createUser(user);
         return new ResponseEntity<>("Hello World!", HttpStatus.OK);
     }

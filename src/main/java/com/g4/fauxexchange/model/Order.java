@@ -32,4 +32,62 @@ public class Order {
 		return String.format("Order[id=%s, type='%s', code='%s', price='%f', qty='%f', userId='%s']", orderId, type, code, price, qty, userId);
 	}
 
+
+    public Order(String orderId, String type, String code, double price, double qty, String userId) {
+        this.orderId = orderId;
+        this.type = type;
+        this.code = code;
+        this.price = price;
+        this.qty = qty;
+        this.userId = userId;
+    }
+
+    public String getOrderId() {
+        return this.orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getCode() {
+        return this.code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public double getPrice() {
+        return this.price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public double getQty() {
+        return this.qty;
+    }
+
+    public void setQty(double qty) {
+        this.qty = qty;
+    }
+
+    public String getUserId() {
+        return this.userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
 }

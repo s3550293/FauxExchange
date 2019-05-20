@@ -3,7 +3,7 @@ class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: '',
+            user: [],
             accountValues: '',
             holdings: [],
             orders: [],
@@ -18,59 +18,43 @@ class Dashboard extends React.Component {
         .then(response => response.json())
         .then(data => this.setState({session: data}))
 
-        //post session to backend
-        const sessionData = new FormData();
-        sessionData.append('sessionId', this.state.session.sessionId);
-        sessionData.append('userId', this.state.session.userId);
-        sessionData.append('userEmail', this.state.session.userEmail);
-        // fetch('/api/orders', {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: stringifyFormData(sessionData),
-        // });
-        fetch('/api/session/userinfo', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: stringifyFormData(sessionData),
-        }).then(response => response.json())
+        console.log("Getting User Data");
+        fetch('/api/session/info')
+        .then(response => response.json())
         .then(data => this.setState({user: data}))
 
         //fetch for userprofile
-        fetch("/api/userProfile")
-        .then(response => response.json())
-        .then(data => this.setState({user: data}))
+        // fetch("/api/userProfile")
+        // .then(response => response.json())
+        // .then(data => this.setState({user: data}))
 
-        //fetch accountValues
-        fetch("/api/accountValue")
-        .then(response => response.json())
-        .then(data => this.setState({accountValues: data}))
+        // //fetch accountValues
+        // fetch("/api/accountValue")
+        // .then(response => response.json())
+        // .then(data => this.setState({accountValues: data}))
 
         //fetch holdings
-        fetch("/api/holding")
+        fetch("/api/session/crypto")
         .then(response => response.json())
         .then(data => this.setState({holdings: data}))
 
         //fetch orders
-        fetch("/api/orders")
+        fetch("/api/session/orders")
         .then(response => response.json())
         .then(data => this.setState({orders: data}))
 
         //Refresh
-        console.log("Getting User Data");
-        setTimeout(this.componentDidMount, 15000);
+        // console.log("Getting User Data");
+        // setTimeout(this.componentDidMount, 15000);
     }
 
     userprofile(){
         return(
             <div className="pane pain-split-two profile">
                 <h4 className="box-icon" Style="font-size:104px;"><i className="fas fa-user"></i></h4>
-                <span>Name: {this.state.user.fName} {this.state.user.lName}</span>
+                <span>Name: {this.state.user.fName + " " + this.state.user.lName}</span>
                 <span>Rank</span>
-                <span>Cash: ${this.state.user.wallet}</span>
+                <span>Cash: ${this.state.user.cash}</span>
             </div>
         );
     }
@@ -107,15 +91,15 @@ class Dashboard extends React.Component {
                             <th className="text-center">Qty</th>
                             <th className="text-center">Value</th>
                         </tr>
-                        {/* {this.state.holdings.map(holding => (
+                        {this.state.holdings.map(holding => (
                             <tr>
                                 <td className="text-center"></td>
                                 <td className="text-center">{holding.code}</td>
-                                <td className="text-center">{holding.price}}</td>
+                                <td className="text-center">{holding.price}</td>
                                 <td className="text-center">{holding.qty}</td>
-                                <td className="text-center">{holding.price*holding.qty}</td>
+                                <td className="text-center">{holding.value}</td>
                             </tr>
-                        ))} */}
+                        ))}
                     </tbody>
                 </table>
             </div>
@@ -136,16 +120,16 @@ class Dashboard extends React.Component {
                             <th className="text-center">Value</th>
                             <th className="text-center">Buy/Sell</th>
                         </tr>
-                        {/* {this.state.orders.map(orders => (
-                            <tr>
+                        {this.state.orders.map(order => (
+                            <tr key={order.orderId}>
                                 <td className="text-center"></td>
                                 <td className="text-center">{order.code}</td>
-                                <td className="text-center">{order.price}}</td>
+                                <td className="text-center">{order.price}</td>
                                 <td className="text-center">{order.qty}</td>
                                 <td className="text-center">{order.price * order.qty}</td>
                                 <td className="text-center">{order.type}</td>
                             </tr>
-                        ))} */}
+                        ))}
                     </tbody>
                 </table>
             </div>

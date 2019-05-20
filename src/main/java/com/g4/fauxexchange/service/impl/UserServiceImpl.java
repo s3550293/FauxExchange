@@ -9,9 +9,11 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.g4.fauxexchange.model.User;
+import com.g4.fauxexchange.model.UserInfo;
 import com.g4.fauxexchange.model.Currency;
 import com.g4.fauxexchange.service.UserService;
 import com.g4.fauxexchange.dao.UserRepository;
+import com.g4.fauxexchange.model.Wallet;
 
 
 @Service
@@ -30,11 +32,17 @@ public class UserServiceImpl implements UserService {
         user.createWallet();
         user.createFriendsList();
         userRepository.save(user);
+        System.out.println("Created " + user);
     }
 
     @Override
     public void deleteUser(User user) {
         userRepository.delete(user);
+    }
+
+    @Override
+    public void saveUser(User user) {
+        userRepository.save(user);
     }
 
     @Override
@@ -48,18 +56,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserInfo(String id) {
+    public UserInfo getUserInfo(String id) {
         User user = userRepository.findByUserId(id);
-        User result = new User();
-        result.setFName(user.getFName());
-        for(Currency c : user.getWallet()) {
-            if(c.getCode().equals("AUD")) {
-                result.createBlankWallet();
-                result.getWallet().add(c);
-            }
-        }
         
-        return result;
+        UserInfo ui = new UserInfo();
+        ui.fName = user.getFName();
+        ui.lName = user.getLName();
+        ui.rank = "whatever";
+        ui.cash = user.getWallet("AUD").getValue();
+        return ui;
+    }
+
+    @Override
+    public List<Wallet> getUserWallet(String id) {
+        User user = userRepository.findByUserId(id);
+        return user.getWallets();
     }
 
 }

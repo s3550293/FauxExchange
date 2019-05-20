@@ -28,7 +28,6 @@ public class OrderServiceController {
 
     @RequestMapping(value = "/api/orders", method = RequestMethod.POST)
     public ResponseEntity<Object> createOrder(@RequestBody Order order) {
-        System.out.println(order);
         orderService.createOrder(order);
         return new ResponseEntity<>("Created Order Succesfully", HttpStatus.OK);
     }

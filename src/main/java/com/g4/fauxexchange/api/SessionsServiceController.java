@@ -21,6 +21,9 @@ import com.g4.fauxexchange.model.SessionInfo;
 import com.g4.fauxexchange.service.SessionInfoService;
 import com.g4.fauxexchange.service.UserService;
 import com.g4.fauxexchange.model.User;
+import com.g4.fauxexchange.model.UserInfo;
+
+import com.g4.fauxexchange.service.OrderService;
 
 @RestController
 public class SessionsServiceController {
@@ -31,15 +34,11 @@ public class SessionsServiceController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    OrderService orderService;
+
     @RequestMapping(value = "/api/session", method = RequestMethod.GET)
     public ResponseEntity<Object> getSession(HttpSession session) {
-        // System.out.println(session);
-        // JSONObject json = new JSONObject();
-        // json.put("sessionId", session.getId());
-        // json.put("userEmail", (String)session.getAttribute("userEmail"));
-
-        // System.out.println(json.toString());
-
         SessionInfo sessionInfo = sessionInfoService.createSession(session);
 
         return new ResponseEntity<>(sessionInfo, HttpStatus.OK);
@@ -56,11 +55,25 @@ public class SessionsServiceController {
         return new ResponseEntity<>("Created Session Successfully", HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/api/session/userinfo", method = RequestMethod.POST) 
-    public ResponseEntity<Object> getUserInfo(@RequestBody SessionInfo si, HttpSession session) {
-        System.out.println("Hello We are trying to get system info");
-        User user = userService.getUserInfo(si.getUserId());
-        return new ResponseEntity<>(user, HttpStatus.OK);
+    @RequestMapping(value = "/api/session/info", method = RequestMethod.GET) 
+    public ResponseEntity<Object> getUserInfo(HttpSession session) {
+        System.out.println("User Info Grab");
+        String userId = (String)session.getAttribute("userId");
+        return new ResponseEntity<>(userService.getUserInfo(userId), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/api/session/orders", method = RequestMethod.GET) 
+    public ResponseEntity<Object> getUserOrders(HttpSession session) {
+        System.out.println("User Order Grab");
+        String userId = (String)session.getAttribute("userId");
+        return new ResponseEntity<>(orderService.getOrdersByUserId(userId), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/api/session/crypto", method = RequestMethod.GET) 
+    public ResponseEntity<Object> getUserCrypto(HttpSession session) {
+        System.out.println("User Crypto Grab");
+        String userId = (String)session.getAttribute("userId");
+        return new ResponseEntity<>(userService.getUserWallet(userId), HttpStatus.OK);
     }
 
 }

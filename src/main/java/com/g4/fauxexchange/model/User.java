@@ -19,7 +19,7 @@ public class User {
     
     private String role;
 
-    public LinkedList<Currency> wallet;
+    public LinkedList<Wallet> wallet;
     public LinkedList<String> friends;
 
     public User() {}
@@ -31,8 +31,8 @@ public class User {
         this.email = email;
         this.password = password;
         role = "GENERIC";
-        wallet = new LinkedList<Currency>();
-        wallet.add(new Currency("AUD", "Australian Dollar", 1000.0));
+        wallet = new LinkedList<Wallet>();
+        wallet.add(new Wallet("AUD", 1.0, 1000.0));
     }
 
 	@Override
@@ -92,21 +92,38 @@ public class User {
         this.role = role;
     }
 
-    public LinkedList<Currency> getWallet() {
+    public LinkedList<Wallet> getWallets() {
         return this.wallet;
     }
 
-    public void setWallet(LinkedList<Currency> wallet) {
+    public Wallet getWallet(String code) {
+        Wallet wallet = null;
+        for(Wallet w : this.wallet) {
+            if(w.getCode().equals(code)) {
+                wallet = w;
+            }
+        }
+
+        return wallet;
+    }
+
+    public void setWallet(LinkedList<Wallet> wallet) {
         this.wallet = wallet;
     }
 
-    public void createWallet() {
-        wallet = new LinkedList<Currency>();
-        wallet.add(new Currency("AUD", "Australian Dollar", 1000.0));
+    public void addWallet(String code, double price, double qty) {
+        this.wallet.add(new Wallet(code, price, qty));
     }
 
-    public void createBlankWallet() {
-        wallet = new LinkedList<Currency>();
+    public void updateWallet(String code, double price, double qty) {
+        getWallet(code).setPrice(price);
+        getWallet(code).setQty(qty);
+        getWallet(code).setValue(price*qty);
+    }
+
+    public void createWallet() {
+        wallet = new LinkedList<Wallet>();
+        wallet.add(new Wallet("AUD", 1.0, 1000.0));
     }
 
     public void createFriendsList() {

@@ -4,6 +4,7 @@ class UserNav extends React.Component {
         super(props);
         this.state = {
             rand: 1,
+            user: ''
         };
     }
     
@@ -12,6 +13,12 @@ class UserNav extends React.Component {
         // fetch("/api/orders")
         // .then(response => response.json())
         // .then(data => this.setState({orders: data, loading: false}));
+
+        console.log("Getting User Data");
+        fetch('/api/session/info')
+        .then(response => response.json())
+        .then(data => this.setState({user: data}))
+
         const num = Math.floor(Math.random() *4)+1
         this.setState({
             rand: num
@@ -25,8 +32,8 @@ class UserNav extends React.Component {
                 <div Style="display:flex; justify-content: center;">
                     <img className='avatar' src={'images/placeholder/person_'+num+'.jpg'}/> 
                 </div>
-                <h5 Style="color: #fff; text-align: center;">UserName</h5>
-                <p Style="color: #fff; text-align: center;">$Cash</p>
+                <h5 Style="color: #fff; text-align: center;">{this.state.user.fName}</h5>
+                <p Style="color: #fff; text-align: center;">${this.state.user.cash}</p>
             </div>
         );
     }
