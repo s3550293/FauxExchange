@@ -21,10 +21,9 @@ class OrderCoin extends React.Component {
         this.setState({code: crptoCode});
         console.log(crptoCode);
 
-        const urlAPI = "/api/session";
-        const response = fetch(urlAPI);
-        const data = response.json();
-        this.setState({session: data});
+        fetch("/api/session")
+        .then(response => response.json())
+        .then(data => this.setState({session: data}))
     }
 
     buyHandleSubmit = (event) => {
@@ -32,7 +31,7 @@ class OrderCoin extends React.Component {
         const data = new FormData(event.target);
         data.append('type', 'buy');
         data.append('code', this.state.code);
-        data.append('userId',this.session.userId);
+        data.append('userId',this.state.session.userId);
         console.log(stringifyFormData(data));
         fetch('/api/orders', {
             method: "POST",
@@ -49,7 +48,8 @@ class OrderCoin extends React.Component {
         const data = new FormData(event.target);
         data.append('type', 'sell');
         data.append('code', this.state.code);
-        
+        data.append('userId',this.state.session.userId);
+        console.log(stringifyFormData(data));
         fetch('/api/orders', {
             method: "POST",
             headers: {
