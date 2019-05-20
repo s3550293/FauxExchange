@@ -9,7 +9,8 @@ class OrderCoin extends React.Component {
             buyPriceVal:'',
             sellQtyVal:'',
             sellPriceVal:'',
-            code:''
+            code:'',
+            session:''
         }
     }
 
@@ -19,15 +20,19 @@ class OrderCoin extends React.Component {
         const crptoCode = url.searchParams.get("code");
         this.setState({code: crptoCode});
         console.log(crptoCode);
+
+        const urlAPI = "/api/session";
+        const response = fetch(urlAPI);
+        const data = response.json();
+        this.setState({session: data});
     }
 
     buyHandleSubmit = (event) => {
-        
-
         event.preventDefault();
         const data = new FormData(event.target);
         data.append('type', 'buy');
         data.append('code', this.state.code);
+        data.append('userId',this.session.userId);
         console.log(stringifyFormData(data));
         fetch('/api/orders', {
             method: "POST",
