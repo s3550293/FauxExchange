@@ -29,7 +29,7 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return String.format("Order[id=%s, type='%s', code='%s', price='%f', qty='%f']", orderId, type, code, price, qty, userId);
+		return String.format("Order[id=%s, type='%s', code='%s', price='%f', qty='%f', userId='%s']", orderId, type, code, price, qty, userId);
 	}
 
 }
