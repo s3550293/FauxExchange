@@ -9,7 +9,7 @@ class CurrencyChart extends React.Component {
             value: [],
             time: [],
             coin: 'BTC',
-            duration: 'minute'
+            duration: 'hour'
         };
     }
 
@@ -62,7 +62,8 @@ class CurrencyChart extends React.Component {
         this.state.time = [];
         this.state.coins.map(cent => (
             this.state.value.push(cent.open),
-            this.state.time.push(this.convertDate(cent.time))
+            // this.state.time.push(this.convertDate(cent.time))
+            this.state.time.push(cent.time)
         ));
     }
 
@@ -78,6 +79,8 @@ class CurrencyChart extends React.Component {
                 null
             );
         } else {
+            console.log(this.state.coin);
+            console.log(this.state.time);
             this.graphConfig();
             var ctx = document.getElementById('Currency-Chart-Display').getContext('2d');
             var graph = new Chart(ctx, {
@@ -104,7 +107,6 @@ class CurrencyChart extends React.Component {
                             type: "time",
                             time: {
                                 parser: timeFormat,
-                                // round: 'day'
                                 tooltipFormat: "ll HH:mm"
                             },
                             ticks: {

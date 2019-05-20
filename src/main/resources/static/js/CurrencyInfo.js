@@ -44,11 +44,9 @@ class CurrencyInfo extends React.Component {
                     <h2 className="page-title">{this.state.data.name}</h2>
                 </div>
                 <div className="pane">
-                    <p>
-                        <h4>Code: {this.state.coin}</h4>
-                        <h4>Current Price: {this.state.data.price}</h4>
-                        <h4>24 Hour Change: {this.state.data.change}</h4>
-                    </p>
+                    <h4>Code: {this.state.coin}</h4>
+                    <h4>Current Price: {this.state.data.price}</h4>
+                    <h4>24 Hour Change: {this.state.data.change}</h4>
                 </div>
             </div>
         )
