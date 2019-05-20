@@ -42,6 +42,7 @@ class TransactionOrders extends React.Component {
         return(
             <tbody>
                 <tr>
+                    <th>UserId</th>
                     <th>Type</th>
                     <th>Currency</th>
                     <th>Price</th>
@@ -51,6 +52,7 @@ class TransactionOrders extends React.Component {
                     //Key used as a unique identifier otherwise console will spit out warning
                     // onClick={window.location='currency'}
                     <tr key={order.id} >
+                        <td className="text-center">{order.userId}</td>
                         <td className="text-center">{order.type}</td>
                         <td className="text-center">{order.code}</td>
                         <td className="text-center">{order.price}</td>
