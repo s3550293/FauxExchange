@@ -3,18 +3,20 @@
 
 <body>
     <div th:fragment="navigation">
+        <div class="user-data" id="Nav-Gation"></div>
         <ul class="vertical menu custom-nav">
             <span>Faux Exchange</span>
-            <li><a href="dashboard">Dashboard</a></li>
-            <li><a href="currencies">Crypto</a></li>
-            <li><a href="transactions">Transactions</a></li>
-            <li><a href="orders">Orders</a></li>
+            <li><a href="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="currencies"><i class="fab fa-bitcoin"></i> Crypto</a></li>
+            <li><a href="transactions"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+            <li><a href="orders"><i class="fas fa-file-alt"></i></i> Orders</a></li>
             <span>Social</span>
-            <li><a href="friends">Friends</a></li>
-            <li><a href="leaderboards">Leaderboards</a></li>
-            <span style="background:none;"><br></span>
-            <li><a href="/"><i class="fi-list"></i>Logout</a></li>
+            <li><a href="friends"><i class="fas fa-user-friends"></i> Friends</a></li>
+            <li><a href="leaderboards"><i class="fas fa-crown"></i> Leaderboards</a></li>
+            <span style="background:none;"><br></br></span>
+            <li><a href="/"><i class="fas fa-sign-out-alt"></i> </i>Logout</a></li>
         </ul>
+        <script src="js/UserNav.js" type="text/babel"></script>
     </div>
     <div th:fragment="newNavigation">
         <h4 class="icon-space"><button class="menu-icon hide-for-large black-icon" type="button"

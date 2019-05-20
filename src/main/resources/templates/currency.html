@@ -42,7 +42,11 @@
             <br>
             <br>
             <!-- NAV -->
-            <div th:replace="fragments/nav :: navigation"></div>
+            <div th:replace="fragments/nav :: navigation">
+            
+                
+            
+            </div>
             <!-- NAV -->
         </div>
         <div class="off-canvas-content" data-off-canvas-content>
@@ -57,7 +61,7 @@
                     <div id="SessionJS"></div>
                     <div id="Coin-Data" class="pane"></div>
                     <!-- CODE GOES BELOW -->
-                    <div class="pane">
+                    <div class="pane mobile">
                         <canvas id="Currency-Chart-Display" class="chart-height"></canvas>
                         <!-- <div id="Currency-Chart-Display" class="chart-height"></div> -->
                         <div id="Graph-Controls"></div>

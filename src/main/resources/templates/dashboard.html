@@ -44,6 +44,7 @@
             <br>
             <!-- NAV -->
             <div th:replace="fragments/nav :: navigation">
+                
             </div>
             <!-- NAV -->
         </div>
@@ -51,11 +52,17 @@
             <div class="center-body__bg"></div>
             <div class="body-content">
                 <div class="nav-NEW nav-side">
-                    <div th:replace="fragments/header :: headerLoggedInUser"></div>
+                    <div th:replace="fragments/header :: header">
+
+
+                    </div>
                 </div>
                 <div class="content-NEW top-margin">
+                    <div class="title-pane">
+                        <h2 class="page-title">Dashboard</h2>
+                    </div>
                     <div id="Dash-Content" class="render-width"></div>
-                    <div class="pane">
+                    <div class="pane mobile">
                         <div class="uas-header">
                             <h5>Account Settings</h5>
                             <div class="switch medium" style="margin-left:2em;">
@@ -87,7 +94,10 @@
 
 
     <!-- JAVASCRIPT -->
-    <div th:replace="fragments/javascript :: javascript"></div>
+    <div th:replace="fragments/javascript :: javascript">
+
+
+    </div>
     <!-- JAVASCRIPT -->
 
     <script src="js/Dashboard.js" type="text/babel"></script>

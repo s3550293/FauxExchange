@@ -12,12 +12,8 @@ class Dashboard extends React.Component {
     
     //Fetchs from rest API
     componentDidMount() {
-        this.interval = setInterval(() => {
-            console.log("Getting User Data"), 3000
-        });
-    }
-    componentWillUnmount() {
-        clearInterval(this.interval);
+        console.log("Getting User Data");
+        setTimeout(this.componentDidMount, 15000);
     }
 
     render() {
@@ -48,18 +44,18 @@ class Dashboard extends React.Component {
                     <table>
                         <tbody>
                             <tr>
-                                <th></th>
-                                <th>Code</th>
-                                <th>Price</th>
-                                <th>Qty</th>
-                                <th>Value</th>
+                                <th className="text-center"></th>
+                                <th className="text-center">Code</th>
+                                <th className="text-center">Price</th>
+                                <th className="text-center">Qty</th>
+                                <th className="text-center">Value</th>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td>BTC</td>
-                                <td>9000</td>
-                                <td>3</td>
-                                <td>27000</td>
+                                <td className="text-center"></td>
+                                <td className="text-center">BTC</td>
+                                <td className="text-center">9000</td>
+                                <td className="text-center">3</td>
+                                <td className="text-center">27000</td>
                             </tr>
                         </tbody>
                     </table>
@@ -69,28 +65,28 @@ class Dashboard extends React.Component {
                     <table>
                         <tbody>
                             <tr>
-                                <th></th>
-                                <th>Code</th>
-                                <th>Price</th>
-                                <th>Qty</th>
-                                <th>Value</th>
-                                <th>Buy/Sell</th>
+                                <th className="text-center"></th>
+                                <th className="text-center">Code</th>
+                                <th className="text-center">Price</th>
+                                <th className="text-center">Qty</th>
+                                <th className="text-center">Value</th>
+                                <th className="text-center">Buy/Sell</th>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td>BTC</td>
-                                <td>9010</td>
-                                <td>1</td>
-                                <td>9010</td>
-                                <td>Sell</td>
+                                <td className="text-center"></td>
+                                <td className="text-center">BTC</td>
+                                <td className="text-center">9010</td>
+                                <td className="text-center">1</td>
+                                <td className="text-center">9010</td>
+                                <td className="text-center">Sell</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td>BTC</td>
-                                <td>8500</td>
-                                <td>2</td>
-                                <td>17000</td>
-                                <td>Sell</td>
+                                <td className="text-center"></td>
+                                <td className="text-center">BTC</td>
+                                <td className="text-center">8500</td>
+                                <td className="text-center">2</td>
+                                <td className="text-center">17000</td>
+                                <td className="text-center">Sell</td>
                             </tr>
                         </tbody>
                     </table>
@@ -100,39 +96,39 @@ class Dashboard extends React.Component {
                     <table>
                         <tbody>
                             <tr>
-                                <th></th>
-                                <th>Code</th>
-                                <th>Price</th>
-                                <th>Qty</th>
-                                <th>Value</th>
+                                <th className="text-center">User</th>
+                                <th className="text-center">Value</th>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td>BTC</td>
-                                <td>9000</td>
-                                <td>3</td>
-                                <td>27000</td>
+                                <td className="text-center">Han Solo</td>
+                                <td className="text-center">$4000.00</td>
+                            </tr>
+                            <tr>
+                                <td className="text-center">Tony Stark</td>
+                                <td className="text-center">$3000.00</td>
+                            </tr>
+                            <tr>
+                                <td className="text-center">Natasha</td>
+                                <td className="text-center">$3.50</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div className="pane pain-split-two">
                     <h5>Friends</h5>
+                    <form>
+                        <input className="seach-input" type="text"/>
+                        <input type="Submit" className="button" value="Search"/>
+                    </form>
                     <table>
                         <tbody>
                             <tr>
-                                <th></th>
-                                <th>Code</th>
-                                <th>Price</th>
-                                <th>Qty</th>
-                                <th>Value</th>
+                                <th className="text-center">Username</th>
+                                <th className="text-center">Value</th>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td>BTC</td>
-                                <td>9000</td>
-                                <td>3</td>
-                                <td>27000</td>
+                                <td className="text-center">Tony Stark</td>
+                                <td className="text-center">$3000.00</td>
                             </tr>
                         </tbody>
                     </table>
