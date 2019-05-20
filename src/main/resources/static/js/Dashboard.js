@@ -3,9 +3,9 @@ class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: [],
+            user: '',
             accountValues: '',
-            crypto: '',
+            holdings: '',
             orders: '',
             session:''
         };
@@ -13,8 +13,6 @@ class Dashboard extends React.Component {
     
     //Fetchs from rest API
     componentDidMount() {
-        console.log("Getting User Data");
-        setTimeout(this.componentDidMount, 15000);
         //fetch session
         fetch("/api/session")
         .then(response => response.json())
@@ -28,17 +26,41 @@ class Dashboard extends React.Component {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: stringifyFormData(data),
+            body: stringifyFormData(sessionData),
         });
+
+        //fetch for userprofile
+        fetch("/api/userProfile")
+        .then(response => response.json())
+        .then(data => this.setState({user: data}))
+
+        //fetch accountValues
+        fetch("/api/accountValue")
+        .then(response => response.json())
+        .then(data => this.setState({accountValues: data}))
+
+        //fetch holdings
+        fetch("/api/holding")
+        .then(response => response.json())
+        .then(data => this.setState({holdings: data}))
+
+        //fetch orders
+        fetch("/api/orders")
+        .then(response => response.json())
+        .then(data => this.setState({orders: data}))
+
+        //Refresh
+        console.log("Getting User Data");
+        setTimeout(this.componentDidMount, 15000);
     }
 
     userprofile(){
         return(
             <div className="pane pain-split-two profile">
                 <h4 className="box-icon" Style="font-size:104px;"><i className="fas fa-user"></i></h4>
-                <span>Name</span>
+                <span>Name: {this.state.user.fName} {this.state.user.lName}</span>
                 <span>Rank</span>
-                <span>Cash</span>
+                <span>Cash: ${this.state.user.wallet}</span>
             </div>
         );
     }
@@ -75,13 +97,15 @@ class Dashboard extends React.Component {
                             <th className="text-center">Qty</th>
                             <th className="text-center">Value</th>
                         </tr>
-                        <tr>
-                            <td className="text-center"></td>
-                            <td className="text-center">BTC</td>
-                            <td className="text-center">9000</td>
-                            <td className="text-center">3</td>
-                            <td className="text-center">27000</td>
-                        </tr>
+                        {this.state.holdings.map(holding => (
+                            <tr>
+                                <td className="text-center"></td>
+                                <td className="text-center">{holding.code}</td>
+                                <td className="text-center">{holding.price}}</td>
+                                <td className="text-center">{holding.qty}</td>
+                                <td className="text-center">{holding.price*holding.qty}</td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
@@ -102,22 +126,16 @@ class Dashboard extends React.Component {
                             <th className="text-center">Value</th>
                             <th className="text-center">Buy/Sell</th>
                         </tr>
-                        <tr>
-                            <td className="text-center"></td>
-                            <td className="text-center">BTC</td>
-                            <td className="text-center">9010</td>
-                            <td className="text-center">1</td>
-                            <td className="text-center">9010</td>
-                            <td className="text-center">Sell</td>
-                        </tr>
-                        <tr>
-                            <td className="text-center"></td>
-                            <td className="text-center">BTC</td>
-                            <td className="text-center">8500</td>
-                            <td className="text-center">2</td>
-                            <td className="text-center">17000</td>
-                            <td className="text-center">Sell</td>
-                        </tr>
+                        {this.state.orders.map(orders => (
+                            <tr>
+                                <td className="text-center"></td>
+                                <td className="text-center">{order.code}</td>
+                                <td className="text-center">{order.price}}</td>
+                                <td className="text-center">{order.qty}</td>
+                                <td className="text-center">{order.price * order.qty}</td>
+                                <td className="text-center">{order.type}</td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
