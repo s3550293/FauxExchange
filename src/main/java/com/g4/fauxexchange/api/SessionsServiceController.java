@@ -25,12 +25,17 @@ public class SessionsServiceController {
     @RequestMapping(value = "/api/session", method = RequestMethod.GET)
     public ResponseEntity<Object> getSession(HttpSession session) {
         // System.out.println(session);
-        JSONObject json = new JSONObject();
-        json.put("sessionId", session.getId());
-        json.put("userEmail", (String)session.getAttribute("userEmail"));
+        // JSONObject json = new JSONObject();
+        // json.put("sessionId", session.getId());
+        // json.put("userEmail", (String)session.getAttribute("userEmail"));
 
-        System.out.println(json.toString());
-        return new ResponseEntity<>(json.toString(), HttpStatus.OK);
+        // System.out.println(json.toString());
+
+        SessionInfo si = new SessionInfo();
+        si.setSessionId(session.getId());
+        si.setUserEmail((String)session.getAttribute("userEmail"));
+
+        return new ResponseEntity<>(si, HttpStatus.OK);
     }
 
     /* Post Request for Session Creation */
