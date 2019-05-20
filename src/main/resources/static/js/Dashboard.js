@@ -7,6 +7,7 @@ class Dashboard extends React.Component {
             accountValues: '',
             crypto: '',
             orders: '',
+            session:''
         };
     }
     
@@ -14,6 +15,21 @@ class Dashboard extends React.Component {
     componentDidMount() {
         console.log("Getting User Data");
         setTimeout(this.componentDidMount, 15000);
+        //fetch session
+        fetch("/api/session")
+        .then(response => response.json())
+        .then(data => this.setState({session: data}))
+
+        //post session to backend
+        const sessionData = new FormData();
+        sessionData.append('userId', this.state.session.userId);
+        fetch('/api/orders', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: stringifyFormData(data),
+        });
     }
 
     userprofile(){
@@ -175,3 +191,11 @@ class Dashboard extends React.Component {
 }
 const windowElement = document.getElementById('Dash-Content');
 ReactDOM.render(e(Dashboard), windowElement);
+
+function stringifyFormData(fd) {
+    const data = {};
+    for (let key of fd.keys()) {
+        data[key] = fd.get(key);
+    }
+    return JSON.stringify(data, null, 2);
+}
