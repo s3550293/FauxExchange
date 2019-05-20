@@ -15,8 +15,8 @@ public interface UserRepository extends MongoRepository<User, String> {
     @Query(value = "{ 'email': ?0 }")
 	public User findByEmail(String email);
 
-    @Query(value = "{ 'email': ?0 }", fields="{ 'friends': 1 }")
-    List<User> findAllWithRecentPrices(String email);
+    @Query(value = "{ 'userId': ?0 }", fields="{ 'friends': 1 }")
+    List<User> findFriends(String userId);
 
 
 }

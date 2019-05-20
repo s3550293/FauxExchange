@@ -18,9 +18,14 @@ import java.util.LinkedList;
 import org.json.*;
 
 import com.g4.fauxexchange.model.SessionInfo;
+import com.g4.fauxexchange.service.SessionInfoService;
 
 @RestController
 public class SessionsServiceController {
+
+    @Autowired
+    SessionInfoService sessionInfoService;
+
 
     @RequestMapping(value = "/api/session", method = RequestMethod.GET)
     public ResponseEntity<Object> getSession(HttpSession session) {
@@ -31,18 +36,19 @@ public class SessionsServiceController {
 
         // System.out.println(json.toString());
 
-        SessionInfo si = new SessionInfo();
-        si.setSessionId(session.getId());
-        si.setUserEmail((String)session.getAttribute("userEmail"));
+        SessionInfo sessionInfo = sessionInfoService.createSession(session);
 
-        return new ResponseEntity<>(si, HttpStatus.OK);
+        return new ResponseEntity<>(sessionInfo, HttpStatus.OK);
     }
 
     /* Post Request for Session Creation */
     @RequestMapping(value = "/api/session", method = RequestMethod.POST) 
     public ResponseEntity<Object> createSession(@RequestBody SessionInfo si, HttpSession session) {
-        System.out.println(si);
-        session.setAttribute("userEmail", si.userEmail);
+
+        SessionInfo sessionInfo = sessionInfoService.createSession(session.getId(), si.getUserEmail());
+        session.setAttribute("userId", sessionInfo.getUserId());
+        session.setAttribute("userEmail", sessionInfo.getUserEmail());
+
         return new ResponseEntity<>("Created Session Successfully", HttpStatus.OK);
     }
 

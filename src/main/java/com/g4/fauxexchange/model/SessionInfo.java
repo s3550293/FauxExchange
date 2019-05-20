@@ -8,13 +8,14 @@ public class SessionInfo {
 
     @Id
     public String sessionId;
+    public String userId;
     public String userEmail;
 
     public SessionInfo() {}
 
-    public SessionInfo(String sessionId, String userEmail) {
+    public SessionInfo(String sessionId, String userId) {
         this.sessionId = sessionId;
-        this.userEmail = userEmail;
+        this.userId = userId;
     }
 
     public String getSessionId() {
@@ -23,6 +24,14 @@ public class SessionInfo {
 
     public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
+    }
+
+    public String getUserId() {
+        return this.userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getUserEmail() {
@@ -35,6 +44,6 @@ public class SessionInfo {
 
     @Override
     public String toString() {
-        return String.format("Session[id=%s, userEmail='%s']", sessionId, userEmail);
+        return String.format("Session[id=%s, userId='%s']", sessionId, userId);
     }
 }
