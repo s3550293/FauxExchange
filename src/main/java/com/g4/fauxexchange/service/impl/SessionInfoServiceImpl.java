@@ -23,8 +23,10 @@ public class SessionInfoServiceImpl implements SessionInfoService {
         si.setSessionId(sid);
         si.setUserEmail(email);
         User user = userRepository.findByEmail(email);
-        System.out.println(user.getUserId());
-        si.setUserId(user.getUserId());
+        if(user != null) {
+            System.out.println(user.getUserId());
+            si.setUserId(user.getUserId());
+        }
 
         return si;
     }
