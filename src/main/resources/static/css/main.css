@@ -237,9 +237,18 @@ a{
     width: 90%;
 }
 
+.friends-search{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.friends-search input{
+    margin: .5em;
+}
 
 .seach-input{
-    width: 10em;
+    width: 14em;
 }
 
 @media only screen and (max-width: 1200px) {

@@ -116,7 +116,7 @@ class Dashboard extends React.Component {
                 </div>
                 <div className="pane pain-split-two">
                     <h5>Friends</h5>
-                    <form>
+                    <form className="friends-search">
                         <input className="seach-input" type="text"/>
                         <input type="Submit" className="button" value="Search"/>
                     </form>
