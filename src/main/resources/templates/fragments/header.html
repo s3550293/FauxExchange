@@ -3,17 +3,9 @@
 
 <body>
     <div th:fragment="header">
-        <div class="cell shrink header medium-cell-block-container">
-
-            <div class="title-bar lite lite-text">
-                <div class="title-bar-left">
-                    <button class="menu-icon hide-for-large black-icon" type="button" data-open="mobileNav"></button>
-                    <span class="title-bar-title">Faux Exchange</span>
-                </div>
-                <div class="title-bar-right">
-                    <span>Currencies</span>
-                </div>
-            </div>
+        <div class="nav-buttons">
+            <h4 class="icon-space"><button class="menu-icon hide-for-large black-icon" type="button"
+                    data-open="mobileNav"></button></h4>
         </div>
     </div>
     <div th:fragment="headerIndex">
@@ -30,19 +22,6 @@
                     <input class="button warning" type="submit" value="Sign up">
                 </form>
                 <!-- <button href="/register" class=" button warning">Sign Up</button> -->
-            </div>
-        </div>
-    </div>
-    <div th:fragment="headerLoggedInUser">
-        <div class="nav-title">
-
-        </div>
-        <div class="nav-buttons">
-            <h4 class="icon-space"><button class="menu-icon hide-for-large black-icon" type="button"
-                    data-open="mobileNav"></button></h4>
-            <h4 class="box-icon" style="font-size:24px;"><i class="fas fa-user"></i></i></h4>
-            <div id="User-Holdings">
-                <h5>$2000</h5>
             </div>
         </div>
     </div>

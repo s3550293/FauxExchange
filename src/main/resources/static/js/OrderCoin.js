@@ -100,8 +100,8 @@ class OrderCoin extends React.Component {
         const {sellQtyVal} = this.state.sellQtyVal;
         const {sellPriceVal} = this.state.sellPriceVal;
         return(
-            <div className="flex-container">
-                <div Style="margin: 5em;">
+            <div className="content-split-two">
+                <div className="pane pain-split-two">
                     <h3>Buy</h3>
                     <br />
                     <form onSubmit = {this.buyHandleSubmit}>
@@ -116,7 +116,7 @@ class OrderCoin extends React.Component {
                         <button type="submit" name="submitBuy" className="button success" value="Buy">Buy</button>
                     </form>
                 </div>
-                <div Style="margin: 5em;">
+                <div className="pane pain-split-two">
                     <h3>Sell</h3>
                     <br />
                     <form onSubmit = {this.sellHandleSubmit}>

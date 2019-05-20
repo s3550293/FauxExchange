@@ -33,31 +33,43 @@
 <!-- https://foundation.zurb.com/sites/docs -->
 
 <body>
-
     <div class="off-canvas-wrapper">
-        <div class="off-canvas position-left reveal-for-large nav-dark" id="mobileNav" data-off-canvas data-transition="overlap">
+        <div class="off-canvas position-left reveal-for-large nav-dark" id="mobileNav" data-off-canvas
+            data-transition="overlap">
             <button class="close-button" aria-label="Close Menu" type="button" data-toggle="mobileNav">
                 <span aria-hidden="true">&times;</span>
             </button>
             <br>
             <br>
             <!-- NAV -->
-                <div th:replace="fragments/nav :: navigation"></div>
+            <div th:replace="fragments/nav :: navigation">
+
+            </div>
             <!-- NAV -->
         </div>
         <div class="off-canvas-content" data-off-canvas-content>
-            <div th:replace="fragments/header :: header"></div>
-            <div class="center-DIV lite">
+            <div class="center-body__bg"></div>
+            <div class="body-content">
+                <div class="nav-NEW nav-side">
+                    <div th:replace="fragments/header :: header">
 
-                <!-- CODE GOES BELOW -->
-                <table id="Orders" class="hover"></table>
+                       
 
+                    </div>
+                </div>
+                <div class="content-NEW">
+                        <div class="title-pane">
+                            <h2 class="page-title">Orders</h2>
+                        </div>
+                        <div class="pane mobile">
+                            <table id="Orders" class="hover"></table>
+                        </div>
+                    </div>
 
-                <!-- CODE GOES ABOVE -->
             </div>
             <!-- FOOTER -->
-            <!-- FOOTER -->
         </div>
+        <!-- FOOTER -->
     </div>
 
 
