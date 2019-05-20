@@ -19,6 +19,8 @@ import org.json.*;
 
 import com.g4.fauxexchange.model.SessionInfo;
 import com.g4.fauxexchange.service.SessionInfoService;
+import com.g4.fauxexchange.service.UserService;
+import com.g4.fauxexchange.model.User;
 
 @RestController
 public class SessionsServiceController {
@@ -26,6 +28,8 @@ public class SessionsServiceController {
     @Autowired
     SessionInfoService sessionInfoService;
 
+    @Autowired
+    UserService userService;
 
     @RequestMapping(value = "/api/session", method = RequestMethod.GET)
     public ResponseEntity<Object> getSession(HttpSession session) {
@@ -50,6 +54,13 @@ public class SessionsServiceController {
         session.setAttribute("userEmail", sessionInfo.getUserEmail());
 
         return new ResponseEntity<>("Created Session Successfully", HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/api/session/userinfo", method = RequestMethod.POST) 
+    public ResponseEntity<Object> getUserInfo(@RequestBody SessionInfo si, HttpSession session) {
+        System.out.println("Hello We are trying to get system info");
+        User user = userService.getUserInfo(si.getUserId());
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
 }

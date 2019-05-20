@@ -5,8 +5,8 @@ class Dashboard extends React.Component {
         this.state = {
             user: '',
             accountValues: '',
-            holdings: '',
-            orders: '',
+            holdings: [],
+            orders: [],
             session:''
         };
     }
@@ -20,14 +20,24 @@ class Dashboard extends React.Component {
 
         //post session to backend
         const sessionData = new FormData();
+        sessionData.append('sessionId', this.state.session.sessionId);
         sessionData.append('userId', this.state.session.userId);
-        fetch('/api/orders', {
+        sessionData.append('userEmail', this.state.session.userEmail);
+        // fetch('/api/orders', {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: stringifyFormData(sessionData),
+        // });
+        fetch('/api/session/userinfo', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: stringifyFormData(sessionData),
-        });
+        }).then(response => response.json())
+        .then(data => this.setState({user: data}))
 
         //fetch for userprofile
         fetch("/api/userProfile")
@@ -97,7 +107,7 @@ class Dashboard extends React.Component {
                             <th className="text-center">Qty</th>
                             <th className="text-center">Value</th>
                         </tr>
-                        {this.state.holdings.map(holding => (
+                        {/* {this.state.holdings.map(holding => (
                             <tr>
                                 <td className="text-center"></td>
                                 <td className="text-center">{holding.code}</td>
@@ -105,7 +115,7 @@ class Dashboard extends React.Component {
                                 <td className="text-center">{holding.qty}</td>
                                 <td className="text-center">{holding.price*holding.qty}</td>
                             </tr>
-                        ))}
+                        ))} */}
                     </tbody>
                 </table>
             </div>
@@ -126,7 +136,7 @@ class Dashboard extends React.Component {
                             <th className="text-center">Value</th>
                             <th className="text-center">Buy/Sell</th>
                         </tr>
-                        {this.state.orders.map(orders => (
+                        {/* {this.state.orders.map(orders => (
                             <tr>
                                 <td className="text-center"></td>
                                 <td className="text-center">{order.code}</td>
@@ -135,7 +145,7 @@ class Dashboard extends React.Component {
                                 <td className="text-center">{order.price * order.qty}</td>
                                 <td className="text-center">{order.type}</td>
                             </tr>
-                        ))}
+                        ))} */}
                     </tbody>
                 </table>
             </div>
