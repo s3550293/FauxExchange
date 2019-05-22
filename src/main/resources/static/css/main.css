@@ -148,7 +148,7 @@ a{
 .login-pane {
     padding: 2.5em;
     border-radius: 2em;
-    height: 20em;
+    min-height: 20em;
     width: 20em;
     display: flex;
     flex-direction: column;
@@ -249,6 +249,30 @@ a{
 
 .seach-input{
     width: 14em;
+}
+
+
+.admin-tr{
+    background-color: none!important;
+    border-bottom: 0.1em solid #212328;
+}
+
+
+.showLoginError{
+    text-align: center;
+    height: 3em;
+    transition: height 2s;
+    transform: scaleY(1);
+    transition: all 1s;
+    opacity: 1;
+    color: rgb(202, 14, 14);
+    padding-bottom: 1em;
+}
+
+.hideLoginError{
+    height: 0em;
+    opacity: 0;
+    transform: scaleY(0);
 }
 
 @media only screen and (max-width: 1200px) {

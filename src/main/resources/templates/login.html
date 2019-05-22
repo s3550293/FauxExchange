@@ -40,20 +40,24 @@
                 <h4><a href="/">Faux Exchange</a></h4>
             </div>
             <div class="nav-buttons">
-                
+
             </div>
         </div>
         <div class="content-NEW">
-            <div class="login-pane">
+            <div class="login-pane" onload="error()">
                 <h4 style="text-align:center;">Login</h4>
                 <div id="LoginrForm"></div>
                 <form th:action="@{/login}" method="post" id="loginForm">
-                    <input type="email" id="inputEmail" name="email" placeholder="Email"/>
+                    <input type="email" id="inputEmail" name="email" placeholder="Email" />
                     <input type="password" name="password" placeholder="password" />
+                    <div id="Login-Error" class="showLoginError hideLoginError">
+                        <h6>Incorrect username or password</h6>
+                    </div>
                     <input type="submit" class="button" value="Login" style="width: 100%; margin: auto;">
                 </form>
                 <form action="/">
-                    <input class="button warning" type="submit" value="Register" style="width: 100%; margin: auto; margin-top:10px;">
+                    <input class="button warning" type="submit" value="Register"
+                        style="width: 100%; margin: auto; margin-top:10px;">
                 </form>
             </div>
         </div>
@@ -61,12 +65,13 @@
     <!-- JAVASCRIPT -->
     <div th:replace="fragments/javascript :: javascript"></div>
 
-    
+
     <!-- Login JS
     <script src="js/Login.js" type="text/babel"></script>-->
     <script>
         var x = document.getElementById("inputEmail");
         x.addEventListener("focusout", postEmail);
+
         function postEmail() {
             console.log("Hello World");
             var email = document.getElementById('inputEmail').value;
@@ -80,8 +85,8 @@
                 },
                 body: stringifyFormData(data),
             });
-            // alert('JSON Request successful');
         }
+
         function stringifyFormData(fd) {
             const data = {};
             for (let key of fd.keys()) {
@@ -89,6 +94,18 @@
             }
             return JSON.stringify(data, null, 2);
         }
+
+        var error;
+        (error = function(){
+            const url_string = window.location.href;
+            const url = new URL(url_string);
+            const msg = url.searchParams.get("error");
+            if (msg) {
+                document.getElementById("Login-Error").classList.remove("hideLoginError");
+            } else {
+                document.getElementById("Login-Error").classList.add("hideLoginError");
+            }
+        })();
     </script>
 </body>
 
