@@ -24,7 +24,7 @@ class CurrencyInfo extends React.Component {
             setTimeout(this.componentDidMount, 500);
         }else{
             const coin = this.state.coin;
-            fetch("/api/currencies/"+coin)
+            fetch("http://fauxexchange.tk/api/currencies/"+coin)
             .then(response => response.json())
             .then(data => this.setState({data: data}))
             setTimeout(this.componentDidMount, 3000)

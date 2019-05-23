@@ -88,7 +88,6 @@
     margin-right: .5em;
     background-image: linear-gradient(to top right, rgb(20, 172, 33), rgb(163, 231, 191));
     color: white !important;
-    float: right;
 }
 
 .warning {
@@ -98,7 +97,6 @@
     margin-right: .5em;
     background-image: linear-gradient(to top right, rgb(182, 120, 40), rgb(233, 176, 90));
     color: white !important;
-    float: right;
 }
 
 .error {
@@ -164,4 +162,8 @@
     width: 90%;
     align-content: left;
     transition: all 1s;
+}
+
+input[type=text]{
+    border-radius: 0.65em;
 }

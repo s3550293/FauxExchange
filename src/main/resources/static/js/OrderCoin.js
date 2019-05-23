@@ -5,25 +5,37 @@ class OrderCoin extends React.Component {
         super(props);
         this.bbp = React.createRef();
         this.state = {
+            loading: true,
             buyQtyVal:'',
             buyPriceVal:'',
             sellQtyVal:'',
             sellPriceVal:'',
             code:'',
-            session:''
+            session:'',
+            coin: []
         }
     }
 
-    componentDidMount (){
-        const url_string = window.location.href;
-        const url = new URL(url_string);
-        const crptoCode = url.searchParams.get("code");
-        this.setState({code: crptoCode});
-        console.log(crptoCode);
+    componentDidMount = () => {
+        console.log(this.state.loading);
+        if(this.state.loading){
+            const url_string = window.location.href;
+            const url = new URL(url_string);
+            const crptoCode = url.searchParams.get("code");
+            this.setState({code: crptoCode});
+            console.log(crptoCode);
 
-        fetch("/api/session")
-        .then(response => response.json())
-        .then(data => this.setState({session: data}))
+            fetch("/api/session")
+            .then(response => response.json())
+            .then(data => this.setState({session: data, loading: false}))
+            this.setState({loading: false});
+            setTimeout(this.componentDidMount, 1000);
+        }else{
+            fetch("http://fauxexchange.tk/api/currencies/"+this.state.code)
+            .then(response => response.json())
+            .then(data => this.setState({coin: data}))
+            setTimeout(this.componentDidMount, 5000);
+        }
     }
 
     buyHandleSubmit = (event) => {
@@ -40,7 +52,8 @@ class OrderCoin extends React.Component {
             },
             body: stringifyFormData(data),
         });
-        alert('Buy Order Successful');
+        // alert('Buy Order Successful');
+        alert(stringifyFormData(data));
     }
 
     sellHandleSubmit = (event) => {
@@ -71,28 +84,21 @@ class OrderCoin extends React.Component {
 
     multiply(bool){
         if(bool){
-            return this.state.buyPriceVal * this.state.buyQtyVal;
+            return Math.round((this.state.buyPriceVal * this.state.buyQtyVal) * 10000) / 10000;
         }
         else{
-            return this.state.sellPriceVal * this.state.sellQtyVal;
+            return Math.round((this.state.sellPriceVal * this.state.sellQtyVal) * 10000) / 10000;
         }
     }
 
     bestPrice = (event) =>{
-        event.preventDefault();
-        const data = new FormData(event.target);
-        data.append('type', 'buy');
-        data.append('code', 'BTC');
-
-        console.log("Getting Best Price");
-        console.log(stringifyFormData(data));
         if(event.target.name == "bestBuy"){
             this.setState({
-                buyPriceVal: 1234
+                buyPriceVal: this.state.coin.price
             });
         }else{
             this.setState({
-                sellPriceVal: 4321
+                sellPriceVal: this.state.coin.price
             });
         }
     }
@@ -100,40 +106,89 @@ class OrderCoin extends React.Component {
 
     render() {
         const {buyQtyVal} = this.state.buyQtyVal;
-        const {buyPriceVal} = this.state.buyPriceVal;
 
         const {sellQtyVal} = this.state.sellQtyVal;
-        const {sellPriceVal} = this.state.sellPriceVal;
         return(
             <div className="content-split-two">
-                <div className="pane pain-split-two">
-                    <h3>Buy</h3>
+                <div className="pane pain-split-two buysell">
+                    <h3>Buy {this.state.code}</h3>
                     <br />
                     <form onSubmit = {this.buyHandleSubmit}>
-                        <input type="text" id="buyQtyVal" 
-                        name="qty" placeholder="Qty" required="required" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,999999999})?\s*$" title="Please enter a positive number"
-                        value={buyQtyVal} onChange={this.updateInput}/>
-                        <input type="text" id="buyPriceVal" 
-                            name="price" placeholder="Value" required="required" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,999999999})?\s*$" title="Please enter a positive number"
-                            value={buyPriceVal} onChange={this.updateInput}/>
-                        <button type="button" name="bestBuy" className="button" value="bestBuy" onClick={this.bestPrice}>Best Buy</button>
-                        <h4>{this.multiply(true)}</h4>
-                        <button type="submit" name="submitBuy" className="button success" value="Buy">Buy</button>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2">
+                                        <input type="text" id="buyQtyVal" 
+                                            name="qty" placeholder="Qty" required="required" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,999999999})?\s*$" title="Please enter a positive number"
+                                            value={buyQtyVal} onChange={this.updateInput}/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td Style="padding-right:0em;">
+                                        <input className="buysell-value" type="text" id="buyPriceVal" 
+                                            name="price" placeholder="Value" required="required" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,999999999})?\s*$" title="Please enter a positive number"
+                                            value={this.state.buyPriceVal} onChange={this.updateInput}/>
+                                    </td>
+                                    <td>
+                                    <button Style="margin-top:0em; width:100%;" type="button" name="bestBuy" className="button" value="bestBuy" onClick={this.bestPrice}>Best Buy</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <h4>Cost: ${this.multiply(true)}</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td Style="text-align: center;" colspan="2">
+                                        <button Style="margin:auto; width:50%;" type="submit" name="submitBuy" className="button success" value="Buy">Buy</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </form>
                 </div>
-                <div className="pane pain-split-two">
-                    <h3>Sell</h3>
+                <div className="pane pain-split-two buysell">
+                    <h3>Sell {this.state.code}</h3>
                     <br />
                     <form onSubmit = {this.sellHandleSubmit}>
-                        <input type="text" id="sellQtyVal" 
-                        name="qty" placeholder="Qty"  required="required" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,999999999})?\s*$" title="Please enter a positive number"
-                        value={sellQtyVal} onChange={this.updateInput}/>
-                        <input type="text" id="sellPriceVal" 
-                        name="price" placeholder="value" required="required" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,999999999})?\s*$" title="Please enter a positive number"
-                        value={sellPriceVal} onChange={this.updateInput}/>
-                        <button type="button" name="bestSell" className="button" onClick={this.bestPrice}>Best Sell</button>
-                        <h4>{this.multiply(false)}</h4>
-                        <button type="submit" className="button error">Sell</button>
+
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td colspan="2">
+                                    <input type="text" id="sellQtyVal" 
+                                        name="qty" placeholder="Qty"  required="required" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,999999999})?\s*$" title="Please enter a positive number"
+                                        value={sellQtyVal} onChange={this.updateInput}/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td Style="padding-right:0em;">
+                                    <input className="buysell-value" type="text" id="sellPriceVal" 
+                                        name="price" placeholder="value" required="required" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,999999999})?\s*$" title="Please enter a positive number"
+                                        value={this.state.sellPriceVal} onChange={this.updateInput}/>
+                                </td>
+                                <td>
+                                    <button Style="margin-top:0em; width:100%;" type="button" name="bestSell" className="button" onClick={this.bestPrice}>Best Sell</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <h4>Cost: ${this.multiply(false)}</h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td Style="text-align: center;" colspan="2">
+                                    <button Style="margin:auto; width:50%;" type="submit" className="button error">Sell</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                        
+                        
+                        
+                        
+                        
                     </form>
                 </div>
             </div>

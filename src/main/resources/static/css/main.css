@@ -197,12 +197,13 @@ a{
     display: flex;
     /* flex-flow: column wrap; */
     flex-wrap: wrap;
+    
     justify-content: space-between;
 }
 
 .chart-height{
-    min-height: 40em;
-    max-height: 40em;
+    min-height: 20em;
+    max-height: 30em;
 }
 
 /* DASH */
@@ -275,6 +276,34 @@ a{
     transform: scaleY(0);
 }
 
+.buysell{
+    max-width: 40em;
+    justify-content: space-around;
+}
+
+.buysell tr{
+    background: none!important;
+}
+
+.buysell form{
+    width: 100%
+}
+.buysell td{
+    width: 50%;
+    vertical-align: middle;
+}
+.buysell input{
+    width: 50%;
+}
+.buysell-value{
+    width: 100%!important;
+}
+
+.currencyValues{
+    font-family: Copse, serif!important;
+}
+
+
 @media only screen and (max-width: 1200px) {
     .pane {
         width: 100%;
@@ -287,6 +316,9 @@ a{
     }
     .mobile{
         width: 90%;
+    }
+    .content-split-two{
+        justify-content: center;
     }
 }
 
