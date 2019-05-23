@@ -44,6 +44,9 @@
             <br>
             <!-- NAV -->
             <div th:replace="fragments/nav :: navigation">
+
+
+
             </div>
             <!-- NAV -->
         </div>
@@ -51,35 +54,37 @@
             <div class="center-body__bg"></div>
             <div class="body-content">
                 <div class="nav-NEW nav-side">
-                    <div th:replace="fragments/header :: header"></div>
-                </div>
-                <!-- <div th:replace="fragments/header :: header"></div> -->
-                <!-- <div class="center-DIV lite"> -->
+                    <div th:replace="fragments/header :: header">
 
-                <!-- CODE GOES BELOW -->
-                <div class="content-NEW">
+                      
+
+
+                    </div>
+                </div>
+
+                <div class="content-NEW top-margin">
                     <div class="title-pane">
                         <h2 class="page-title">Crypto Currencies</h2>
                     </div>
-                    <div class="pane">
+                    <div class="pane mobile">
                         <div id="SessionJS"></div>
-                        <table id="API_Table" class="hover">
+                        <table id="API_Table" class="hover no-padding">
                         </table>
                     </div>
                 </div>
 
-                <!-- CODE GOES ABOVE -->
-
             </div>
-            <!-- FOOTER -->
         </div>
-        <!-- FOOTER -->
     </div>
     </div>
 
 
     <!-- JAVASCRIPT -->
     <div th:replace="fragments/javascript :: javascript">
+
+
+        
+
     </div>
     <!-- JAVASCRIPT -->
 

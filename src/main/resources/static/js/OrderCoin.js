@@ -31,7 +31,7 @@ class OrderCoin extends React.Component {
             this.setState({loading: false});
             setTimeout(this.componentDidMount, 1000);
         }else{
-            fetch("http://fauxexchange.tk/api/currencies/"+this.state.code)
+            fetch("/api/currencies/"+this.state.code)
             .then(response => response.json())
             .then(data => this.setState({coin: data}))
             setTimeout(this.componentDidMount, 5000);
@@ -134,8 +134,11 @@ class OrderCoin extends React.Component {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">
-                                        <h4>Cost: ${this.multiply(true)}</h4>
+                                    <td>
+                                        <h4>Cost: </h4>
+                                    </td>
+                                    <td>
+                                        <h4 Style="font-size: 1.4em;" className="dispNUM">${this.multiply(true)}</h4>
                                     </td>
                                 </tr>
                                 <tr>
@@ -172,8 +175,11 @@ class OrderCoin extends React.Component {
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2">
-                                    <h4>Cost: ${this.multiply(false)}</h4>
+                                <td>
+                                    <h4>Cost:</h4>
+                                </td>
+                                <td>
+                                    <h4 Style="font-size: 1.4em;" className="dispNUM">${this.multiply(false)}</h4>
                                 </td>
                             </tr>
                             <tr>
