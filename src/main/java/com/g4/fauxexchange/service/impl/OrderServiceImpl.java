@@ -65,7 +65,7 @@ public class OrderServiceImpl implements OrderService {
         for(Currency currency : currencyRepository.findAll()) {
             for(Order order : orderRepository.findByCode(currency.code)) {
                 if(order.type.equals("buy")) {
-                    if(order.price >= currency.getPrice() * order.qty) {
+                    if(order.price * order.qty >= currency.getPrice() * order.qty) {
                         System.out.println("Buying: " + order);
                         User user = userRepository.findByUserId(order.getUserId());
                         if(user.getWallet(order.code) != null) {
@@ -78,7 +78,7 @@ public class OrderServiceImpl implements OrderService {
                         deleteOrder(order);
                     }
                 } else {
-                    if(order.price <= currency.getPrice() * order.qty) {
+                    if(order.price * order.qty <= currency.getPrice() * order.qty) {
                         System.out.println("Selling: " + order);
                         User user = userRepository.findByUserId(order.getUserId());
                         if(user.getWallet(order.code) != null) {
