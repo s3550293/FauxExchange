@@ -30,34 +30,93 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private UserRepository userRepository;
 
+/* 
+Function: Create Order
+Description: Pass in a order object to be passed into the collection.
+This is based on the users cash value.
+If user cash value greater than the order value we can create.
+If not we should then fail as this should not happen.
+
+TODO(Arnold): This could be improved from instead of returning booleans to returning an int with 
+the usage of an enum.
+ */
     @Override
-    public void createOrder(Order order) {
-        System.out.println("Creating -" + order);
-        orderRepository.save(order);
+    public boolean createOrder(Order order) {
+        System.out.println("Creating: " + order);
+
+        User user = userRepository.findByUserId(order.getUserId());
+        //NUll check
+        if(user != null) {
+            //User Cash Check >= Order Value
+            
+            double oc = order.getValue();
+            if(order.getType().equals("buy")) {
+                double uc = user.getWallet("AUD").getValue();
+                if(uc >= oc) {
+                    user.updateWallet("AUD", 1, uc - oc);
+                    userRepository.save(user);
+                    orderRepository.save(order);
+                    return true;
+                }
+            } else {
+                double uc = user.getWallet(order.getCode()).getValue();
+                double uqty = user.getWallet(order.getCode()).getQty();
+                if(uc >= oc) {
+                    user.updateWallet(order.getCode(), order.getPrice(), uqty - order.getQty());
+                    userRepository.save(user);
+                    orderRepository.save(order);
+                }
+            }
+            
+
+            return false;
+        }
+        return false;
     }
 
-    @Override
-    public void updateOrder() {
+/* 
+Out of scope
+Function: Update Order
+Description: This should be able to update the specific order in the collection to with the updated
+values
+ */
+    // @Override
+    // public void updateOrder() {
 
+    // }
+
+/* 
+Function: Delete Order
+Description: Pass in a order object to be deleted from the collection.
+In steps:
+1. Return money or crypto back to user back to user.
+2. Delete the order from the collection.
+
+This technically shouldn't fail.
+TODO(Arnold): Remove hardcoded values
+ */
+    @Override
+    public boolean deleteOrder(Order order) {
+        System.out.println("Deleting: " + order);
+        User user = userRepository.findByUserId(order.getUserId());
+        if(user != null) {
+            double oc = order.getValue();
+            if(order.getType().equals("buy")) {
+                double uc = user.getWallet("AUD").getValue();
+                user.updateWallet("AUD", 1, uc + oc);
+                orderRepository.delete(order);
+                return true;
+            } else {
+                double uc = user.getWallet(order.getCode()).getValue();
+                user.updateWallet(order.getCode(), order.getPrice(), order.getQty());
+                orderRepository.delete(order);
+                return true;
+            }
+        }
+        
+        return false;
     }
 
-    @Override
-    public void deleteOrder(Order order) {
-        orderRepository.delete(order);
-    }
-
-
-    /* Expand on this function
-        VoO & 1 coin or GT >= MarketValue * coin = Process Order
-        vice versa
-        VoO & 1 coin or GT <= MarketValue * coin = Process Order
-
-        BUT
-
-        VoO & 0.x coin % MarketValue * coin = Proces Order
-        vice versa
-        VoO & 0.x coin % MarketValue * coin = Process Order
-     */
     @Override
     @Scheduled(fixedRate=60000, initialDelay = 60000)
     public void processOrders() {
@@ -75,7 +134,7 @@ public class OrderServiceImpl implements OrderService {
                         }
                         user.updateWallet("AUD", 1, user.getWallet("AUD").getQty() - order.price);
                         userRepository.save(user);
-                        deleteOrder(order);
+                        orderRepository.delete(order);
                     }
                 } else {
                     if(order.price * order.qty <= currency.getPrice() * order.qty) {
@@ -88,7 +147,7 @@ public class OrderServiceImpl implements OrderService {
                         }
                         user.updateWallet("AUD", 1, user.getWallet("AUD").getQty() + order.price);
                         userRepository.save(user);
-                        deleteOrder(order);
+                        orderRepository.delete(order);
                     }
                 }
             }

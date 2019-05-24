@@ -19,20 +19,6 @@ public class Order {
 
     public Order() {}
 
-	public Order(String type, String code, double price, double qty) {
-        this.type = type;
-        this.code = code;
-        this.price = price;
-        this.qty = qty;
-        this.userId = null;
-    }
-
-	@Override
-	public String toString() {
-		return String.format("Order[id=%s, type='%s', code='%s', price='%f', qty='%f', userId='%s']", orderId, type, code, price, qty, userId);
-	}
-
-
     public Order(String orderId, String type, String code, double price, double qty, String userId) {
         this.orderId = orderId;
         this.type = type;
@@ -42,6 +28,14 @@ public class Order {
         this.userId = userId;
     }
 
+    @Override
+	public String toString() {
+		return String.format("Order[id=%s, type='%s', code='%s', price='%f', qty='%f', userId='%s']", orderId, type, code, price, qty, userId);
+	}
+
+    /* GENERIC
+     Getters & Setters 
+    */
     public String getOrderId() {
         return this.orderId;
     }
@@ -88,6 +82,14 @@ public class Order {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    /* CUSTOM
+    Getters & Setters
+    */
+
+    public double getValue() {
+        return this.price * this.qty;
     }
 
 }
