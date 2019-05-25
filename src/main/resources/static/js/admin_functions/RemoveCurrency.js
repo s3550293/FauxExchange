@@ -24,6 +24,21 @@ class RemoveCurrency extends React.Component {
         alert("remove "+code);
     }
 
+    changeValue = (value,change) => {
+        const percent = (change/value) * 100
+        const rounded = Math.round(percent * 10000) / 10000
+        if(rounded >= 0){
+            return (
+                <td Style="padding:.3em; color: #48bf0d; font-weight: 700;" className="text-center dispNUM">{rounded}%</td>
+            );
+        }
+        else{
+            return (
+                <td Style="padding:.3em; color: #bf0d30; font-weight: 700;" className="text-center dispNUM">{rounded}%</td>
+            );
+        }
+    }
+
     render() {
         //Sets render to loading if coin array doesn't have data.
         if(this.state.loading){
@@ -33,17 +48,22 @@ class RemoveCurrency extends React.Component {
             <tbody>
                 <tr>
                     <th></th>
-                    <th>Name</th>
-                    <th>Value</th>
+                    <th></th>
+                    <th>Code</th>
                     <th>Change</th>
                     <th></th>
                 </tr>
                 {this.state.coins.map(coin => (
                     <tr key={coin.code} name={coin.code}>
                         <td className="text-center"><img src={"logos/"+coin.code+".svg"} height="30px" width="30p"></img></td>
-                        <td className="text-center">{coin.name}</td>
-                        <td className="text-center">{Math.round(coin.price * 10000) / 10000}</td>
-                        <td className="text-center">{Math.round(coin.change * 10000) / 10000}</td>
+                        <tr Style="padding:.3em; background:none;">
+                            <td Style="padding:.3em; text-align: left;" className="text-center"><span Style="font-weight:700; font-size: 1.2em;">{coin.name}</span></td>
+                        </tr>
+                        <tr Style="padding:.3em; background:none;">
+                            <td Style="text-align: left;" className="text-center dispNUM">${Math.round(coin.price * 10000) / 10000}</td>
+                        </tr>
+                        <td className="text-center">{coin.code}</td>
+                        {this.changeValue(coin.price, coin.change[(coin.change.length) - 1])}
                         <td className="text-center"><button onClick={e =>{this.remove(e,coin.code)}} className="button error"> Remove</button></td>
                     </tr>
                 ))}

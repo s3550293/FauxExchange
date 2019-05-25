@@ -57,16 +57,14 @@ class CurrenciesData extends React.Component {
                 {this.state.coins.map(coin => (
                     <tr key={coin.code} name={coin.code} onClick={(e) =>{this.currencyClick(e,coin.code)}}>
                         <td className="text-center"><img src={"logos/"+coin.code+".svg"} height="30px" width="30p"></img></td>
-                    <tr Style="padding:.3em; background:none;">
-                        <td Style="padding:.3em; text-align: left;" className="text-center"><span Style="font-weight:700; font-size: 1.2em;">{coin.name}</span></td>
-                    </tr>
-                    <tr Style="padding:.3em; background:none;">
-                        <td Style="text-align: left;" className="text-center dispNUM">${Math.round(coin.price * 10000) / 10000}</td>
-                    </tr>
+                        <tr Style="padding:.3em; background:none;">
+                            <td Style="padding:.3em; text-align: left;" className="text-center"><span Style="font-weight:700; font-size: 1.2em;">{coin.name}</span></td>
+                        </tr>
+                        <tr Style="padding:.3em; background:none;">
+                            <td Style="text-align: left;" className="text-center dispNUM">${Math.round(coin.price * 10000) / 10000}</td>
+                        </tr>
                         <td className="text-center">{coin.code}</td>
-                        {/* <td Style="padding:.3em;" className="text-center">{this.changeValue(coin.change[(coin.change.length) - 1])}</td> */}
                         {this.changeValue(coin.price, coin.change[(coin.change.length) - 1])}
-                        {/* {this.changeValue(coin.price, 0.02)} */}
                     </tr>
                 ))}
             </tbody>
