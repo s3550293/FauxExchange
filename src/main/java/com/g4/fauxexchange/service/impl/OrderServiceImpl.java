@@ -65,9 +65,9 @@ the usage of an enum.
                     user.updateWallet(order.getCode(), order.getPrice(), uqty - order.getQty());
                     userRepository.save(user);
                     orderRepository.save(order);
+                    return true;
                 }
             }
-            
 
             return false;
         }
@@ -107,8 +107,8 @@ TODO(Arnold): Remove hardcoded values
                 orderRepository.delete(order);
                 return true;
             } else {
-                double uc = user.getWallet(order.getCode()).getValue();
-                user.updateWallet(order.getCode(), order.getPrice(), order.getQty());
+                double uqty = user.getWallet(order.getCode()).getQty();
+                user.updateWallet(order.getCode(), order.getPrice(), uqty + order.getQty());
                 orderRepository.delete(order);
                 return true;
             }
