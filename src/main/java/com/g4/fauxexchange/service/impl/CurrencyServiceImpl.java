@@ -10,6 +10,7 @@ import org.apache.commons.io.IOUtils;
 import org.json.*;
 
 import com.g4.fauxexchange.model.Currency;
+import com.g4.fauxexchange.model.Price;
 import com.g4.fauxexchange.service.CurrencyService;
 import com.g4.fauxexchange.dao.CurrencyRepository;
 
@@ -41,7 +42,9 @@ public class CurrencyServiceImpl implements CurrencyService {
             }
 
             if(json != null) {
-                currency.addPrice(new Double(json.getJSONObject("ticker").getDouble("price")));
+                double priceAPI = json.getJSONObject("ticker").getDouble("price");
+                Price price = new Price(priceAPI);
+                currency.update(price);
                 currencyRepository.save(currency);
             }
 
@@ -51,7 +54,7 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     @Override
     public void deleteCurrency(Currency currency) {
-
+        currencyRepository.delete(currency);
     }
 
     @Override

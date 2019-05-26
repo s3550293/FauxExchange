@@ -48,7 +48,7 @@ the usage of an enum.
         //NUll check
         if(user != null) {
             //User Cash Check >= Order Value
-            
+            Currency currency = currencyRepository.findByCode(order.getCode());
             double oc = order.getValue();
             if(order.getType().equals("buy")) {
                 double uc = user.getWallet("AUD").getValue();
@@ -62,7 +62,7 @@ the usage of an enum.
                 double uc = user.getWallet(order.getCode()).getValue();
                 double uqty = user.getWallet(order.getCode()).getQty();
                 if(uc >= oc) {
-                    user.updateWallet(order.getCode(), order.getPrice(), uqty - order.getQty());
+                    user.updateWallet(order.getCode(), currency.getRecentPrice(), uqty - order.getQty());
                     userRepository.save(user);
                     orderRepository.save(order);
                     return true;
@@ -100,6 +100,7 @@ TODO(Arnold): Remove hardcoded values
         System.out.println("Deleting: " + order);
         User user = userRepository.findByUserId(order.getUserId());
         if(user != null) {
+            Currency currency = currencyRepository.findByCode(order.getCode());
             double oc = order.getValue();
             if(order.getType().equals("buy")) {
                 double uc = user.getWallet("AUD").getValue();
@@ -108,7 +109,7 @@ TODO(Arnold): Remove hardcoded values
                 return true;
             } else {
                 double uqty = user.getWallet(order.getCode()).getQty();
-                user.updateWallet(order.getCode(), order.getPrice(), uqty + order.getQty());
+                user.updateWallet(order.getCode(), currency.getRecentPrice(), uqty + order.getQty());
                 orderRepository.delete(order);
                 return true;
             }
@@ -118,34 +119,32 @@ TODO(Arnold): Remove hardcoded values
     }
 
     @Override
-    @Scheduled(fixedRate=60000, initialDelay = 60000)
+    @Scheduled(fixedRate = 60000, initialDelay = 60000)
     public void processOrders() {
         System.out.println("- Processing Orders -");
         for(Currency currency : currencyRepository.findAll()) {
             for(Order order : orderRepository.findByCode(currency.code)) {
                 if(order.type.equals("buy")) {
-                    if(order.price * order.qty >= currency.getPrice() * order.qty) {
+                    if(order.price * order.qty >= currency.getRecentPrice() * order.qty) {
                         System.out.println("Buying: " + order);
                         User user = userRepository.findByUserId(order.getUserId());
                         if(user.getWallet(order.code) != null) {
-                            user.updateWallet(order.code, currency.getPrice(), user.getWallet(order.code).getQty() + order.qty);
+                            user.updateWallet(order.code, currency.getRecentPrice(), user.getWallet(order.code).getQty() + order.qty);
                         } else {
-                            user.addWallet(order.code, currency.getPrice(), order.qty);
+                            user.addWallet(order.code, currency.getRecentPrice(), order.qty);
                         }
-                        user.updateWallet("AUD", 1, user.getWallet("AUD").getQty() - order.price);
                         userRepository.save(user);
                         orderRepository.delete(order);
                     }
                 } else {
-                    if(order.price * order.qty <= currency.getPrice() * order.qty) {
+                    if(order.price * order.qty <= currency.getRecentPrice() * order.qty) {
                         System.out.println("Selling: " + order);
                         User user = userRepository.findByUserId(order.getUserId());
                         if(user.getWallet(order.code) != null) {
-                            user.updateWallet(order.code, currency.getPrice(), user.getWallet(order.code).getQty() - order.qty);
+                            user.updateWallet(order.code, currency.getRecentPrice(), user.getWallet(order.code).getQty() - order.qty);
                         } else {
-                            user.addWallet(order.code, currency.getPrice(), order.qty);
+                            user.addWallet(order.code, currency.getRecentPrice(), order.qty);
                         }
-                        user.updateWallet("AUD", 1, user.getWallet("AUD").getQty() + order.price);
                         userRepository.save(user);
                         orderRepository.delete(order);
                     }

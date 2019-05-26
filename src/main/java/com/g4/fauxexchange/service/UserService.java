@@ -8,6 +8,7 @@ import com.g4.fauxexchange.model.Wallet;
 public interface UserService {
     public abstract void createUser(User user);
     public abstract void deleteUser(User user);
+    public abstract void updateUser();
     public abstract List<User> getUsers();
     public abstract User getUserByEmail(String email);
     public abstract UserInfo getUserInfo(String id);

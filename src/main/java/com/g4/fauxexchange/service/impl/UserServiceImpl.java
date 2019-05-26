@@ -9,18 +9,27 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.g4.fauxexchange.model.User;
+import com.g4.fauxexchange.model.Wallet;
 import com.g4.fauxexchange.model.UserInfo;
-import com.g4.fauxexchange.model.Currency;
 import com.g4.fauxexchange.service.UserService;
 import com.g4.fauxexchange.dao.UserRepository;
-import com.g4.fauxexchange.model.Wallet;
+
+
+//Currency related
+import com.g4.fauxexchange.model.Currency;
+import com.g4.fauxexchange.model.Price;
+import com.g4.fauxexchange.service.CurrencyService;
+import com.g4.fauxexchange.dao.CurrencyRepository;
 
 
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository uRepo;
+
+    @Autowired
+    private CurrencyRepository cRepo;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -31,33 +40,51 @@ public class UserServiceImpl implements UserService {
         user.setRole("GENERIC");
         user.createWallet();
         user.createFriendsList();
-        userRepository.save(user);
+        uRepo.save(user);
         System.out.println("Created " + user);
     }
 
     @Override
     public void deleteUser(User user) {
-        userRepository.delete(user);
+        uRepo.delete(user);
+    }
+
+    @Override
+    @Scheduled(fixedRate = 60000, initialDelay = 60000)
+    public void updateUser() {
+        System.out.println("- Updating Wallets -");
+        for(User user : uRepo.findAll()) {
+            if(!user.getWallets().isEmpty()) {
+                for(Wallet wallet : user.getWallets()) {
+                    if(!wallet.getCode().equals("AUD")) {
+                        wallet.setPrice(cRepo.findByCode(wallet.getCode()).getRecentPrice());
+                        wallet.setValue(wallet.getPrice() * wallet.getQty());   
+                    }
+                }
+                uRepo.save(user);
+                System.out.println("Updated: " + user.getUserId());
+            }
+        }
     }
 
     @Override
     public void saveUser(User user) {
-        userRepository.save(user);
+        uRepo.save(user);
     }
 
     @Override
     public List<User> getUsers() {
-        return userRepository.findAll();
+        return uRepo.findAll();
     }
 
     @Override
     public User getUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+        return uRepo.findByEmail(email);
     }
 
     @Override
     public UserInfo getUserInfo(String id) {
-        User user = userRepository.findByUserId(id);
+        User user = uRepo.findByUserId(id);
         
         UserInfo ui = new UserInfo();
         ui.fName = user.getFName();
@@ -69,7 +96,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<Wallet> getUserWallet(String id) {
-        User user = userRepository.findByUserId(id);
+        User user = uRepo.findByUserId(id);
         return user.getWallets();
     }
 

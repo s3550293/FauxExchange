@@ -1,6 +1,7 @@
 package com.g4.fauxexchange.model;
 
 public class Wallet {
+
     public String code;
     public double price;
     public double qty;

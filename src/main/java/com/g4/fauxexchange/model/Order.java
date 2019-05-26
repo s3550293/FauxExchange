@@ -34,7 +34,7 @@ public class Order {
 	}
 
     /* GENERIC
-     Getters & Setters 
+        Getters & Setters 
     */
     public String getOrderId() {
         return this.orderId;
@@ -85,7 +85,7 @@ public class Order {
     }
 
     /* CUSTOM
-    Getters & Setters
+        Getters & Setters
     */
 
     public double getValue() {
