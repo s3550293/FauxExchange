@@ -57,62 +57,68 @@
                         <h2 class="page-title">Admin</h2>
                     </div>
                     <div class="pane mobile">
-                        <table class="">
-                            <tbody>
-                                <tr class="admin-tr">
-                                    <td>
-                                        <div>
-                                            <h4 class="page-title">Currencies</h4>
-                                            <h5 class="page-title">Add Currencies</h5>
-                                            <table id="add_currency" class="hover">
-                                                <tbody>
-                                                    <tr>
-                                                        <th class="text-center">Name</th>
-                                                        <th class="text-center">Code</th>
-                                                        <th class="text-center">Value</th>
-                                                        <th class="text-center"></th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">Bitcoin Cash</td>
-                                                        <td class="text-center">BCH</td>
-                                                        <td class="text-center">$337</td>
-                                                        <td class="text-center"><button class="button success">Add</button></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">Stellar Lumens</td>
-                                                        <td class="text-center">XLM</td>
-                                                        <td class="text-center">$337</td>
-                                                        <td class="text-center"><button class="button success">Add</button></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">Cardano</td>
-                                                        <td class="text-center">ADA</td>
-                                                        <td class="text-center">$337</td>
-                                                        <td class="text-center"><button class="button success">Add</button></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div>
-                                            <h5 class="page-title">Remove Currencies</h5>
-                                            <table id="remove_currency" class="hover"></table>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="admin-tr">
-                                    <td>
-                                        <h4 class="page-title">Orders</h4>
-                                        <table id="View_All_orders" class="hover"></table>
-                                    </td>
-                                </tr>
-                                <tr class="admin-tr">
-                                    <td>
-                                        <h4 class="page-title">Users</h4>
-                                        <table id="View_All_Users" class="hover"></table>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <ul class="accordion" data-accordion data-allow-all-closed="true">
+                            <h4 class="page-title">Currencies</h4>
+                            <li class="accordion-item" data-accordion-item>
+                                <a href="#" class="accordion-title">Add Currencies</a>
+                                <div class="accordion-content" data-tab-content>
+                                    <table id="add_currency" class="hover">
+                                        <tbody>
+                                            <tr>
+                                                <th class="text-center">Name</th>
+                                                <th class="text-center">Code</th>
+                                                <th class="text-center">Value</th>
+                                                <th class="text-center"></th>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">Bitcoin Cash</td>
+                                                <td class="text-center">BCH</td>
+                                                <td class="text-center">$337</td>
+                                                <td class="text-center"><button class="button success">Add</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">Stellar Lumens</td>
+                                                <td class="text-center">XLM</td>
+                                                <td class="text-center">$337</td>
+                                                <td class="text-center"><button class="button success">Add</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">Cardano</td>
+                                                <td class="text-center">ADA</td>
+                                                <td class="text-center">$337</td>
+                                                <td class="text-center"><button class="button success">Add</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                            <li class="accordion-item" data-accordion-item>
+                                <a href="#" class="accordion-title">Remove Currencies</a>
+                                <div class="accordion-content" data-tab-content>
+                                    <table id="remove_currency" class="hover"></table>
+                                </div>
+                            </li>
+                            <h4 class="page-title">Orders</h4>
+                            <li class="accordion-item" data-accordion-item>
+                                <a href="#" class="accordion-title">Cancel Orders</a>
+                                <div class="accordion-content" data-tab-content>
+                                    <table id="remove_orders" class="hover"></table>
+                                </div>
+                            </li>
+                            <h4 class="page-title">Users</h4>
+                            <li class="accordion-item" data-accordion-item>
+                                <a href="#" class="accordion-title">Remove Users</a>
+                                <div class="accordion-content" data-tab-content>
+
+                                </div>
+                            </li>
+                            <li class="accordion-item" data-accordion-item>
+                                <a href="#" class="accordion-title">Add Funds</a>
+                                <div class="accordion-content" data-tab-content>
+
+                                </div>
+                            </li>
+                        </ul>
                     </div>
 
                 </div>
@@ -129,6 +135,7 @@
     <!-- JAVASCRIPT -->
 
     <script src="js/admin_functions/RemoveCurrency.js" type="text/babel"></script>
+    <script src="js/admin_functions/RemoveOrders.js" type="text/babel"></script>
 </body>
 
 </html>
