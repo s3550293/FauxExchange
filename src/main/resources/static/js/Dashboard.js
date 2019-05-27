@@ -102,7 +102,7 @@ class Dashboard extends React.Component {
                                         <td className="text-center">{holding.code}</td>
                                     </tr>
                                     <tr>
-                                        <td className="text-center dispNUM">{Math.round(holding.price * 10000) / 10000}{holding.price}</td>
+                                        <td className="text-center dispNUM">{Math.round(holding.price * 10000) / 10000}</td>
                                     </tr>
                                 </td>
                                 <td className="text-center dispNUM">{Math.round(holding.qty * 10000) / 10000}</td>
