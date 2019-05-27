@@ -50,6 +50,13 @@ class Dashboard extends React.Component {
         // setTimeout(this.componentDidMount, 15000);
     }
 
+    currencyClick = (event,code) => {
+        event.preventDefault();
+        console.log("Clicked");
+        console.log(code);
+        window.location.href = "/currency?code="+code;
+    }
+
     userprofile(){
         const num = this.state.rand;
         return(
@@ -91,18 +98,17 @@ class Dashboard extends React.Component {
                     <tbody>
                         <tr>
                             <th className="text-center"></th>
-                            <th className="text-center">Price</th>
                             <th className="text-center">Qty</th>
                             <th className="text-center">Value</th>
                         </tr>
                         {this.state.holdings.map(holding => (
                             <tr>
                                 <td>
-                                    <tr>
-                                        <td className="text-center">{holding.code}</td>
+                                    <tr Style="padding:.3em; background:none;">
+                                        <td Style="padding:.3em; text-align: left;" className="text-center">{holding.code}</td>
                                     </tr>
-                                    <tr>
-                                        <td className="text-center dispNUM">{Math.round(holding.price * 10000) / 10000}</td>
+                                    <tr Style="padding:.3em; background:none;">
+                                        <td Style="padding:.3em; text-align: left;" className="text-center dispNUM">{Math.round(holding.price * 10000) / 10000}</td>
                                     </tr>
                                 </td>
                                 <td className="text-center dispNUM">{Math.round(holding.qty * 10000) / 10000}</td>
@@ -123,18 +129,22 @@ class Dashboard extends React.Component {
                     <tbody>
                         <tr>
                             <th className="text-center"></th>
-                            <th className="text-center">Price</th>
                             <th className="text-center">Qty</th>
                             <th className="text-center">Value</th>
                             <th className="text-center">Buy/Sell</th>
                         </tr>
                         {this.state.orders.map(order => (
-                            <tr key={order.orderId}>
-                                <td className="text-center"></td>
-                                <td className="text-center">{order.code}</td>
-                                <td className="text-center">{order.price}</td>
+                            <tr key={order.orderId} onClick={(e) =>{this.currencyClick(e,coin.code)}}>
+                                <td>
+                                    <tr Style="padding:.3em; background:none;">
+                                        <td Style="padding:.3em; text-align: left;" className="text-center">{order.code}</td>
+                                    </tr>
+                                    <tr Style="padding:.3em; background:none;">
+                                        <td Style="padding:.3em; text-align: left;" className="text-center">{order.price}</td>
+                                    </tr>
+                                </td>
                                 <td className="text-center">{order.qty}</td>
-                                <td className="text-center">{order.price * order.qty}</td>
+                                <td className="text-center">{Math.round((order.price * order.qty) * 10000) / 10000}</td>
                                 <td className="text-center">{order.type}</td>
                             </tr>
                         ))}

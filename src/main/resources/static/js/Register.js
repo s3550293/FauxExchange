@@ -26,7 +26,7 @@ class Register extends React.Component {
                 },
                 body: stringifyFormData(data),
             });
-            window.location.href = '/login?code=successful';
+            // window.location.href = '/login?code=successful';
         }
     }
 
@@ -55,8 +55,8 @@ class Register extends React.Component {
                     <input type="text" id="fName" name="fName" required="required" placeholder="First Name" />
                     <input type="text" id="lName" name="lName" required="required" placeholder="Last Name" />
                     <input type="date" id="dob" name="dob" required="required" placeholder="Date of Birth" />
-                    <input type="email" id="email" name="email" required="required" placeholder="Email" />
-                    <input type="password" id = "password" name="password" required="required" placeholder="Password" />
+                    <input type="email" id="email" name="email" required="required" placeholder="Email" autocomplete="off"/>
+                    <input type="password" id = "password" name="password" required="required" placeholder="Password" autocomplete="off"/>
                     <input type="password"  id = "passwordConfirm" name="passwordConfirm" required="required" placeholder="Confirm your password"/>
                     <input type="submit" className="button" value="Register"/>
                 </form>

@@ -52,7 +52,7 @@ class OrderCoin extends React.Component {
             },
             body: stringifyFormData(data),
         });
-        window.location.href = "/orders";
+        // window.location.href = "/orders";
     }
 
     sellHandleSubmit = (event) => {
@@ -69,7 +69,7 @@ class OrderCoin extends React.Component {
             },
             body: stringifyFormData(data),
         });
-        window.location.href = "/orders";
+        // window.location.href = "/orders";
     }
 
     updateInput = (event) => {
@@ -100,6 +100,11 @@ class OrderCoin extends React.Component {
                 sellPriceVal: this.state.coin.recentPrice
             });
         }
+    }
+
+    sellAll = (event) =>{
+        event.preventDefault();
+        alert("I dont do anything yet");
     }
 
 
@@ -157,10 +162,13 @@ class OrderCoin extends React.Component {
                     <table>
                         <tbody>
                             <tr>
-                                <td colspan="2">
+                                <td Style="padding-right:0em;">
                                     <input type="text" id="sellQtyVal" 
                                         name="qty" placeholder="Qty"  required="required" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,999999999})?\s*$" title="Please enter a positive number"
                                         value={sellQtyVal} onChange={this.updateInput}/>
+                                </td>
+                                <td>
+                                    <button Style="margin-top:0em; width:100%;" type="button" name="sellAll" className="button warning" onClick={this.sellAll}>Sell All</button>
                                 </td>
                             </tr>
                             <tr>
