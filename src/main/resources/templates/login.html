@@ -48,8 +48,8 @@
                 <h4 style="text-align:center;">Login</h4>
                 <div id="LoginrForm"></div>
                 <form th:action="@{/login}" method="post" id="loginForm">
-                    <input type="email" id="inputEmail" name="email" placeholder="Email" />
-                    <input type="password" name="password" placeholder="password" />
+                    <input type="email" id="inputEmail" name="email" placeholder="Email" autocomplete="off"/>
+                    <input type="password" name="password" placeholder="password" autocomplete="off"/>
                     <div id="Login-Error" class="showLoginError hideLoginError">
                         <h6>Incorrect username or password</h6>
                     </div>

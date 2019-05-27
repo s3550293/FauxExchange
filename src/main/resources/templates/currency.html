@@ -43,9 +43,6 @@
             <br>
             <!-- NAV -->
             <div th:replace="fragments/nav :: navigation">
-
-                
-
             </div>
             <!-- NAV -->
         </div>
@@ -54,10 +51,7 @@
             <div class="body-content">
                 <div class="nav-NEW nav-side">
                     <div th:replace="fragments/header :: header">
-                    
-                    
-                       
-                    
+
                     </div>
                 </div>
                 <style>
@@ -69,7 +63,9 @@
                     <div class="pane mobile">
                         <canvas id="Currency-Chart-Display" class="chart-height"></canvas>
                         <!-- <div id="Currency-Chart-Display" class="chart-height"></div> -->
-                        <div id="Graph-Controls"></div>
+                        <div>
+                            <!-- <button type="button" class="button warning" onClick="resetZoom()"">Reset View</button> -->
+                        </div>
                     </div>
                     <div class="render-width">
                         <div id="OrderForm"></div>
@@ -91,10 +87,8 @@
 
     <!-- JAVASCRIPT -->
     <div th:replace="fragments/javascript :: javascript">
-    
-    
-       
-    
+
+
     </div>
     <!-- Graph Lib -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
@@ -105,7 +99,7 @@
     <script src="https://code.highcharts.com/highcharts.src.js"></script>
 
     <script src="js/CurrencyInfo.js" type="text/babel"></script>
-    <script src="js/CurrencyChart.js" type="text/babel"></script>
+    <script src="js/CurrencyChart.js"></script>
 
     <!-- Buy/Sell JS-->
     <script src="js/OrderCoin.js" type="text/babel"></script>

@@ -33,7 +33,7 @@ class UserNav extends React.Component {
                     <img className='avatar' src={'images/placeholder/person_'+num+'.jpg'}/> 
                 </div>
                 <h5 Style="color: #fff; text-align: center;">{this.state.user.fName}</h5>
-                <p Style="color: #fff; text-align: center;">${this.state.user.cash}</p>
+                <p className="dispNUM" Style="color: #fff; text-align: center;">${Math.round(this.state.user.cash * 10000) / 10000}</p>
             </div>
         );
     }

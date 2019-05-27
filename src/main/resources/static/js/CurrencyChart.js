@@ -1,150 +1,143 @@
-const e = React.createElement;
+var canvas = document.getElementById('Currency-Chart-Display');
+var Graphdata = {
+    labels: [],
+    datasets: [{
+        borderColor: 'rgba(56, 132, 45,0.5)',
+        backgroundColor:'rgba(56, 132, 45,0.2)',
+        pointHitRadius: 2,
+        data: []
+    }]
+};
+var loading = false;
 var timeFormat = "MM/DD/YYYY HH:mm";
-class CurrencyChart extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            loading: true,
-            coins: [],
-            value: [],
-            time: [],
-            coin: 'BTC',
-            duration: 'hour'
-        };
-    }
-
-    componentDidMount = () => {
-        if(this.state.loading){
-            const url_string = window.location.href;
-            const url = new URL(url_string);
-            this.setState({
-                coin: url.searchParams.get("code"),
-                loading: false
-            })
-            setTimeout(this.componentDidMount, 500);
-        }else{
-            const coin = this.state.coin;
-            const duration = this.state.duration;
-            fetch("https://min-api.cryptocompare.com/data/histo"+duration+"?fsym="+coin+"&tsym=AUD&limit=100&api_key={9d22b9c8cedc0b279d640ea0dd0268c2bd0d3f0748c910f127f39717fff91382}")
-            .then(response => response.json())
-            .then(data => this.setState({
-                coins: data.Data
-            }));
-            setTimeout(this.componentDidMount, 30000);
+var jsonData;
+var option = {
+    elements: {
+        point:{
+            radius: 1
+        }
+    },
+    maintainAspectRatio: false,
+    responsive: true,
+    legend: {
+        display: false,
+    },
+    scales: {
+        xAxes: [{
+            type: "time",
+            time: {
+                parser: timeFormat,
+                tooltipFormat: "ll HH:mm"
+            },
+            ticks: {
+                maxRotation: 0
+            }
+        }],
+    },
+    animation: {
+        duration: 1000,
+        easing: "linear",
+    },
+    pan: {
+        enabled: true,
+        mode: "x",
+        speed: 10,
+        threshold: 10
+    },
+    zoom: {
+        enabled: true,
+        drag: false,
+        mode: "x",
+        limits: {
+            max: 10,
+            min: 0.5
         }
     }
+};
+var currencyGraph = Chart.Line(canvas, {
+    data: Graphdata,
+    options: option
+});
 
-    convertTime12to24 = (time12h) => {
-        const [time, modifier] = time12h.split(' ');
-      
-        let [hours, minutes] = time.split(':');
-      
-        if (hours === '12') {
-          hours = '00';
-        }
-      
-        if (modifier === 'PM') {
-          hours = parseInt(hours, 10) + 12;
-        }
-      
-        return `${hours}:${minutes}`;
-      }
+document.addEventListener("DOMContentLoaded", function () {
+    fetchData(loading);
+    // setTimeout(appendData(loading), 10000)
+    (function appendData() {
+        setTimeout(function () {
+            fetchData(loading)
+            appendData()
+        }, 15000);
+    }());
+});
 
-    convertDate(value) {
-        var dateTime = new Date(Math.floor(value * 1000))
-        var time = this.convertTime12to24(dateTime.toLocaleTimeString());
-        var date = dateTime.toLocaleDateString();
-        return `${date} ${time}`;
-    }
-
-    graphConfig = () => {
-        this.state.value = [];
-        this.state.time = [];
-        this.state.coins.map(cent => (
-            this.state.value.push(cent.open),
-            // this.state.time.push(this.convertDate(cent.time))
-            this.state.time.push(cent.time)
-        ));
-    }
-
-    updateView = (event) =>{
-        this.setState({
-            duration: event.target.value,
-        })
-    }
-
-    render() {
-        if(this.state.loading){
-            return(
-                null
-            );
-        } else {
-            console.log(this.state.coin);
-            console.log(this.state.time);
-            this.graphConfig();
-            var ctx = document.getElementById('Currency-Chart-Display').getContext('2d');
-            var graph = new Chart(ctx, {
-                type: "line",
-                data: {
-                    labels: this.state.time,
-                    datasets: [{
-                        label: this.state.coin,
-                        data: this.state.value,
-                        backgroundColor: [
-                            'rgba(0, 128, 0, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(0, 150, 0, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    maintainAspectRatio: false,
-                    responsive: true,
-                    scales: {
-                        xAxes: [{
-                            type: "time",
-                            time: {
-                                parser: timeFormat,
-                                tooltipFormat: "ll HH:mm"
-                            },
-                            ticks: {
-                                maxRotation: 0
-                            }
-                        }],
-                    },
-                    animation: {
-                        duration: 0
-                    },
-                    pan: {
-                        enabled: true,
-                        mode: "x",
-                        speed: 10,
-                        threshold: 10
-                    },
-                    zoom: {
-                        enabled: true,
-                        drag: false,
-                        mode: "x",
-                        limits: {
-                            max: 10,
-                            min: 0.5
-                        }
-                    }
+function addData(update) {
+    if (!update) {
+        if (Graphdata.labels.length == 0) {
+            for (i in jsonData) {
+                if (i != 0) {
+                    Graphdata.labels.push(convertDate(jsonData[i].time)),
+                        Graphdata.datasets[0].data.push(jsonData[i].value)
                 }
-
-            });
-            graph.resetZoom();
-            return( 
-                <div>
-                    <button className="button warning" onClick={this.updateView} value="day">Day</button>
-                    <button className="button warning" onClick={this.updateView} value="hour">Hour</button>
-                    <button className="button warning" onClick={this.updateView} value="minute">Minute</button>
-                </div>
-                );
+            }
+            loading = true;
+            currencyGraph.update();
+        }
+    } else {
+        if (convertDate(jsonData[jsonData.length - 1].time) != Graphdata.labels[Graphdata.labels.length - 1]) {
+            Graphdata.labels.push(convertDate(jsonData[jsonData.length - 1].time)),
+                Graphdata.datasets[0].data.push(jsonData[jsonData.length - 1].value)
+            currencyGraph.update();
         }
     }
 }
-const windowElement = document.getElementById('Graph-Controls');
-ReactDOM.render(e(CurrencyChart), windowElement);
+
+function convertTime12to24(time12h){
+    const [time, modifier] = time12h.split(' ');
+
+    let [hours, minutes] = time.split(':');
+
+    if (hours === '12') {
+        hours = '00';
+    }
+
+    if (modifier === 'PM') {
+        hours = parseInt(hours, 10) + 12;
+    }
+
+    return `${hours}:${minutes}`;
+}
+
+function convertDate(value) {
+    var dateTime = new Date(Math.floor(value * 1000))
+    var time = this.convertTime12to24(dateTime.toLocaleTimeString());
+    var date = dateTime.toLocaleDateString();
+    return `${date} ${time}`;
+}
+
+function resetZoom(){
+    window.currencyGraph.resetZoom();
+}
+
+function fetchData(update) {
+    const url_string = window.location.href;
+    const url = new URL(url_string);
+    fetch('/api/currencies/' + url.searchParams.get("code"))
+        .then(
+            function (response) {
+                if (response.status !== 200) {
+                    console.log('Looks like there was a problem. Status Code: ' +
+                        response.status);
+                    return;
+                }
+
+                // Examine the text in the response
+                response.json().then(function (data) {
+                    jsonData = data.price;
+                    addData(update);
+                });
+            }
+        )
+        .catch(function (err) {
+            console.log('Fetch Error :-S', err);
+        });
+}
