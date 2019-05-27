@@ -65,7 +65,7 @@ the usage of an enum.
             } else {
                 double uc = user.getWallet(order.getCode()).getValue();
                 double uqty = user.getWallet(order.getCode()).getQty();
-                if(uc >= oc) {
+                if(uqty >= order.getQty()) {
                     user.updateWallet(order.getCode(), currency.getRecentPrice(), uqty - order.getQty());
                     userRepository.save(user);
                     orderRepository.save(order);

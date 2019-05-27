@@ -24,6 +24,7 @@ import com.g4.fauxexchange.model.User;
 import com.g4.fauxexchange.model.UserInfo;
 
 import com.g4.fauxexchange.service.OrderService;
+import com.g4.fauxexchange.service.TransactionService;
 
 @RestController
 public class SessionsServiceController {
@@ -37,10 +38,12 @@ public class SessionsServiceController {
     @Autowired
     OrderService orderService;
 
+    @Autowired
+    TransactionService transactionService;
+
     @RequestMapping(value = "/api/session", method = RequestMethod.GET)
     public ResponseEntity<Object> getSession(HttpSession session) {
         SessionInfo sessionInfo = sessionInfoService.createSession(session);
-
         return new ResponseEntity<>(sessionInfo, HttpStatus.OK);
     }
 
@@ -74,6 +77,13 @@ public class SessionsServiceController {
         System.out.println("User Crypto Grab");
         String userId = (String)session.getAttribute("userId");
         return new ResponseEntity<>(userService.getUserWallet(userId), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/api/session/transactions", method = RequestMethod.GET) 
+    public ResponseEntity<Object> getUserTransactions(HttpSession session) {
+        System.out.println("User Transaction Grab");
+        String userId = (String)session.getAttribute("userId");
+        return new ResponseEntity<>(transactionService.getTransactionsByUserId(userId), HttpStatus.OK);
     }
 
 }
