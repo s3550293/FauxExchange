@@ -44,7 +44,20 @@
             <!-- NAV -->
             <div th:replace="fragments/nav :: navigation">
 
-                
+                <div class="user-data" id="Nav-Gation"></div>
+                <ul class="vertical menu custom-nav">
+                    <span>Faux Exchange</span>
+                    <li><a href="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="currencies"><i class="fab fa-bitcoin"></i> Crypto</a></li>
+                    <li><a href="transactions"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+                    <li><a href="orders"><i class="fas fa-file-alt"></i></i> Orders</a></li>
+                    <span>Social</span>
+                    <!-- <li><a href="friends"><i class="fas fa-user-friends"></i> Friends</a></li> -->
+                    <li><a href="leaderboards"><i class="fas fa-crown"></i> Leaderboards</a></li>
+                    <span style="background:none;"><br></br></span>
+                    <li><a href="/"><i class="fas fa-sign-out-alt"></i> </i>Logout</a></li>
+                </ul>
+                <script src="js/UserNav.js" type="text/babel"></script>
 
             </div>
             <!-- NAV -->
@@ -54,22 +67,27 @@
             <div class="body-content">
                 <div class="nav-NEW nav-side">
                     <div th:replace="fragments/header :: header">
-                    
-                    
-                       
-                    
+
+                        <div class="nav-buttons">
+                            <h4 class="icon-space"><button class="menu-icon hide-for-large black-icon" type="button"
+                                    data-open="mobileNav"></button></h4>
+                        </div>
+
+
                     </div>
                 </div>
                 <style>
                 </style>
                 <div class="content-NEW top-margin">
-                    <div id="SessionJS"></div>
+                    <!-- <div id="SessionJS"></div> -->
                     <div id="Coin-Data" class="render-width"></div>
                     <!-- CODE GOES BELOW -->
                     <div class="pane mobile">
                         <canvas id="Currency-Chart-Display" class="chart-height"></canvas>
                         <!-- <div id="Currency-Chart-Display" class="chart-height"></div> -->
-                        <div id="Graph-Controls"></div>
+                        <div id="Graph-Controls">
+                            <button class="button warning" onClick="resetZoom()"">Reset View</button>
+                        </div>
                     </div>
                     <div class="render-width">
                         <div id="OrderForm"></div>
@@ -91,10 +109,26 @@
 
     <!-- JAVASCRIPT -->
     <div th:replace="fragments/javascript :: javascript">
-    
-    
-       
-    
+
+        <!-- JS libs -->
+        <!-- Foundation Libs -->
+        <script src="js/jquery.js"></script>
+        <script src="js/what-input.js"></script>
+        <script src="js/foundation.min.js"></script>
+        <!-- Initialize Foundation -->
+        <script>
+            $(document).foundation();
+        </script>
+
+        <!-- ReactJS Libs -->
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js" crossorigine>
+        </script>
+        <!-- Custom Lib -->
+        <script src="js/JavaScriptMain.js"></script>
+
+
     </div>
     <!-- Graph Lib -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
@@ -105,7 +139,7 @@
     <script src="https://code.highcharts.com/highcharts.src.js"></script>
 
     <script src="js/CurrencyInfo.js" type="text/babel"></script>
-    <script src="js/CurrencyChart.js" type="text/babel"></script>
+    <script src="js/CurrencyChart.js"></script>
 
     <!-- Buy/Sell JS-->
     <script src="js/OrderCoin.js" type="text/babel"></script>

@@ -31,6 +31,21 @@ class CurrencyInfo extends React.Component {
         }
     }
 
+    changeValue = (value,change) => {
+        const percent = (change/value) * 100
+        const rounded = Math.round(percent * 10000) / 10000
+        if(rounded >= 0){
+            return (
+                <h4 Style="color: #48bf0d; font-weight: 700;">Change: <span className="dispNUM">{rounded}%</span></h4>
+            );
+        }
+        else{
+            return (
+                <h4 Style="color: #bf0d30; font-weight: 700;">Change: <span className="dispNUM">{rounded}%</span></h4>
+            );
+        }
+    }
+
     updateView = (event) =>{
         this.setState({
             duration: event.target.value,
@@ -43,10 +58,10 @@ class CurrencyInfo extends React.Component {
                 <div className="title-pane">
                     <h2 className="page-title">{this.state.data.name}</h2>
                 </div>
-                <div className="pane">
+                <div Style="width:100%; margin-left:0;" className="pane">
                     <h4>Code: {this.state.coin}</h4>
-                    <h4>Current Price: {this.state.data.recentPrice}</h4>
-                    <h4>24 Hour Change: {this.state.data.recentChange}</h4>
+                    <h4>Current Price: <span className="dispNUM">${Math.round(this.state.data.recentPrice * 10000) / 10000}</span></h4>
+                    {this.changeValue(this.state.data.recentPrice, this.state.data.recentChange)}
                 </div>
             </div>
         )
