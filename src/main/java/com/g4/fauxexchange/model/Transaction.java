@@ -57,4 +57,37 @@ public class Transaction {
     public void setPNL(double pnl) {
         this.pnl = pnl;
     }
+
+    public String getTransactionId() {
+        return this.transactionId;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    public String getCode() {
+        return this.code;
+    }
+
+    public double getPpc() {
+        return this.ppc;
+    }
+
+    public double getQty() {
+        return this.qty;
+    }
+
+    public double getValue() {
+        return this.value;
+    }
+
+    public String getUserId() {
+        return this.userId;
+    }
+
+    public double getPnl() {
+        return this.pnl;
+    }
+
 }
