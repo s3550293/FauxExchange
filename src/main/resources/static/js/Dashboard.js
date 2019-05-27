@@ -7,12 +7,14 @@ class Dashboard extends React.Component {
             accountValues: '',
             holdings: [],
             orders: [],
-            session:''
+            session:'',
+            rand: 1,
         };
     }
     
     //Fetchs from rest API
     componentDidMount() {
+        const num = Math.floor(Math.random() *4)+1
         //fetch session
         fetch("/api/session")
         .then(response => response.json())
@@ -51,10 +53,12 @@ class Dashboard extends React.Component {
     userprofile(){
         return(
             <div className="pane pain-split-two profile">
-                <h4 className="box-icon" Style="font-size:104px;"><i className="fas fa-user"></i></h4>
+                <div Style="display:flex; justify-content: center;">
+                    <img className='avatar' src={'images/placeholder/person_'+num+'.jpg'}/> 
+                </div>
                 <span>Name: {this.state.user.fName + " " + this.state.user.lName}</span>
                 <span>Rank</span>
-                <span>Cash: ${this.state.user.cash}</span>
+                <span>Cash: <span className="dispNUM">${Math.round(this.state.user.cash * 10000) / 10000}</span></span>
             </div>
         );
     }
@@ -65,10 +69,10 @@ class Dashboard extends React.Component {
                 <h5>Account Value</h5>
                 <ul className="stats-list">
                     <li>
-                        $2030 <span className="stats-list-label">Account Value</span>
+                        $0 <span className="stats-list-label">Account Value</span>
                     </li>
                     <li className="stats-list-positive">
-                        $30 <span className="stats-list-label">Gains</span>
+                        $0 <span className="stats-list-label">Gains</span>
                     </li>
                     <li className="stats-list-negative">
                         $0 <span className="stats-list-label">Loss</span>
@@ -86,18 +90,22 @@ class Dashboard extends React.Component {
                     <tbody>
                         <tr>
                             <th className="text-center"></th>
-                            <th className="text-center">Code</th>
                             <th className="text-center">Price</th>
                             <th className="text-center">Qty</th>
                             <th className="text-center">Value</th>
                         </tr>
                         {this.state.holdings.map(holding => (
                             <tr>
-                                <td className="text-center"></td>
-                                <td className="text-center">{holding.code}</td>
-                                <td className="text-center">{holding.price}</td>
-                                <td className="text-center">{holding.qty}</td>
-                                <td className="text-center">{holding.value}</td>
+                                <td>
+                                    <tr>
+                                        <td className="text-center">{holding.code}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="text-center dispNUM">{Math.round(holding.price * 10000) / 10000}{holding.price}</td>
+                                    </tr>
+                                </td>
+                                <td className="text-center dispNUM">{Math.round(holding.qty * 10000) / 10000}</td>
+                                <td className="text-center dispNUM">{Math.round(holding.value * 10000) / 10000}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -114,7 +122,6 @@ class Dashboard extends React.Component {
                     <tbody>
                         <tr>
                             <th className="text-center"></th>
-                            <th className="text-center">Code</th>
                             <th className="text-center">Price</th>
                             <th className="text-center">Qty</th>
                             <th className="text-center">Value</th>

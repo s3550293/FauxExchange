@@ -52,8 +52,7 @@ class OrderCoin extends React.Component {
             },
             body: stringifyFormData(data),
         });
-        // alert('Buy Order Successful');
-        alert(stringifyFormData(data));
+        window.location.href = "/orders";
     }
 
     sellHandleSubmit = (event) => {
@@ -70,7 +69,7 @@ class OrderCoin extends React.Component {
             },
             body: stringifyFormData(data),
         });
-        alert('Sell Order Successful');
+        window.location.href = "/orders";
     }
 
     updateInput = (event) => {
