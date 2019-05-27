@@ -33,7 +33,7 @@ public class UserServiceController {
         return new ResponseEntity<>("Hello World!", HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/api/user/leaderboard", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/user/leaderboard", method = RequestMethod.GET)
     public ResponseEntity<Object> getLeaderboard() {
         return new ResponseEntity<>(userService.getLeaderboard(), HttpStatus.OK);
     }
