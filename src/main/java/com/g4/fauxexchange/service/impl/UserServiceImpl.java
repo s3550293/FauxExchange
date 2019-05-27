@@ -150,8 +150,10 @@ public class UserServiceImpl implements UserService {
         for(String email : user.getFriendsList()) {
             User f = uRepo.findByEmail(email);
             for(LeaderboardInfo li : leaderboard) {
-                if(li.getName().equals(f.getFName() +" "+ f.getLName())) {
-                    friends.add(li);
+                if(f != null) {
+                    if(li.getName().equals(f.getFName() +" "+ f.getLName())) {
+                        friends.add(li);
+                    }
                 }
             }
         }
