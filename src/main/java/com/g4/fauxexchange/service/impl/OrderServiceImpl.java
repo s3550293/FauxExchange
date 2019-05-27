@@ -13,6 +13,7 @@ import com.g4.fauxexchange.model.Order;
 import com.g4.fauxexchange.model.User;
 import com.g4.fauxexchange.model.Currency;
 import com.g4.fauxexchange.service.OrderService;
+import com.g4.fauxexchange.service.TransactionService;
 import com.g4.fauxexchange.dao.OrderRepository;
 import com.g4.fauxexchange.dao.CurrencyRepository;
 import com.g4.fauxexchange.dao.UserRepository;
@@ -29,6 +30,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private TransactionService tService;
 
 /* 
 Function: Create Order
@@ -134,6 +138,7 @@ TODO(Arnold): Remove hardcoded values
                             user.addWallet(order.code, currency.getRecentPrice(), order.qty);
                         }
                         userRepository.save(user);
+                        tService.createTransaction(order);
                         orderRepository.delete(order);
                     }
                 } else {
@@ -146,6 +151,7 @@ TODO(Arnold): Remove hardcoded values
                             user.addWallet(order.code, currency.getRecentPrice(), order.qty);
                         }
                         userRepository.save(user);
+                        tService.createTransaction(order);
                         orderRepository.delete(order);
                     }
                 }
