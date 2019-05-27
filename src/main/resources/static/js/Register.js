@@ -27,7 +27,7 @@ class Register extends React.Component {
                 },
                 body: stringifyFormData(data),
             });
-            // window.location.href = '/login?code=successful';
+            window.location.href = '/login?code=successful';
         }
     }
 
