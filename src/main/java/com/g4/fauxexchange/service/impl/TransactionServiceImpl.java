@@ -39,12 +39,12 @@ public class TransactionServiceImpl implements TransactionService {
         }
 
         for(String code : codes) {
+            int index = 0;
 
             LinkedList<Transaction> test = new LinkedList<Transaction>(transactions);
 
             for(Transaction ut : transactions) {
-                int index = 1;
-
+                
                 if(ut.getCode().equals(code) && ut.getType().equals("sell")) {
                     double lhs = ut.getValue();
                     double lhsqty = ut.getQty();

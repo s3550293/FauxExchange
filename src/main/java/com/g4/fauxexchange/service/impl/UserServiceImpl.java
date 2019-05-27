@@ -124,9 +124,9 @@ public class UserServiceImpl implements UserService {
                 } 
             });
 
-        int index = 1;
+        int index = 0;
         for(LeaderboardInfo li : leaderboards) {
-            li.setRank(index);
+            li.setRank(index + 1);
             leaderboards.set(index, li);
             index++;
         }
