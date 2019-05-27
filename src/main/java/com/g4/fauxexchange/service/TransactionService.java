@@ -11,4 +11,5 @@ public interface TransactionService {
     public abstract void processTransactions(Transaction transaction);
     public abstract List<Transaction> getTransactions();
     public abstract List<Transaction> getTransactionsByUserId(String id);
+    public abstract double getStandings(String id);
 }

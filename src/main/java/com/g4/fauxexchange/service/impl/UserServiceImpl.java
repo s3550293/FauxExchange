@@ -162,4 +162,9 @@ public class UserServiceImpl implements UserService {
         return friends;
     }
 
+    @Override
+    public User getUser(String id) {
+        return uRepo.findByUserId(id);
+    }
+
 }

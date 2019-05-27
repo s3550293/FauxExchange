@@ -18,4 +18,5 @@ public interface UserService {
     public abstract List<LeaderboardInfo> getLeaderboard();
     public abstract void addFriends(String userId, String email);
     public abstract List<LeaderboardInfo> getFriends(String userId);
+    public abstract User getUser(String id);
 }

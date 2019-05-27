@@ -92,4 +92,13 @@ public class TransactionServiceImpl implements TransactionService {
         return tRepo.findByUserId(id);
     }
 
+    @Override
+    public double getStandings(String id) {
+        double result = 0.0;
+        for(Transaction t : getTransactionsByUserId(id)) {
+            result = result + t.getPnl();
+        }
+        return result;
+    }
+
 }
