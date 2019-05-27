@@ -9,6 +9,7 @@ class Dashboard extends React.Component {
             orders: [],
             session:'',
             rand: 1,
+            friends: [],
         };
     }
     
@@ -25,11 +26,6 @@ class Dashboard extends React.Component {
         .then(response => response.json())
         .then(data => this.setState({user: data}))
 
-        //fetch for userprofile
-        // fetch("/api/userProfile")
-        // .then(response => response.json())
-        // .then(data => this.setState({user: data}))
-
         // //fetch accountValues
         // fetch("/api/accountValue")
         // .then(response => response.json())
@@ -45,9 +41,13 @@ class Dashboard extends React.Component {
         .then(response => response.json())
         .then(data => this.setState({orders: data}))
 
-        //Refresh
-        // console.log("Getting User Data");
-        // setTimeout(this.componentDidMount, 15000);
+        //fetch orders
+        fetch("/api/session/friends")
+        .then(response => response.json())
+        .then(data => this.setState({friends: data}))
+
+        //refresh
+        setTimeout(this.componentDidMount, 15000);
     }
 
     currencyClick = (event,code) => {
@@ -181,14 +181,26 @@ class Dashboard extends React.Component {
             </div>            
         );
     }
+    friendHandleSubmit = (event) => {
+        event.preventDefault();
+        const data = new FormData(event.target);
+        console.log(stringifyFormData(data));
+        fetch('/api/session/friends', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: stringifyFormData(data),
+        });
+    }
 
     friends(){
         return(
             <div className="pane pain-split-two">
                 <h5>Friends</h5>
-                <form className="friends-search">
-                    <input className="seach-input" type="text"/>
-                    <input type="Submit" className="button" value="Search"/>
+                <form className="friends-search" onSubmit = {this.friendHandleSubmit}>
+                    <input className="seach-input" type="text" id="email"/>
+                    <input type="Submit" className="button" value="Add"/>
                 </form>
                 <table>
                     <tbody>

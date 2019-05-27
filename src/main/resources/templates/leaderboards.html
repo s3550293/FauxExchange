@@ -70,28 +70,7 @@
                                 <h2 class="page-title">Leaderboard</h2>
                             </div>
                     <div class="pane mobile">
-                        <table class="hover">
-                            <tr>
-                                <th class="text-center">User</th>
-                                <th class="text-center">Rank</th>
-                                <th class="text-center">Value</th>
-        
-                            </tr>
-                            <tr>
-                                <td class="text-center">Han Solo</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">$4000.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">Tony Stark</td>
-                                <td class="text-center">3</td>
-                                <td class="text-center">$3000.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">Natasha</td>
-                                <td class="text-center">4</td>
-                                <td class="text-center">$3.50</td>
-                            </tr>
+                        <table id="LeaderboardTable" class="hover"></table>
                     </div>
                 </div>
 
@@ -107,10 +86,10 @@
 
     <!-- JAVASCRIPT -->
     <div th:replace="fragments/javascript :: javascript">
-
+    
     </div>
     <!-- JAVASCRIPT -->
-
+    <script src="js/Leaderboard.js" type="text/babel"></script>
     <!-- Custom Lib -->
 </body>
 

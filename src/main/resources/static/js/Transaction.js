@@ -1,5 +1,5 @@
 const e = React.createElement;
-class TransactionOrders extends React.Component {
+class Transaction extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -57,4 +57,4 @@ class TransactionOrders extends React.Component {
     }
 }
 const windowElement = document.getElementById('Transaction');
-ReactDOM.render(e(TransactionOrders), windowElement);
+ReactDOM.render(e(Transaction), windowElement);
