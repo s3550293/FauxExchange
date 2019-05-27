@@ -9,7 +9,7 @@ class Transaction extends React.Component {
     }
     
     //Fetchs from rest API
-    componentDidMount() {
+    componentDidMount = () => {
         fetch("/api/session/transactions")
         .then(response => response.json())
         .then(data => this.setState({orders: data, loading: false}))

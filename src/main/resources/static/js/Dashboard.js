@@ -14,7 +14,7 @@ class Dashboard extends React.Component {
     }
     
     //Fetchs from rest API
-    componentDidMount() {
+    componentDidMount = () => {
         const num = Math.floor(Math.random() *4)+1
         //fetch session
         fetch("/api/session")
@@ -27,9 +27,9 @@ class Dashboard extends React.Component {
         .then(data => this.setState({user: data}))
 
         //fetch accountValues
-        // fetch("/api/accountValue")
-        // .then(response => response.json())
-        // .then(data => this.setState({accountValues: data}))
+        fetch("/api/accountValue")
+        .then(response => response.json())
+        .then(data => this.setState({accountValues: data}))
 
         //fetch holdings
         fetch("/api/session/crypto")
@@ -47,7 +47,11 @@ class Dashboard extends React.Component {
         .then(data => this.setState({friends: data}))
 
         //refresh
-        setTimeout(this.componentDidMount, 15000);
+        setTimeout(this.componentDidMount, 3000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
     currencyClick = (event,code) => {
@@ -77,13 +81,13 @@ class Dashboard extends React.Component {
                 <h5>Account Value</h5>
                 <ul className="stats-list">
                     <li>
-                        $0 <span className="stats-list-label">Account Value</span>
+                        ${this.state.accountValues.value} <span className="stats-list-label">Account Value</span>
                     </li>
                     <li className="stats-list-positive">
-                        $0 <span className="stats-list-label">Gains</span>
+                        ${this.state.accountValues.gain} <span className="stats-list-label">Gains</span>
                     </li>
                     <li className="stats-list-negative">
-                        $0 <span className="stats-list-label">Loss</span>
+                        ${this.state.accountValues.loss} <span className="stats-list-label">Loss</span>
                     </li>
                 </ul>
             </div>
@@ -185,13 +189,14 @@ class Dashboard extends React.Component {
         event.preventDefault();
         const data = new FormData(event.target);
         console.log(stringifyFormData(data));
-        fetch('/api/session/friends', {
+        fetch('/api/session/addfriends', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: stringifyFormData(data),
         });
+        console.log(stringifyFormData(data));
     }
 
     friends(){
@@ -199,7 +204,7 @@ class Dashboard extends React.Component {
             <div className="pane pain-split-two">
                 <h5>Friends</h5>
                 <form className="friends-search" onSubmit = {this.friendHandleSubmit}>
-                    <input className="seach-input" type="text" id="email"/>
+                    <input className="seach-input" type="text" id="email" name="email"/>
                     <input type="Submit" className="button" value="Add"/>
                 </form>
                 <table>
@@ -208,10 +213,12 @@ class Dashboard extends React.Component {
                             <th className="text-center">Username</th>
                             <th className="text-center">Value</th>
                         </tr>
-                        <tr>
-                            <td className="text-center">Tony Stark</td>
-                            <td className="text-center">$3000.00</td>
-                        </tr>
+                        {this.state.friends.map(friend => (
+                            <tr>
+                                <td className="text-center">{friend.name}</td>
+                                <td className="text-center">${Math.round(friend.value * 10000) / 10000}</td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
