@@ -51,6 +51,7 @@ class Dashboard extends React.Component {
     }
 
     userprofile(){
+        const num = this.state.rand;
         return(
             <div className="pane pain-split-two profile">
                 <div Style="display:flex; justify-content: center;">
