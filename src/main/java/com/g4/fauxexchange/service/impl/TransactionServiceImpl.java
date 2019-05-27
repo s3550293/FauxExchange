@@ -38,92 +38,9 @@ public class TransactionServiceImpl implements TransactionService {
             }
         }
 
-        /* for(String code : codes) {
-
-            int remainIndex = 0;
-            double remainPrice = 0.0;
-            double remainQty = 0.0;
-
-            for(Transaction t : transactions) {
-                if(t.code.equals(code)) {
-                    if(t.type.equals("sell")) {
-
-                        double lhs = t.value;
-                        double rhs = 0.0;
-                        double lhsqty = t.qty;
-                        
-                        for(Transaction e : transactions) {
-                            double rhsval = 0.0;
-
-                            if(remainQty > 0.0) {
-                                if(remainIndex == 0) {
-                                    if((lhsqty - remainQty) < 0.0) {
-
-                                        rhsval = e.ppc * lhsqty;
-
-
-                                        remainPrice = e.ppc;
-                                        remainQty = remainQty - lhsqty;
-
-                                        lhsqty = lhsqty - lhsqty;
-                                    } else {
-
-                                        lhsqty = lhsqty - e.qty;
-                                        rhsval = e.ppc * e.qty;
-
-                                    }
-                                }
-                                remainIndex--;
-                            } else {
-                                if(!t.transactionId.equals(e.transactionId) || lhsqty == 0) {
-
-
-
-                                    if(e.type.equals("buy")) {
-                                        if((lhsqty - e.qty) < 0.0) {
-
-                                            rhsval = e.ppc * lhsqty;
-
-                                            remainPrice = e.ppc;
-                                            remainQty = e.qty - lhsqty;
-
-                                            lhsqty = lhsqty - lhsqty;
-
-                                        } else {
-
-                                            lhsqty = lhsqty - e.qty;
-                                            rhsval = e.ppc * e.qty;
-
-                                        }
-                                    }
-
-                                    rhs = rhs + rhsval;
-
-                                    String ts = String.format("Transaction Calc[lhs=%f, rhs=%f, lhsqty=%f, remainPrice=%f, remainQty=%f]", 
-                                    lhs, rhs, lhsqty, remainPrice, remainQty);
-                                    System.out.println(ts);
-
-                                    if(remainQty == 0.0) {
-                                        remainIndex++;
-                                    }
-                                
-                                } else {
-                                    break;
-                                }
-                            }
-                        }
-
-                        t.pnl = lhs - rhs;
-                        tRepo.save(t);
-                    }
-                }
-            }
-        } */
-
         for(String code : codes) {
-            int index = 0;
-            double pppc = 0.0;
-            double pqty = 0.0;
+            int index = 1;
+
             LinkedList<Transaction> test = new LinkedList<Transaction>(transactions);
 
             for(Transaction ut : transactions) {
