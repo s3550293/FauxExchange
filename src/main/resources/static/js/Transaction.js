@@ -10,11 +10,10 @@ class TransactionOrders extends React.Component {
     
     //Fetchs from rest API
     componentDidMount() {
-        this.interval = setInterval(() => {
-            fetch("/api/session/transactions")
-            .then(response => response.json())
-            .then(data => this.setState({orders: data, loading: false})), 3000
-        });
+        fetch("/api/session/transactions")
+        .then(response => response.json())
+        .then(data => this.setState({orders: data, loading: false}))
+        setTimeout(this.componentDidMount, 3000);
     }
 
     componentWillUnmount() {
@@ -39,8 +38,6 @@ class TransactionOrders extends React.Component {
                         <th class="text-center">Date</th>
                     </tr>
                     {this.state.orders.map(order => (
-                        //Key used as a unique identifier otherwise console will spit out warning
-                        // onClick={window.location='currency'}
                         //<td className="text-center"><i class="fas fa-arrow-right transation-money-out-arrow"></i></td>
                         //<td class="text-center"><i class="fas fa-arrow-left transation-money-in-arrow"></i></td>
                         <tr key={order.transactionId}>
