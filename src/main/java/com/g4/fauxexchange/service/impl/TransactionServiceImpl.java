@@ -38,7 +38,7 @@ public class TransactionServiceImpl implements TransactionService {
             }
         }
 
-        for(String code : codes) {
+        /* for(String code : codes) {
 
             int remainIndex = 0;
             double remainPrice = 0.0;
@@ -54,7 +54,7 @@ public class TransactionServiceImpl implements TransactionService {
                         
                         for(Transaction e : transactions) {
                             double rhsval = 0.0;
-                            
+
                             if(remainQty > 0.0) {
                                 if(remainIndex == 0) {
                                     if((lhsqty - remainQty) < 0.0) {
@@ -116,6 +116,49 @@ public class TransactionServiceImpl implements TransactionService {
                         t.pnl = lhs - rhs;
                         tRepo.save(t);
                     }
+                }
+            }
+        } */
+
+        for(String code : codes) {
+            int index = 0;
+            double pppc = 0.0;
+            double pqty = 0.0;
+            LinkedList<Transaction> test = new LinkedList<Transaction>(transactions);
+
+            for(Transaction ut : transactions) {
+                if(ut.getCode().equals(code) && ut.getType().equals("sell")) {
+                    double lhs = ut.getValue();
+                    double lhsqty = ut.getQty();
+                    double rhs = 0.0;
+
+                    for(Transaction t : test) {
+                        double rhsval = 0.0;
+
+                        if(t.getTransactionId().equals(ut.getTransactionId()) || lhsqty == 0) {
+                            break;
+                        } else {
+                            if(t.getType().equals("buy") && t.getQty() > 0) {
+                                if((lhsqty - t.getQty()) < 0.0) {
+                                    rhsval = t.getPpc() * lhsqty;
+                                    t.setQTY(t.getQty() - lhsqty);
+                                    lhsqty = 0;
+                                } else {
+                                    rhsval = t.getPpc() * t.getQty();
+                                    t.setQTY(t.getQty() - lhsqty);
+                                    lhsqty = 0;
+                                }
+                            }
+
+                            rhs = rhs + rhsval;
+                        }
+
+                        test.set(index, t);
+                        index++;
+                    }
+
+                    ut.setPNL(lhs - rhs);
+                    tRepo.save(ut);
                 }
             }
         }
