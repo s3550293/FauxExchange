@@ -21,7 +21,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public boolean createTransaction(Order order) {
-        Transaction t = new Transaction(order);
+        Transaction t = new Transaction(order.getType(), order.getCode(), order.getPrice(), order.getQty(), order.getValue(), order.getUserId());
         tRepo.save(t);
         processTransactions(t);
         return true;

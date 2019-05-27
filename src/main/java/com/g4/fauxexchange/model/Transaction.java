@@ -21,13 +21,13 @@ public class Transaction {
     //Profit or Loss value
     public double pnl;
 
-    public Transaction(Order order) {
-        this.type = order.getType();
-        this.code = order.getCode();
-        this.ppc = order.getPrice();
-        this.qty = order.getQty();
-        this.value = order.getValue();
-        this.userId = order.getUserId();
+    public Transaction(String type, String code, double ppc, double qty, double value, String userId) {
+        this.type = type;
+        this.code = code;
+        this.ppc = ppc;
+        this.qty = qty;
+        this.value = value;
+        this.userId = userId;
     }
 
     public void setType(String type) {
