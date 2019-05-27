@@ -163,7 +163,7 @@ class OrderCoin extends React.Component {
                         <tbody>
                             <tr>
                                 <td Style="padding-right:0em;">
-                                    <input type="text" id="sellQtyVal" 
+                                    <input type="text" id="sellQtyVal" Style="width:100%"
                                         name="qty" placeholder="Qty"  required="required" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,999999999})?\s*$" title="Please enter a positive number"
                                         value={sellQtyVal} onChange={this.updateInput}/>
                                 </td>

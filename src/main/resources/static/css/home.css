@@ -81,7 +81,7 @@
 .reg-pane {
     padding: 2.5em;
     border-radius: 2em;
-    height: 30em;
+    min-height: 30em;
     width: 20em;
     display: flex;
     flex-direction: column;

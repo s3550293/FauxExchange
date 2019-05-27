@@ -105,7 +105,7 @@ class Dashboard extends React.Component {
                             <tr>
                                 <td>
                                     <tr Style="padding:.3em; background:none;">
-                                        <td Style="padding:.3em; text-align: left;" className="text-center">{holding.code}</td>
+                                        <td Style="padding:.3em; text-align: left; font-weight:700;" className="text-center">{holding.code}</td>
                                     </tr>
                                     <tr Style="padding:.3em; background:none;">
                                         <td Style="padding:.3em; text-align: left;" className="text-center dispNUM">{Math.round(holding.price * 10000) / 10000}</td>
@@ -137,10 +137,10 @@ class Dashboard extends React.Component {
                             <tr key={order.orderId} onClick={(e) =>{this.currencyClick(e,coin.code)}}>
                                 <td>
                                     <tr Style="padding:.3em; background:none;">
-                                        <td Style="padding:.3em; text-align: left;" className="text-center">{order.code}</td>
+                                        <td Style="padding:.3em; text-align: left; font-weight:700;" className="text-center">{order.code}</td>
                                     </tr>
                                     <tr Style="padding:.3em; background:none;">
-                                        <td Style="padding:.3em; text-align: left;" className="text-center">{order.price}</td>
+                                        <td Style="padding:.3em; text-align: left;" className="text-center">{Math.round(order.price * 10000) / 10000}</td>
                                     </tr>
                                 </td>
                                 <td className="text-center">{order.qty}</td>
