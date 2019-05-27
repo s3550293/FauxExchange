@@ -94,9 +94,9 @@ public class SessionsServiceController {
         return new ResponseEntity<>(userService.getFriends(userId), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/api/session/friends", method = RequestMethod.POST) 
+    @RequestMapping(value = "/api/session/addfriends", method = RequestMethod.POST) 
     public ResponseEntity<Object> addUserFriends(@RequestBody Map<String, Object> email, HttpSession session) {
-        System.out.println("User Friend Add");
+        System.out.println("SessionServiceController");
         String userId = (String)session.getAttribute("userId");
         String friendEmail = (String)email.get("email");
         userService.addFriends(userId, friendEmail);

@@ -136,6 +136,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addFriends(String userId, String email) {
+        System.out.println("UserServiceImpl");
         User user = uRepo.findByUserId(userId);
         user.addFriend(email);
         uRepo.save(user);
