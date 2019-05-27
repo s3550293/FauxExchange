@@ -27,7 +27,7 @@ class Dashboard extends React.Component {
         .then(data => this.setState({user: data}))
 
         //fetch accountValues
-        fetch("/api/accountValue")
+        fetch("/api/session/value")
         .then(response => response.json())
         .then(data => this.setState({accountValues: data}))
 
@@ -81,13 +81,13 @@ class Dashboard extends React.Component {
                 <h5>Account Value</h5>
                 <ul className="stats-list">
                     <li>
-                        ${this.state.accountValues.value} <span className="stats-list-label">Account Value</span>
+                        ${Math.round(this.state.accountValues.value * 10000) / 10000} <span className="stats-list-label">Account Value</span>
                     </li>
                     <li className="stats-list-positive">
-                        ${this.state.accountValues.gain} <span className="stats-list-label">Gains</span>
+                        ${Math.round(this.state.accountValues.standings * 10000) / 10000} <span className="stats-list-label">Gains</span>
                     </li>
                     <li className="stats-list-negative">
-                        ${this.state.accountValues.loss} <span className="stats-list-label">Loss</span>
+                        ${Math.round(this.state.accountValues.standings * 10000) / 10000} <span className="stats-list-label">Loss</span>
                     </li>
                 </ul>
             </div>

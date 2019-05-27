@@ -34,7 +34,7 @@ class Transaction extends React.Component {
                         <th class="text-center">Type</th>
                         <th class="text-center">Currency</th>
                         <th class="text-center">Volume</th>
-                        <th class="text-center">Wallet</th>
+                        <th class="text-center">Profit/Loss</th>
                         <th class="text-center">Date</th>
                     </tr>
                     {this.state.orders.map(order => (
@@ -42,11 +42,11 @@ class Transaction extends React.Component {
                         //<td class="text-center"><i class="fas fa-arrow-left transation-money-in-arrow"></i></td>
                         <tr key={order.transactionId}>
                             <td className="text-center"></td>
-                            <td className="text-center">{Math.round(order.value * 10000) / 10000}</td>
+                            <td className="text-center">${Math.round(order.value * 10000) / 10000}</td>
                             <td className="text-center">{order.type}</td>
                             <td className="text-center">{order.code}</td>
                             <td className="text-center">{order.qty}</td>
-                            <td className="text-center"></td>
+                            <td className="text-center">${order.pnl}</td>
                             <td className="text-center"></td>
                         </tr>
                     ))}
