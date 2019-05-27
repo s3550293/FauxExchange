@@ -16,4 +16,6 @@ public interface UserService {
     public abstract List<Wallet> getUserWallet(String id);
     public abstract void saveUser(User user);
     public abstract List<LeaderboardInfo> getLeaderboard();
+    public abstract void addFriends(String userId, String email);
+    public abstract List<LeaderboardInfo> getFriends(String userId);
 }

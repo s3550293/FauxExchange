@@ -107,12 +107,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<LeaderboardInfo> getLeaderboard() {
         List<User> users = uRepo.findAll();
-        LinkedList<LeaderboardInfo> li = new LinkedList<LeaderboardInfo>();
+        LinkedList<LeaderboardInfo> leaderboards = new LinkedList<LeaderboardInfo>();
         for(User u : users) {
             LeaderboardInfo person = new LeaderboardInfo(u.getFName() + " " + u.getLName(), 0, u.getWalletsValue());
+            leaderboards.add(person);
         }
 
-        Collections.sort(li, new Comparator<LeaderboardInfo>() { 
+        Collections.sort(leaderboards, new Comparator<LeaderboardInfo>() { 
                 @Override 
                 public int compare(LeaderboardInfo s1, LeaderboardInfo s2) { 
                     if(s1.getValue() < s2.getValue()) {
@@ -124,12 +125,38 @@ public class UserServiceImpl implements UserService {
             });
 
         int index = 1;
-        for(LeaderboardInfo si : li) {
-            si.setRank(1);
-            li.set(index, si);
+        for(LeaderboardInfo li : leaderboards) {
+            li.setRank(index);
+            leaderboards.set(index, li);
+            index++;
         }
 
-        return li;
+        return leaderboards;
+    }
+
+    @Override
+    public void addFriends(String userId, String email) {
+        User user = uRepo.findByUserId(userId);
+        user.addFriend(email);
+        uRepo.save(user);
+    }
+
+    @Override
+    public List<LeaderboardInfo> getFriends(String userId) {
+        User user = uRepo.findByUserId(userId);
+        List<LeaderboardInfo> leaderboard = getLeaderboard();
+        LinkedList<LeaderboardInfo> friends = new LinkedList<LeaderboardInfo>();
+
+        for(String email : user.getFriendsList()) {
+            User f = uRepo.findByEmail(email);
+            for(LeaderboardInfo li : leaderboard) {
+                if(li.getName().equals(f.getFName() +" "+ f.getLName())) {
+                    friends.add(li);
+                }
+            }
+        }
+
+        return friends;
     }
 
 }

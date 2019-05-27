@@ -20,6 +20,5 @@ public interface UserRepository extends MongoRepository<User, String> {
 
     @Query(value = "{ 'userId': ?0 }", fields="{ 'friends': 1 }")
     List<User> findFriends(String userId);
-
-
+    
 }

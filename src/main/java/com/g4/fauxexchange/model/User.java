@@ -1,5 +1,6 @@
 package com.g4.fauxexchange.model;
 
+import java.util.List;
 import java.util.LinkedList;
 
 import org.springframework.data.annotation.Id;
@@ -138,6 +139,14 @@ public class User {
 
     public void createFriendsList() {
         friends = new LinkedList<String>();
+    }
+
+    public List<String> getFriendsList() {
+        return this.friends;
+    }
+
+    public void addFriend(String email) {
+        this.friends.add(email);
     }
 
 }
