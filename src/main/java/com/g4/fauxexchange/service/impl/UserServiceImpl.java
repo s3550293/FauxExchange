@@ -1,7 +1,10 @@
 package com.g4.fauxexchange.service;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.net.URL;
+import java.util.Collections;
+import java.util.Comparator;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.g4.fauxexchange.model.User;
+import com.g4.fauxexchange.model.LeaderboardInfo;
 import com.g4.fauxexchange.model.Wallet;
 import com.g4.fauxexchange.model.UserInfo;
 import com.g4.fauxexchange.service.UserService;
@@ -98,6 +102,34 @@ public class UserServiceImpl implements UserService {
     public List<Wallet> getUserWallet(String id) {
         User user = uRepo.findByUserId(id);
         return user.getWallets();
+    }
+
+    @Override
+    public List<LeaderboardInfo> getLeaderboard() {
+        List<User> users = uRepo.findAll();
+        LinkedList<LeaderboardInfo> li = new LinkedList<LeaderboardInfo>();
+        for(User u : users) {
+            LeaderboardInfo person = new LeaderboardInfo(u.getFName() + " " + u.getLName(), 0, u.getWalletsValue());
+        }
+
+        Collections.sort(li, new Comparator<LeaderboardInfo>() { 
+                @Override 
+                public int compare(LeaderboardInfo s1, LeaderboardInfo s2) { 
+                    if(s1.getValue() < s2.getValue()) {
+                        return 1;
+                    } else {
+                        return -1;
+                    }
+                } 
+            });
+
+        int index = 1;
+        for(LeaderboardInfo si : li) {
+            si.setRank(1);
+            li.set(index, si);
+        }
+
+        return li;
     }
 
 }

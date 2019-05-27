@@ -4,6 +4,7 @@ import java.util.List;
 import com.g4.fauxexchange.model.User;
 import com.g4.fauxexchange.model.UserInfo;
 import com.g4.fauxexchange.model.Wallet;
+import com.g4.fauxexchange.model.LeaderboardInfo;
 
 public interface UserService {
     public abstract void createUser(User user);
@@ -14,4 +15,5 @@ public interface UserService {
     public abstract UserInfo getUserInfo(String id);
     public abstract List<Wallet> getUserWallet(String id);
     public abstract void saveUser(User user);
+    public abstract List<LeaderboardInfo> getLeaderboard();
 }

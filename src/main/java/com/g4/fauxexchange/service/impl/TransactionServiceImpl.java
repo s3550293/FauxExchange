@@ -39,11 +39,12 @@ public class TransactionServiceImpl implements TransactionService {
         }
 
         for(String code : codes) {
-            int index = 1;
 
             LinkedList<Transaction> test = new LinkedList<Transaction>(transactions);
 
             for(Transaction ut : transactions) {
+                int index = 1;
+
                 if(ut.getCode().equals(code) && ut.getType().equals("sell")) {
                     double lhs = ut.getValue();
                     double lhsqty = ut.getQty();
@@ -55,7 +56,7 @@ public class TransactionServiceImpl implements TransactionService {
                         if(t.getTransactionId().equals(ut.getTransactionId()) || lhsqty == 0) {
                             break;
                         } else {
-                            if(t.getType().equals("buy") && t.getQty() > 0) {
+                            if(t.getCode().equals(code) && t.getType().equals("buy") && t.getQty() > 0) {
                                 if((lhsqty - t.getQty()) < 0.0) {
                                     rhsval = t.getPpc() * lhsqty;
                                     t.setQTY(t.getQty() - lhsqty);

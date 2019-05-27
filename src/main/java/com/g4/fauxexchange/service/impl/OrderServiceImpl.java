@@ -145,10 +145,8 @@ TODO(Arnold): Remove hardcoded values
                     if(order.price * order.qty <= currency.getRecentPrice() * order.qty) {
                         System.out.println("Selling: " + order);
                         User user = userRepository.findByUserId(order.getUserId());
-                        if(user.getWallet(order.code) != null) {
-                            user.updateWallet(order.code, currency.getRecentPrice(), user.getWallet(order.code).getQty() - order.qty);
-                        } else {
-                            user.addWallet(order.code, currency.getRecentPrice(), order.qty);
+                        if(user.getWallet("AUD") != null) {
+                            user.updateWallet("AUD", 1, user.getWallet("AUD").getValue() + order.getValue());
                         }
                         userRepository.save(user);
                         tService.createTransaction(order);

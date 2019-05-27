@@ -32,5 +32,10 @@ public class UserServiceController {
         userService.createUser(user);
         return new ResponseEntity<>("Hello World!", HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/api/user/leaderboard", method = RequestMethod.POST)
+    public ResponseEntity<Object> getLeaderboard() {
+        return new ResponseEntity<>(userService.getLeaderboard(), HttpStatus.OK);
+    }
     
 }

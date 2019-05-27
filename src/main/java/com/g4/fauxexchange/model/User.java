@@ -107,6 +107,16 @@ public class User {
         return wallet;
     }
 
+    public double getWalletsValue() {
+        double result = 0;
+        
+        for(Wallet w : this.wallet) {
+            result = result + w.getValue();
+        }
+
+        return result;
+    }
+
     public void setWallet(LinkedList<Wallet> wallet) {
         this.wallet = wallet;
     }
