@@ -94,11 +94,11 @@ class OrderCoin extends React.Component {
     bestPrice = (event) =>{
         if(event.target.name == "bestBuy"){
             this.setState({
-                buyPriceVal: this.state.coin.price
+                buyPriceVal: this.state.coin.recentPrice
             });
         }else{
             this.setState({
-                sellPriceVal: this.state.coin.price
+                sellPriceVal: this.state.coin.recentPrice
             });
         }
     }

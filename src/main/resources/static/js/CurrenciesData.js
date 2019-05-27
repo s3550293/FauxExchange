@@ -12,6 +12,7 @@ class CurrenciesData extends React.Component {
     componentDidMount = () => {
         fetch("/api/currencies")
         .then(response => response.json())
+        //.then(data => console.log(data))
         .then(data => this.setState({coins: data, loading: false}))
         setTimeout(this.componentDidMount, 3000)
     }
@@ -61,10 +62,10 @@ class CurrenciesData extends React.Component {
                             <td Style="padding:.3em; text-align: left;" className="text-center"><span Style="font-weight:700; font-size: 1.2em;">{coin.name}</span></td>
                         </tr>
                         <tr Style="padding:.3em; background:none;">
-                            <td Style="text-align: left;" className="text-center dispNUM">${Math.round(coin.price * 10000) / 10000}</td>
+                            <td Style="text-align: left;" className="text-center dispNUM">${Math.round(coin.price[0].value * 10000) / 10000}</td>
                         </tr>
                         <td className="text-center">{coin.code}</td>
-                        {this.changeValue(coin.price, coin.change[(coin.change.length) - 1])}
+                        {this.changeValue(coin.recentPrice, coin.recentChange)}
                     </tr>
                 ))}
             </tbody>

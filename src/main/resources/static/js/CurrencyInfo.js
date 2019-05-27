@@ -24,7 +24,7 @@ class CurrencyInfo extends React.Component {
             setTimeout(this.componentDidMount, 500);
         }else{
             const coin = this.state.coin;
-            fetch("http://fauxexchange.tk/api/currencies/"+coin)
+            fetch("/api/currencies/"+coin)
             .then(response => response.json())
             .then(data => this.setState({data: data}))
             setTimeout(this.componentDidMount, 3000)
@@ -45,8 +45,8 @@ class CurrencyInfo extends React.Component {
                 </div>
                 <div className="pane">
                     <h4>Code: {this.state.coin}</h4>
-                    <h4>Current Price: {this.state.data.price}</h4>
-                    <h4>24 Hour Change: {this.state.data.change}</h4>
+                    <h4>Current Price: {this.state.data.recentPrice}</h4>
+                    <h4>24 Hour Change: {this.state.data.recentChange}</h4>
                 </div>
             </div>
         )
