@@ -40,6 +40,7 @@ public class TransactionServiceImpl implements TransactionService {
 
         for(String code : codes) {
 
+            int remainIndex = 0;
             double remainPrice = 0.0;
             double remainQty = 0.0;
 
@@ -52,21 +53,19 @@ public class TransactionServiceImpl implements TransactionService {
                         double lhsqty = t.qty;
                         
                         for(Transaction e : transactions) {
+                            double rhsval = 0.0;
+                            
+                            if(remainQty > 0.0) {
+                                if(remainIndex == 0) {
+                                    if((lhsqty - remainQty) < 0.0) {
 
-                            if(!t.transactionId.equals(e.transactionId) || lhsqty == 0) {
-                                
-                                double rhsval = 0.0;
+                                        rhsval = e.ppc * lhsqty;
 
-                                if(e.type.equals("buy")) {
-
-                                    if((lhsqty - e.qty) < 0.0 ) {
-
-                                        lhsqty = lhsqty - Math.abs((lhsqty - e.qty));
-                                        rhsval = e.ppc * Math.abs((lhsqty - e.qty));
 
                                         remainPrice = e.ppc;
-                                        remainQty = remainQty + (e.qty - Math.abs((lhsqty - e.qty)));
+                                        remainQty = remainQty - lhsqty;
 
+                                        lhsqty = lhsqty - lhsqty;
                                     } else {
 
                                         lhsqty = lhsqty - e.qty;
@@ -74,11 +73,43 @@ public class TransactionServiceImpl implements TransactionService {
 
                                     }
                                 }
-
-                                rhs = rhs + rhsval;
-
+                                remainIndex--;
                             } else {
-                                break;
+                                if(!t.transactionId.equals(e.transactionId) || lhsqty == 0) {
+
+
+
+                                    if(e.type.equals("buy")) {
+                                        if((lhsqty - e.qty) < 0.0) {
+
+                                            rhsval = e.ppc * lhsqty;
+
+                                            remainPrice = e.ppc;
+                                            remainQty = e.qty - lhsqty;
+
+                                            lhsqty = lhsqty - lhsqty;
+
+                                        } else {
+
+                                            lhsqty = lhsqty - e.qty;
+                                            rhsval = e.ppc * e.qty;
+
+                                        }
+                                    }
+
+                                    rhs = rhs + rhsval;
+
+                                    String ts = String.format("Transaction Calc[lhs=%f, rhs=%f, lhsqty=%f, remainPrice=%f, remainQty=%f]", 
+                                    lhs, rhs, lhsqty, remainPrice, remainQty);
+                                    System.out.println(ts);
+
+                                    if(remainQty == 0.0) {
+                                        remainIndex++;
+                                    }
+                                
+                                } else {
+                                    break;
+                                }
                             }
                         }
 
