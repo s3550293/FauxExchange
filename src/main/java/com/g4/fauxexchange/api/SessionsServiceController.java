@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.HashMap;
 
 import org.json.*;
 
@@ -61,46 +62,55 @@ public class SessionsServiceController {
 
     @RequestMapping(value = "/api/session/info", method = RequestMethod.GET) 
     public ResponseEntity<Object> getUserInfo(HttpSession session) {
-        System.out.println("User Info Grab");
+        // System.out.println("User Info Grab");
         String userId = (String)session.getAttribute("userId");
         return new ResponseEntity<>(userService.getUserInfo(userId), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/api/session/orders", method = RequestMethod.GET) 
     public ResponseEntity<Object> getUserOrders(HttpSession session) {
-        System.out.println("User Order Grab");
+        // System.out.println("User Order Grab");
         String userId = (String)session.getAttribute("userId");
         return new ResponseEntity<>(orderService.getOrdersByUserId(userId), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/api/session/crypto", method = RequestMethod.GET) 
     public ResponseEntity<Object> getUserCrypto(HttpSession session) {
-        System.out.println("User Crypto Grab");
+        // System.out.println("User Crypto Grab");
         String userId = (String)session.getAttribute("userId");
         return new ResponseEntity<>(userService.getUserWallet(userId), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/api/session/transactions", method = RequestMethod.GET) 
     public ResponseEntity<Object> getUserTransactions(HttpSession session) {
-        System.out.println("User Transaction Grab");
+        // System.out.println("User Transaction Grab");
         String userId = (String)session.getAttribute("userId");
         return new ResponseEntity<>(transactionService.getTransactionsByUserId(userId), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/api/session/friends", method = RequestMethod.GET) 
     public ResponseEntity<Object> getUserFriends(HttpSession session) {
-        System.out.println("User Friend Grab");
+        // System.out.println("User Friend Grab");
         String userId = (String)session.getAttribute("userId");
         return new ResponseEntity<>(userService.getFriends(userId), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/api/session/addfriends", method = RequestMethod.POST) 
     public ResponseEntity<Object> addUserFriends(@RequestBody Map<String, Object> email, HttpSession session) {
-        System.out.println("SessionServiceController");
+        // System.out.println("SessionServiceController");
         String userId = (String)session.getAttribute("userId");
         String friendEmail = (String)email.get("email");
         userService.addFriends(userId, friendEmail);
         return new ResponseEntity<>("Add Friend Successful", HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/api/session/value", method = RequestMethod.GET)
+    public ResponseEntity<Object> getUserValue(HttpSession session) {
+        HashMap<String, String> map = new HashMap<String, String>();
+        String userId = (String)session.getAttribute("userId");
+        map.put("value", "" + userService.getUser(userId).getWalletsValue());
+        map.put("standings", "" + transactionService.getStandings(userId));
+        return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
 }
