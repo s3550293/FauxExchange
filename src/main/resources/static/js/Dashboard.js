@@ -26,7 +26,7 @@ class Dashboard extends React.Component {
         .then(response => response.json())
         .then(data => this.setState({user: data}))
 
-        // //fetch accountValues
+        //fetch accountValues
         // fetch("/api/accountValue")
         // .then(response => response.json())
         // .then(data => this.setState({accountValues: data}))
@@ -41,7 +41,7 @@ class Dashboard extends React.Component {
         .then(response => response.json())
         .then(data => this.setState({orders: data}))
 
-        //fetch orders
+        //fetch friends
         fetch("/api/session/friends")
         .then(response => response.json())
         .then(data => this.setState({friends: data}))
