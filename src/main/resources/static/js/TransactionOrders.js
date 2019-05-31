@@ -15,19 +15,6 @@ class TransactionOrders extends React.Component {
             .then(response => response.json())
             .then(data => this.setState({orders: data, loading: false})), 3000
         });
-
-        // var i;
-        // const url = "/api/orders";
-        // const response = await fetch(url);
-        // const data = await response.json();
-        // this.setState({orders: data, loading: false})
-
-        //Code for testing api fetch
-        // console.log(data);
-        //Code to see if coins array has been correctly filled out
-        // for(i = 0; i <this.state.orders.length;i++) {
-        //     console.log(this.state.orders[i]);
-        // }
     }
 
     componentWillUnmount() {
@@ -55,7 +42,7 @@ class TransactionOrders extends React.Component {
                         <td className="text-center">{order.userId}</td>
                         <td className="text-center">{order.type}</td>
                         <td className="text-center">{order.code}</td>
-                        <td className="text-center">{order.price}</td>
+                        <td className="text-center dispNUM">{Math.round(order.price * 10000) / 10000}</td>
                         <td className="text-center">{order.qty}</td>
                     </tr>
                 ))}
