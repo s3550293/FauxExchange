@@ -51,7 +51,7 @@ class OrderCoin extends React.Component {
                 "Content-Type": "application/json",
             },
             body: stringifyFormData(data),
-        });
+        }).then(document.getElementById("Buy-Confirm").classList.remove("hideLoginError"));
         // window.location.href = "/orders";
     }
 
@@ -68,7 +68,7 @@ class OrderCoin extends React.Component {
                 "Content-Type": "application/json",
             },
             body: stringifyFormData(data),
-        });
+        }).then(document.getElementById("Sell-Confirm").classList.remove("hideLoginError"));
         // window.location.href = "/orders";
     }
 
@@ -153,6 +153,9 @@ class OrderCoin extends React.Component {
                             </tbody>
                         </table>
                     </form>
+                    <div id="Buy-Confirm" class="showBuySuc hideLoginError">
+                        <h6>Buy Order Placed</h6>
+                    </div>
                 </div>
                 <div className="pane pain-split-two buysell">
                     <h3>Sell {this.state.code}</h3>
@@ -196,13 +199,10 @@ class OrderCoin extends React.Component {
                             </tr>
                         </tbody>
                     </table>
-
-                        
-                        
-                        
-                        
-                        
                     </form>
+                    <div id="Sell-Confirm" class="showBuySuc hideLoginError">
+                        <h6>Sell Order Placed</h6>
+                    </div>
                 </div>
             </div>
         );

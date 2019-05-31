@@ -42,7 +42,7 @@ class TransactionOrders extends React.Component {
                         <td className="text-center">{order.userId}</td>
                         <td className="text-center">{order.type}</td>
                         <td className="text-center">{order.code}</td>
-                        <td className="text-center dispNUM">{Math.round(order.price * 10000) / 10000}</td>
+                        <td className="text-center dispNUM">${Math.round(order.price * 10000) / 10000}</td>
                         <td className="text-center">{order.qty}</td>
                     </tr>
                 ))}

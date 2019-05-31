@@ -273,6 +273,18 @@ a{
     padding-bottom: 1em;
 }
 
+.showBuySuc{
+    text-align: center;
+    height: 3em;
+    transition: height 2s;
+    transform: scaleY(1);
+    transition: all 1s;
+    opacity: 1;
+    color: rgb(83, 202, 14);
+    padding-bottom: 1em;
+    font-weight: 700;
+}
+
 .hideLoginError{
     height: 0em;
     opacity: 0;

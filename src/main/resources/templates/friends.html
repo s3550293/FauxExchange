@@ -53,12 +53,12 @@
             <div class="body-content">
                 <div class="nav-NEW nav-side">
                     <div th:replace="fragments/header :: header">
-                    
+
                         <div class="nav-buttons">
                             <h4 class="icon-space"><button class="menu-icon hide-for-large black-icon" type="button"
                                     data-open="mobileNav"></button></h4>
                         </div>
-                        
+
                     </div>
                 </div>
                 <!-- <div th:replace="fragments/header :: header"></div> -->
@@ -66,39 +66,19 @@
 
                 <!-- CODE GOES BELOW -->
                 <div class="content-NEW">
-                        <div class="title-pane">
-                                <h2 class="page-title">Friends</h2>
-                            </div>
-                    <div class="content-split-two">
-                        <div className="pane pain-split-two">
-                            <h5>Friends</h5>
-                            <form className="friends-search">
-                                <input className="seach-input" type="text"/>
-                                <input type="Submit" className="button" value="Search"/>
-                            </form>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <th className="text-center">Username</th>
-                                        <th className="text-center">Value</th>
-                                    </tr>
-                                    <tr>
-                                        <td className="text-center">Tony Stark</td>
-                                        <td className="text-center">$3000.00</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="title-pane">
+                        <h2 class="page-title">Friends</h2>
                     </div>
+                    <div id="Content" class="render-width "></div>
                 </div>
 
                 <!-- CODE GOES ABOVE -->
 
             </div>
             <!-- FOOTER -->
-            </div>
-            <!-- FOOTER -->
         </div>
+        <!-- FOOTER -->
+    </div>
     </div>
 
 
@@ -109,6 +89,7 @@
     <!-- JAVASCRIPT -->
 
     <!-- Custom Lib -->
+    <script src="js/Friends.js" type="text/babel"></script>
 </body>
 
 </html>

@@ -26,8 +26,7 @@ class Register extends React.Component {
                     "Content-Type": "application/json",
                 },
                 body: stringifyFormData(data),
-            });
-            window.location.href = '/login?code=successful';
+            }).then(window.location.href = '/login?code=successful');
         }
     }
 
