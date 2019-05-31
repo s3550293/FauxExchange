@@ -37,4 +37,9 @@ public class FauxExchangeOrderUnitTest {
 	public void TestUserId() {
 		assertNotNull(order.getUserId());
 	}
+
+	@Test
+	public void TestValue() {
+		assertEquals(239.20,order.getValue(),.1);
+	}
 }
