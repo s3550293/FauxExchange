@@ -59,7 +59,7 @@ class Register extends React.Component {
                     <input type="password" id = "password" name="password" required="required" placeholder="Password" autocomplete="off"/>
                     <input type="password"  id = "passwordConfirm" name="passwordConfirm" required="required" placeholder="Confirm your password"/>
                     <div id="Login-Error" class="showLoginError hideLoginError">
-                        <h6>Passwords do not match</h6>
+                        <h6>Incorrect username or password</h6>
                     </div>
                     <input type="submit" className="button" value="Register"/>
                 </form>

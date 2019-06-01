@@ -63,11 +63,3 @@ class Friends extends React.Component {
 }
 const windowElement = document.getElementById('Content');
 ReactDOM.render(e(Friends), windowElement);
-
-function stringifyFormData(fd) {
-    const data = {};
-    for (let key of fd.keys()) {
-        data[key] = fd.get(key);
-    }
-    return JSON.stringify(data, null, 2);
-}
