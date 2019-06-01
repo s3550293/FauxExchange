@@ -15,9 +15,6 @@ class RemoveCurrency extends React.Component {
         .then(data => this.setState({coins: data, loading: false}))
         setTimeout(this.componentDidMount, 3000)
     }
-    componentWillUnmount() {
-        clearInterval(this.interval);
-    }
 
     remove = (event,code) => {
         event.preventDefault();
@@ -63,7 +60,7 @@ class RemoveCurrency extends React.Component {
                             <td Style="text-align: left;" className="text-center dispNUM">${Math.round(coin.price * 10000) / 10000}</td>
                         </tr>
                         <td className="text-center">{coin.code}</td>
-                        {this.changeValue(coin.price, coin.change[(coin.change.length) - 1])}
+                        {this.changeValue(coin.recentPrice, coin.recentChange)}
                         <td className="text-center"><button onClick={e =>{this.remove(e,coin.code)}} className="button error"> Remove</button></td>
                     </tr>
                 ))}

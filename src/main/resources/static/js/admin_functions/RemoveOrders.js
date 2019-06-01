@@ -9,16 +9,16 @@ class RemoveOrders extends React.Component {
     }
     
     //Fetchs from rest API
-    componentDidMount() {
-        this.interval = setInterval(() => {
-            fetch("/api/orders")
-            .then(response => response.json())
-            .then(data => this.setState({orders: data, loading: false})), 3000
-        });
+    componentDidMount = () => {
+        fetch("/api/orders")
+        .then(response => response.json())
+        .then(data => this.setState({orders: data, loading: false}))
+        setTimeout(this.componentDidMount, 3000);
     }
 
-    componentWillUnmount() {
-        clearInterval(this.interval);
+    remove = (event,code) => {
+        event.preventDefault();
+        alert("remove "+code);
     }
 
     render() {
@@ -29,11 +29,12 @@ class RemoveOrders extends React.Component {
         return(
             <tbody>
                 <tr>
-                    <th>UserId</th>
-                    <th>Type</th>
-                    <th>Currency</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
+                    <th className="text-center">UserId</th>
+                    <th className="text-center">Type</th>
+                    <th className="text-center">Currency</th>
+                    <th className="text-center">Price</th>
+                    <th className="text-center">Quantity</th>
+                    <th></th>
                 </tr>
                 {this.state.orders.map(order => (
                     //Key used as a unique identifier otherwise console will spit out warning
@@ -44,6 +45,7 @@ class RemoveOrders extends React.Component {
                         <td className="text-center">{order.code}</td>
                         <td className="text-center">{order.price}</td>
                         <td className="text-center">{order.qty}</td>
+                        <td className="text-center"><button onClick={e =>{this.remove(e,order.id)}} className="button error"> Remove</button></td>
                     </tr>
                 ))}
             </tbody>

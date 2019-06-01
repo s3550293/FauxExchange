@@ -320,6 +320,28 @@ a{
     font-size: 1.1em;
 }
 
+.accordion-item{
+    
+}
+
+.accordion-item a{
+    border: none;
+    font-size: 1em;
+    font-weight: 700;
+    color: #1a1b1f;
+}
+
+.accordion-content{
+    border: none;
+}
+
+.accordion-title::before{
+    margin-left: 15em;
+}
+.accordion-title::after{
+    margin-left: 15em;
+}
+
 
 
 @media only screen and (max-width: 1200px) {
