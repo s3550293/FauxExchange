@@ -35,7 +35,6 @@ class Leaderboard extends React.Component {
                             <td className="text-center">{user.rank}</td>
                             <td className="text-center">{user.name}</td>
                             <td className="text-center">${Math.round(user.value * 10000) / 10000}</td>
-                            <td className="text-center"><button onClick={e =>{this.remove(e,user.name)}} className="button error"> Remove</button></td>
                         </tr>
                     ))}
                 </tbody>
