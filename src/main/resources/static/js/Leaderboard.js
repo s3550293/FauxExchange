@@ -8,7 +8,7 @@ class Leaderboard extends React.Component {
         };
     }
     
-    //Fetchs from rest API
+    //Fetchs users from rest API
     componentDidMount = () => {
         fetch("/api/user/leaderboard")
         .then(response => response.json())
