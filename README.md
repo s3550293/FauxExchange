@@ -34,8 +34,8 @@ not currently avaliable
 
 
 ## URL's
-[Faux Exchange](http://fauxexchange.tk)
-[GitHub](https://github.com/s3550293/CapstoneProject)
+* [Faux Exchange](http://fauxexchange.tk)
+* [GitHub](https://github.com/s3550293/CapstoneProject)
 
 ## Authors
 * **Arnold D'Silva** - *Technical Lead* - [RMIT](#)
