@@ -16,10 +16,8 @@ class CurrenciesData extends React.Component {
         .then(data => this.setState({coins: data, loading: false}))
         setTimeout(this.componentDidMount, 3000)
     }
-    componentWillUnmount() {
-        clearInterval(this.interval);
-    }
 
+    // Function called to display a currency in further detail
     currencyClick = (event,code) => {
         event.preventDefault();
         console.log("Clicked");
@@ -27,6 +25,7 @@ class CurrenciesData extends React.Component {
         window.location.href = "/currency?code="+code;
     }
 
+    // Calculates the change value of the currecy
     changeValue = (value,change) => {
         const percent = (change/value) * 100
         const rounded = Math.round(percent * 10000) / 10000

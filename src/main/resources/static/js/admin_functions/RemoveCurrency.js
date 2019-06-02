@@ -8,7 +8,7 @@ class RemoveCurrency extends React.Component {
         };
     }
     
-    //Fetchs from rest API
+    // Fetchs from rest API
     componentDidMount = () => {
         fetch("/api/currencies")
         .then(response => response.json())
@@ -16,11 +16,13 @@ class RemoveCurrency extends React.Component {
         setTimeout(this.componentDidMount, 3000)
     }
 
+    // Function called to remove a currency from the list of purchasable curerncies
     remove = (event,code) => {
         event.preventDefault();
         alert("remove "+code);
     }
 
+    // Calculates the change value and returns a table column
     changeValue = (value,change) => {
         const percent = (change/value) * 100
         const rounded = Math.round(percent * 10000) / 10000

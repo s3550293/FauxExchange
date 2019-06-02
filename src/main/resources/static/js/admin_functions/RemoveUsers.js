@@ -16,6 +16,7 @@ class RemoveUsers extends React.Component {
         setTimeout(this.componentDidMount, 3000);
     }
 
+    // Function called to remove a user
     remove = (event,code) => {
         event.preventDefault();
         alert("remove "+code);

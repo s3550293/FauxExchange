@@ -16,6 +16,7 @@ class RemoveOrders extends React.Component {
         setTimeout(this.componentDidMount, 3000);
     }
 
+    // function called to delete an order
     remove = (event,code) => {
         event.preventDefault();
         alert("remove "+code);

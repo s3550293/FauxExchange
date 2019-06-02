@@ -18,10 +18,7 @@ class Friends extends React.Component {
         setTimeout(this.componentDidMount, 3000);
     }
 
-    componentWillUnmount() {
-        clearInterval(this.interval);
-    }
-
+    // Function called when person is added to freinds list
     friendHandleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);

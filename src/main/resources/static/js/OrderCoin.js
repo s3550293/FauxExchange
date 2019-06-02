@@ -81,6 +81,7 @@ class OrderCoin extends React.Component {
         })
     }
 
+    // Calculates the price of the order to display to the user
     multiply(bool){
         if(bool){
             return Math.round((this.state.buyPriceVal * this.state.buyQtyVal) * 10000) / 10000;
@@ -90,6 +91,7 @@ class OrderCoin extends React.Component {
         }
     }
 
+    // Grabs the best price for the user to buy opr sell at
     bestPrice = (event) =>{
         if(event.target.name == "bestBuy"){
             this.setState({
@@ -102,6 +104,7 @@ class OrderCoin extends React.Component {
         }
     }
 
+    // Function called to grab all coins the user user owns of that currency
     sellAll = (event) =>{
         event.preventDefault();
         alert("I dont do anything yet");

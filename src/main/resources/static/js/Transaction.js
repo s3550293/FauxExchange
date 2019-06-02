@@ -20,6 +20,7 @@ class Transaction extends React.Component {
         clearInterval(this.interval);
     }
 
+    // Sets the CSS and icon of the transaction
     arrow = (type) =>{
         if(type == 'sell'){
             return (<td class="text-center"><i class="fas fa-arrow-left transation-money-out-arrow"> <i class="fas fa-wallet transation-money-out-arrow"></i></i></td>)

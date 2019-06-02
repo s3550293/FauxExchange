@@ -16,9 +16,6 @@ class GrabSession extends React.Component {
         this.setState({session: data, loading: false});
         //console.log(data.ticker);
     }
-    componentWillUnmount() {
-        clearInterval(this.interval);
-    }
 
     render() {
         if(this.state.loading){

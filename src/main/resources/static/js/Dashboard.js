@@ -56,10 +56,7 @@ class Dashboard extends React.Component {
         setTimeout(this.componentDidMount, 3000);
     }
 
-    componentWillUnmount() {
-        clearInterval(this.interval);
-    }
-
+    // Clicks through to the currency page
     currencyClick = (event,code) => {
         event.preventDefault();
         console.log("Clicked");
@@ -67,6 +64,7 @@ class Dashboard extends React.Component {
         window.location.href = "/currency?code="+code;
     }
 
+    // Displays user details on the dash
     userprofile(){
         const num = this.state.rand;
         return(
@@ -81,6 +79,27 @@ class Dashboard extends React.Component {
         );
     }
 
+    // Applies a css style to Profit/Loss depending on the value
+    profitloss = (value) => {
+        const rounded = Math.round(value * 10000) / 10000
+        if(rounded >= 0){
+            return (
+                <li className="stats-list-positive">
+                    ${Math.round(this.state.accountValues.standings * 10000) / 10000} <span className="stats-list-label">Profit/Loss</span>
+                </li>
+            );
+        }
+        else{
+            return (
+                <li className="stats-list-negative">
+                    ${Math.round(this.state.accountValues.standings * 10000) / 10000} <span className="stats-list-label">Profit/Loss</span>
+                </li>
+            );
+        }
+    }
+
+
+    // Displays the account value on the dash
     accountvalue(){
         return(
             <div className="pane pain-split-two account-value">
@@ -89,17 +108,16 @@ class Dashboard extends React.Component {
                     <li>
                         ${Math.round(this.state.accountValues.value * 10000) / 10000} <span className="stats-list-label">Account Value</span>
                     </li>
-                    <li className="stats-list-positive">
-                        ${Math.round(this.state.accountValues.standings * 10000) / 10000} <span className="stats-list-label">Gains</span>
-                    </li>
-                    <li className="stats-list-negative">
-                        ${Math.round(this.state.accountValues.standings * 10000) / 10000} <span className="stats-list-label">Loss</span>
-                    </li>
+                    {this.profitloss(this.state.accountValues.standings)}
+                    {/* <li className="stats-list-positive">
+                        ${Math.round(this.state.accountValues.standings * 10000) / 10000} <span className="stats-list-label">Profit/Loss</span>
+                    </li> */}
                 </ul>
             </div>
         );
     }
 
+    // Displays the invested crypto that the user has bought into 
     holdings(){
         return(
             <div className="pane pain-split-two">
@@ -131,6 +149,7 @@ class Dashboard extends React.Component {
         );
     }
 
+    // Displays the current orders that the user has placed
     orders(){
         return(
             <div className="pane pain-split-two">
@@ -164,6 +183,7 @@ class Dashboard extends React.Component {
         );
     }
 
+    // Displays the leaderboard to the dash
     leader(){
         return(
             <div className="pane pain-split-two">
@@ -201,6 +221,7 @@ class Dashboard extends React.Component {
         console.log(stringifyFormData(data));
     }
 
+    // Displays the list of friends to the user with a search form
     friends(){
         return(
             <div className="pane pain-split-two">
@@ -227,6 +248,7 @@ class Dashboard extends React.Component {
         );
     }
 
+    // Renders all elements
     render() {
         return(
             <div className="content-split-two">

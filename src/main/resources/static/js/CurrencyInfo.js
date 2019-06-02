@@ -8,12 +8,15 @@ class CurrencyInfo extends React.Component {
             coin: '',
         };
     }
+
+    // Grabs the code from the URL and returns its value
     getUrlVars = () =>{
         const url_string = window.location.href;
         const url = new URL(url_string);
         return url.searchParams.get("code");
     }
 
+    // defines components within the class
     componentDidMount = () => {
         if(this.state.loading){
             this.setState({
@@ -31,6 +34,7 @@ class CurrencyInfo extends React.Component {
         }
     }
 
+    // Calculates the change value
     changeValue = (value,change) => {
         const percent = (change/value) * 100
         const rounded = Math.round(percent * 10000) / 10000
@@ -44,12 +48,6 @@ class CurrencyInfo extends React.Component {
                 <h4 Style="color: #bf0d30; font-weight: 700;">Change: <span className="dispNUM">{rounded}%</span></h4>
             );
         }
-    }
-
-    updateView = (event) =>{
-        this.setState({
-            duration: event.target.value,
-        })
     }
 
     render() {
