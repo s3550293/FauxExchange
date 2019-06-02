@@ -8,7 +8,7 @@ class GrabSession extends React.Component {
         };
     }
     
-    //Fetchs from rest API
+    //Fetchs session data from rest API
     async componentDidMount() {
         const url = "/api/session";
         const response = await fetch(url);

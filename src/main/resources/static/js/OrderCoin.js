@@ -15,7 +15,7 @@ class OrderCoin extends React.Component {
             coin: []
         }
     }
-
+    //Grabs the currency code from the URL and grabs the session data
     componentDidMount = () => {
         console.log(this.state.loading);
         if(this.state.loading){
@@ -37,7 +37,8 @@ class OrderCoin extends React.Component {
             setTimeout(this.componentDidMount, 5000);
         }
     }
-
+    //Grabs inputed data from the buy forms appends the code of the coin and the userID
+    //then sends it to the backend through a post request
     buyHandleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
@@ -55,6 +56,8 @@ class OrderCoin extends React.Component {
         // window.location.href = "/orders";
     }
 
+    //Grabs inputed data from the sell forms appends the code of the coin and the userID
+    //then sends it to the backend through a post request
     sellHandleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);

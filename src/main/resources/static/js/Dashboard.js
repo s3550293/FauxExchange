@@ -207,6 +207,8 @@ class Dashboard extends React.Component {
             </div>            
         );
     }
+
+    //  Sends email entered into add friends to the rest API
     friendHandleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
