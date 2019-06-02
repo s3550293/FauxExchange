@@ -1,0 +1,29 @@
+=======================================
+BUGS
+=======================================
+1.  Error in console when trying to sell a coin 
+    that has never been bought (ie it doesn't exsit in the wallet)
+
+2.  Coin appears as 0 in the wallet after all the coin has
+    been sold
+
+3.  Users can register again with the same email
+
+=======================================
+ISSUES
+=======================================
+1.  Authentication is not setup to its full extent
+    session is set when user entered in email and password
+    is bypassed if users email is entered then page 
+    is directly accessed
+
+=======================================
+To-Do
+=======================================
+1.  Admin Functionality
+
+2.  Implimentation for Admin
+
+3.  Dates for Transaction
+
+4.  Add Functionality to Sell All button

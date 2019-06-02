@@ -8,6 +8,7 @@ class Register extends React.Component {
         }
     }
 
+    // Pushes through user details to api and direct the user to 
     registerHandleSubmit = (event) => {
         event.preventDefault();
         this.setState({
@@ -26,11 +27,11 @@ class Register extends React.Component {
                     "Content-Type": "application/json",
                 },
                 body: stringifyFormData(data),
-            });
-            window.location.href = '/login?code=successful';
+            }).then(window.location.href = '/login?code=successful');
         }
     }
 
+    // Checks if the password the user entered matches the cornfirm password
     updateUpdatePassword = (event) => {
         event.preventDefault();
         if(this.state.password != this.state.passwordConfirm) {

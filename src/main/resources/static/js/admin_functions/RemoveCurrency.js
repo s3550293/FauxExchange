@@ -8,22 +8,21 @@ class RemoveCurrency extends React.Component {
         };
     }
     
-    //Fetchs from rest API
+    // Fetchs from rest API
     componentDidMount = () => {
         fetch("/api/currencies")
         .then(response => response.json())
         .then(data => this.setState({coins: data, loading: false}))
         setTimeout(this.componentDidMount, 3000)
     }
-    componentWillUnmount() {
-        clearInterval(this.interval);
-    }
 
+    // Function called to remove a currency from the list of purchasable curerncies
     remove = (event,code) => {
         event.preventDefault();
         alert("remove "+code);
     }
 
+    // Calculates the change value and returns a table column
     changeValue = (value,change) => {
         const percent = (change/value) * 100
         const rounded = Math.round(percent * 10000) / 10000
@@ -63,7 +62,7 @@ class RemoveCurrency extends React.Component {
                             <td Style="text-align: left;" className="text-center dispNUM">${Math.round(coin.price * 10000) / 10000}</td>
                         </tr>
                         <td className="text-center">{coin.code}</td>
-                        {this.changeValue(coin.price, coin.change[(coin.change.length) - 1])}
+                        {this.changeValue(coin.recentPrice, coin.recentChange)}
                         <td className="text-center"><button onClick={e =>{this.remove(e,coin.code)}} className="button error"> Remove</button></td>
                     </tr>
                 ))}

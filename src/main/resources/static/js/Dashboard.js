@@ -10,11 +10,12 @@ class Dashboard extends React.Component {
             session:'',
             rand: 1,
             friends: [],
+            leaderboard: []
         };
     }
     
     //Fetchs from rest API
-    componentDidMount() {
+    componentDidMount = () => {
         const num = Math.floor(Math.random() *4)+1
         //fetch session
         fetch("/api/session")
@@ -27,9 +28,9 @@ class Dashboard extends React.Component {
         .then(data => this.setState({user: data}))
 
         //fetch accountValues
-        // fetch("/api/accountValue")
-        // .then(response => response.json())
-        // .then(data => this.setState({accountValues: data}))
+        fetch("/api/session/value")
+        .then(response => response.json())
+        .then(data => this.setState({accountValues: data}))
 
         //fetch holdings
         fetch("/api/session/crypto")
@@ -46,10 +47,16 @@ class Dashboard extends React.Component {
         .then(response => response.json())
         .then(data => this.setState({friends: data}))
 
+        //fetch leaderboards
+        fetch("/api/user/leaderboard")
+        .then(response => response.json())
+        .then(data => this.setState({leaderboard: data}))
+
         //refresh
-        setTimeout(this.componentDidMount, 15000);
+        setTimeout(this.componentDidMount, 3000);
     }
 
+    // Clicks through to the currency page
     currencyClick = (event,code) => {
         event.preventDefault();
         console.log("Clicked");
@@ -57,6 +64,7 @@ class Dashboard extends React.Component {
         window.location.href = "/currency?code="+code;
     }
 
+    // Displays user details on the dash
     userprofile(){
         const num = this.state.rand;
         return(
@@ -71,29 +79,49 @@ class Dashboard extends React.Component {
         );
     }
 
+    // Applies a css style to Profit/Loss depending on the value
+    profitloss = (value) => {
+        const rounded = Math.round(value * 10000) / 10000
+        if(rounded >= 0){
+            return (
+                <li className="stats-list-positive">
+                    ${Math.round(this.state.accountValues.standings * 10000) / 10000} <span className="stats-list-label">Profit/Loss</span>
+                </li>
+            );
+        }
+        else{
+            return (
+                <li className="stats-list-negative">
+                    ${Math.round(this.state.accountValues.standings * 10000) / 10000} <span className="stats-list-label">Profit/Loss</span>
+                </li>
+            );
+        }
+    }
+
+
+    // Displays the account value on the dash
     accountvalue(){
         return(
             <div className="pane pain-split-two account-value">
                 <h5>Account Value</h5>
                 <ul className="stats-list">
                     <li>
-                        $0 <span className="stats-list-label">Account Value</span>
+                        ${Math.round(this.state.accountValues.value * 10000) / 10000} <span className="stats-list-label">Account Value</span>
                     </li>
-                    <li className="stats-list-positive">
-                        $0 <span className="stats-list-label">Gains</span>
-                    </li>
-                    <li className="stats-list-negative">
-                        $0 <span className="stats-list-label">Loss</span>
-                    </li>
+                    {this.profitloss(this.state.accountValues.standings)}
+                    {/* <li className="stats-list-positive">
+                        ${Math.round(this.state.accountValues.standings * 10000) / 10000} <span className="stats-list-label">Profit/Loss</span>
+                    </li> */}
                 </ul>
             </div>
         );
     }
 
+    // Displays the invested crypto that the user has bought into 
     holdings(){
         return(
             <div className="pane pain-split-two">
-                <h5>Invested Crypto</h5>
+                <h5><i class="fas fa-wallet"> </i>Invested Crypto</h5>
                 <table>
                     <tbody>
                         <tr>
@@ -108,11 +136,11 @@ class Dashboard extends React.Component {
                                         <td Style="padding:.3em; text-align: left; font-weight:700;" className="text-center">{holding.code}</td>
                                     </tr>
                                     <tr Style="padding:.3em; background:none;">
-                                        <td Style="padding:.3em; text-align: left;" className="text-center dispNUM">{Math.round(holding.price * 10000) / 10000}</td>
+                                        <td Style="padding:.3em; text-align: left;" className="text-center dispNUM">${Math.round(holding.price * 10000) / 10000}</td>
                                     </tr>
                                 </td>
                                 <td className="text-center dispNUM">{Math.round(holding.qty * 10000) / 10000}</td>
-                                <td className="text-center dispNUM">{Math.round(holding.value * 10000) / 10000}</td>
+                                <td className="text-center dispNUM">${Math.round(holding.value * 10000) / 10000}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -121,10 +149,11 @@ class Dashboard extends React.Component {
         );
     }
 
+    // Displays the current orders that the user has placed
     orders(){
         return(
             <div className="pane pain-split-two">
-                <h5>Current orders</h5>
+                <h5><i class="fas fa-file-alt"></i> Current orders</h5>
                 <table>
                     <tbody>
                         <tr>
@@ -140,11 +169,11 @@ class Dashboard extends React.Component {
                                         <td Style="padding:.3em; text-align: left; font-weight:700;" className="text-center">{order.code}</td>
                                     </tr>
                                     <tr Style="padding:.3em; background:none;">
-                                        <td Style="padding:.3em; text-align: left;" className="text-center">{Math.round(order.price * 10000) / 10000}</td>
+                                        <td Style="padding:.3em; text-align: left;" className="text-center dispNUM">{Math.round(order.price * 10000) / 10000}</td>
                                     </tr>
                                 </td>
                                 <td className="text-center">{order.qty}</td>
-                                <td className="text-center">{Math.round((order.price * order.qty) * 10000) / 10000}</td>
+                                <td className="text-center dispNUM">${Math.round((order.price * order.qty) * 10000) / 10000}</td>
                                 <td className="text-center">{order.type}</td>
                             </tr>
                         ))}
@@ -154,52 +183,53 @@ class Dashboard extends React.Component {
         );
     }
 
+    // Displays the leaderboard to the dash
     leader(){
         return(
             <div className="pane pain-split-two">
-                <h5>Leader Board</h5>
-                <table>
+                <h5><i class="fas fa-crown"></i> Leader Board</h5>
+                <table class="hover">
                     <tbody>
                         <tr>
-                            <th className="text-center">User</th>
-                            <th className="text-center">Value</th>
+                            <th class="text-center">Rank</th>
+                            <th class="text-center">User</th>
+                            <th class="text-center">Value</th>
                         </tr>
-                        <tr>
-                            <td className="text-center">Han Solo</td>
-                            <td className="text-center">$4000.00</td>
-                        </tr>
-                        <tr>
-                            <td className="text-center">Tony Stark</td>
-                            <td className="text-center">$3000.00</td>
-                        </tr>
-                        <tr>
-                            <td className="text-center">Natasha</td>
-                            <td className="text-center">$3.50</td>
-                        </tr>
+                        {this.state.leaderboard.map(user => (
+                            <tr>
+                                <td className="text-center">{user.rank}</td>
+                                <td className="text-center">{user.name}</td>
+                                <td className="text-center dispNUM">${Math.round(user.value * 10000) / 10000}</td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>            
         );
     }
+
+    //  Sends email entered into add friends to the rest API
     friendHandleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
         console.log(stringifyFormData(data));
-        fetch('/api/session/friends', {
+        fetch('/api/session/addfriends', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: stringifyFormData(data),
         });
+        console.log(stringifyFormData(data));
     }
 
+    // Displays the list of friends to the user with a search form
     friends(){
         return(
             <div className="pane pain-split-two">
-                <h5>Friends</h5>
+                <h5><i class="fas fa-user-friends"></i> Friends</h5>
                 <form className="friends-search" onSubmit = {this.friendHandleSubmit}>
-                    <input className="seach-input" type="text" id="email"/>
+                    <input className="seach-input" type="text" id="email" name="email"/>
                     <input type="Submit" className="button" value="Add"/>
                 </form>
                 <table>
@@ -208,16 +238,19 @@ class Dashboard extends React.Component {
                             <th className="text-center">Username</th>
                             <th className="text-center">Value</th>
                         </tr>
-                        <tr>
-                            <td className="text-center">Tony Stark</td>
-                            <td className="text-center">$3000.00</td>
-                        </tr>
+                        {this.state.friends.map(friend => (
+                            <tr>
+                                <td className="text-center">{friend.name}</td>
+                                <td className="text-center dispNUM">${Math.round(friend.value * 10000) / 10000}</td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
         );
     }
 
+    // Renders all elements
     render() {
         return(
             <div className="content-split-two">

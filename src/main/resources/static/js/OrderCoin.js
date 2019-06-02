@@ -15,7 +15,7 @@ class OrderCoin extends React.Component {
             coin: []
         }
     }
-
+    //Grabs the currency code from the URL and grabs the session data
     componentDidMount = () => {
         console.log(this.state.loading);
         if(this.state.loading){
@@ -37,7 +37,8 @@ class OrderCoin extends React.Component {
             setTimeout(this.componentDidMount, 5000);
         }
     }
-
+    //Grabs inputed data from the buy forms appends the code of the coin and the userID
+    //then sends it to the backend through a post request
     buyHandleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
@@ -51,10 +52,12 @@ class OrderCoin extends React.Component {
                 "Content-Type": "application/json",
             },
             body: stringifyFormData(data),
-        });
+        }).then(document.getElementById("Buy-Confirm").classList.remove("hideLoginError"));
         // window.location.href = "/orders";
     }
 
+    //Grabs inputed data from the sell forms appends the code of the coin and the userID
+    //then sends it to the backend through a post request
     sellHandleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
@@ -68,7 +71,7 @@ class OrderCoin extends React.Component {
                 "Content-Type": "application/json",
             },
             body: stringifyFormData(data),
-        });
+        }).then(document.getElementById("Sell-Confirm").classList.remove("hideLoginError"));
         // window.location.href = "/orders";
     }
 
@@ -81,6 +84,7 @@ class OrderCoin extends React.Component {
         })
     }
 
+    // Calculates the price of the order to display to the user
     multiply(bool){
         if(bool){
             return Math.round((this.state.buyPriceVal * this.state.buyQtyVal) * 10000) / 10000;
@@ -90,6 +94,7 @@ class OrderCoin extends React.Component {
         }
     }
 
+    // Grabs the best price for the user to buy opr sell at
     bestPrice = (event) =>{
         if(event.target.name == "bestBuy"){
             this.setState({
@@ -102,6 +107,7 @@ class OrderCoin extends React.Component {
         }
     }
 
+    // Function called to grab all coins the user user owns of that currency
     sellAll = (event) =>{
         event.preventDefault();
         alert("I dont do anything yet");
@@ -153,6 +159,9 @@ class OrderCoin extends React.Component {
                             </tbody>
                         </table>
                     </form>
+                    <div id="Buy-Confirm" class="showBuySuc hideLoginError">
+                        <h6>Buy Order Placed</h6>
+                    </div>
                 </div>
                 <div className="pane pain-split-two buysell">
                     <h3>Sell {this.state.code}</h3>
@@ -196,13 +205,10 @@ class OrderCoin extends React.Component {
                             </tr>
                         </tbody>
                     </table>
-
-                        
-                        
-                        
-                        
-                        
                     </form>
+                    <div id="Sell-Confirm" class="showBuySuc hideLoginError">
+                        <h6>Sell Order Placed</h6>
+                    </div>
                 </div>
             </div>
         );

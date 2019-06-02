@@ -36,5 +36,5 @@ HELP.md
 *.class
 
 ### Bianry Files ###
-/bin
-\bin
+/bin/
+\bin\

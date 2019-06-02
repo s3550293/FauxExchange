@@ -184,12 +184,15 @@ a{
     transition: all 1s;
 }
 
+
 .pain-split-two{
     align-items: center;
     margin: 0;
     margin-top: 1em;
     margin-bottom: 1em;
     width: 47%;
+    /* align-self: flex-start;
+    height: 100%; */
 }
 
 .content-split-two{
@@ -270,6 +273,18 @@ a{
     padding-bottom: 1em;
 }
 
+.showBuySuc{
+    text-align: center;
+    height: 3em;
+    transition: height 2s;
+    transform: scaleY(1);
+    transition: all 1s;
+    opacity: 1;
+    color: rgb(83, 202, 14);
+    padding-bottom: 1em;
+    font-weight: 700;
+}
+
 .hideLoginError{
     height: 0em;
     opacity: 0;
@@ -303,6 +318,28 @@ a{
 .dispNUM{
     font-family: 'Titillium Web', sans-serif!important;
     font-size: 1.1em;
+}
+
+.accordion-item{
+    
+}
+
+.accordion-item a{
+    border: none;
+    font-size: 1em;
+    font-weight: 700;
+    color: #1a1b1f;
+}
+
+.accordion-content{
+    border: none;
+}
+
+.accordion-title::before{
+    margin-left: 15em;
+}
+.accordion-title::after{
+    margin-left: 15em;
 }
 
 

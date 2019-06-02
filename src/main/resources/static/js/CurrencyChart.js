@@ -1,4 +1,6 @@
+// Element the chart will be drawn to
 var canvas = document.getElementById('Currency-Chart-Display');
+// Data displayed to the graph
 var Graphdata = {
     labels: [],
     datasets: [{
@@ -8,9 +10,13 @@ var Graphdata = {
         data: []
     }]
 };
+// Loading bool used to check if the data has loaded
 var loading = false;
+// Time format for the X axis
 var timeFormat = "MM/DD/YYYY HH:mm";
+// variable used to store JSON requested data 
 var jsonData;
+// Display options for chart
 var option = {
     elements: {
         point:{
@@ -54,14 +60,15 @@ var option = {
         }
     }
 };
+// Chart variable
 var currencyGraph = Chart.Line(canvas, {
     data: Graphdata,
     options: option
 });
 
+// Called on Document load, data will repeatedly check for new data 
 document.addEventListener("DOMContentLoaded", function () {
     fetchData(loading);
-    // setTimeout(appendData(loading), 10000)
     (function appendData() {
         setTimeout(function () {
             fetchData(loading)
@@ -70,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }());
 });
 
+// Adds Data to the chart data array
 function addData(update) {
     if (!update) {
         if (Graphdata.labels.length == 0) {
@@ -91,6 +99,7 @@ function addData(update) {
     }
 }
 
+// Converts AM PM time to 24hr
 function convertTime12to24(time12h){
     const [time, modifier] = time12h.split(' ');
 
@@ -107,6 +116,7 @@ function convertTime12to24(time12h){
     return `${hours}:${minutes}`;
 }
 
+// Converts the data value given by the JSON data
 function convertDate(value) {
     var dateTime = new Date(Math.floor(value * 1000))
     var time = this.convertTime12to24(dateTime.toLocaleTimeString());
@@ -114,10 +124,12 @@ function convertDate(value) {
     return `${date} ${time}`;
 }
 
+// resets the users view of the graph
 function resetZoom(){
     window.currencyGraph.resetZoom();
 }
 
+// Fetchs data from the REST API
 function fetchData(update) {
     const url_string = window.location.href;
     const url = new URL(url_string);

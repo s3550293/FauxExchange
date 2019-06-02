@@ -9,7 +9,7 @@ class Transaction extends React.Component {
     }
     
     //Fetchs from rest API
-    componentDidMount() {
+    componentDidMount = () => {
         fetch("/api/session/transactions")
         .then(response => response.json())
         .then(data => this.setState({orders: data, loading: false}))
@@ -18,6 +18,15 @@ class Transaction extends React.Component {
 
     componentWillUnmount() {
         clearInterval(this.interval);
+    }
+
+    // Sets the CSS and icon of the transaction
+    arrow = (type) =>{
+        if(type == 'sell'){
+            return (<td class="text-center"><i class="fas fa-arrow-left transation-money-out-arrow"> <i class="fas fa-wallet transation-money-out-arrow"></i></i></td>)
+        }else{
+            return (<td className="text-center"><i class="fas fa-arrow-right transation-money-in-arrow"></i> <i class="fas fa-wallet transation-money-in-arrow"></i></td>)
+        }
     }
 
     render() {
@@ -29,24 +38,30 @@ class Transaction extends React.Component {
             <table class="hover">
                 <tbody>
                     <tr>
-                        <th class="text-center">In/Out</th>
-                        <th class="text-center">Value</th>
+                        <th class="text-center"></th>
+                        <th class="text-center"></th>
                         <th class="text-center">Type</th>
-                        <th class="text-center">Currency</th>
                         <th class="text-center">Volume</th>
-                        <th class="text-center">Wallet</th>
+                        <th class="text-center">Profit/Loss</th>
                         <th class="text-center">Date</th>
                     </tr>
                     {this.state.orders.map(order => (
-                        //<td className="text-center"><i class="fas fa-arrow-right transation-money-out-arrow"></i></td>
-                        //<td class="text-center"><i class="fas fa-arrow-left transation-money-in-arrow"></i></td>
+                        //<td className="text-center"><i class="fas fa-arrow-right transation-money-in-arrows"></i></td>
+                        //<td class="text-center"><i class="fas fa-arrow-left transation-money-out-arrow"></i></td>
                         <tr key={order.transactionId}>
-                            <td className="text-center"></td>
-                            <td className="text-center">{Math.round(order.value * 10000) / 10000}</td>
+                            {/* <td className="text-center"></td> */}
+                            {this.arrow(order.type)}
+                            <td>
+                                <tr Style="padding:.3em; background:none;">
+                                    <td Style="padding:.3em; text-align: left;" className="text-center"><span Style="font-weight:700; font-size: 1.2em;">{order.code}</span></td>
+                                </tr>
+                                <tr Style="padding:.3em; background:none;">
+                                    <td Style="text-align: left;" className="text-center dispNUM">${Math.round(order.value * 10000) / 10000}</td>
+                                </tr>
+                            </td>
                             <td className="text-center">{order.type}</td>
-                            <td className="text-center">{order.code}</td>
                             <td className="text-center">{order.qty}</td>
-                            <td className="text-center"></td>
+                            <td className="text-center dispNUM">${Math.round(order.pnl * 10000) / 10000}</td>
                             <td className="text-center"></td>
                         </tr>
                     ))}
