@@ -17,4 +17,13 @@ ISSUES
     is bypassed if users email is entered then page 
     is directly accessed
 
-2.  
+=======================================
+To-Do
+=======================================
+1.  Admin Functionality
+
+2.  Implimentation for Admin
+
+3.  Dates for Transaction
+
+4.  Add Functionality to Sell All button
