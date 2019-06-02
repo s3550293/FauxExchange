@@ -50,6 +50,7 @@ public class SessionsServiceController {
     }
 
     /* Post Request for Session Creation */
+    /* Create Session API Call */
     @RequestMapping(value = "/api/session", method = RequestMethod.POST) 
     public ResponseEntity<Object> createSession(@RequestBody SessionInfo si, HttpSession session) {
 
@@ -60,6 +61,7 @@ public class SessionsServiceController {
         return new ResponseEntity<>("Created Session Successfully", HttpStatus.OK);
     }
 
+    /* Get User Info API Call */
     @RequestMapping(value = "/api/session/info", method = RequestMethod.GET) 
     public ResponseEntity<Object> getUserInfo(HttpSession session) {
         // System.out.println("User Info Grab");
@@ -67,6 +69,7 @@ public class SessionsServiceController {
         return new ResponseEntity<>(userService.getUserInfo(userId), HttpStatus.OK);
     }
 
+/* Get User Orders API Call */
     @RequestMapping(value = "/api/session/orders", method = RequestMethod.GET) 
     public ResponseEntity<Object> getUserOrders(HttpSession session) {
         // System.out.println("User Order Grab");
@@ -74,6 +77,7 @@ public class SessionsServiceController {
         return new ResponseEntity<>(orderService.getOrdersByUserId(userId), HttpStatus.OK);
     }
 
+/* Get Wallet based on User API Call */
     @RequestMapping(value = "/api/session/crypto", method = RequestMethod.GET) 
     public ResponseEntity<Object> getUserCrypto(HttpSession session) {
         // System.out.println("User Crypto Grab");
@@ -81,6 +85,7 @@ public class SessionsServiceController {
         return new ResponseEntity<>(userService.getUserWallet(userId), HttpStatus.OK);
     }
 
+/* Get Transactions based on User API Call */
     @RequestMapping(value = "/api/session/transactions", method = RequestMethod.GET) 
     public ResponseEntity<Object> getUserTransactions(HttpSession session) {
         // System.out.println("User Transaction Grab");
@@ -88,6 +93,7 @@ public class SessionsServiceController {
         return new ResponseEntity<>(transactionService.getTransactionsByUserId(userId), HttpStatus.OK);
     }
 
+/* Get Friends based on User API Call */
     @RequestMapping(value = "/api/session/friends", method = RequestMethod.GET) 
     public ResponseEntity<Object> getUserFriends(HttpSession session) {
         // System.out.println("User Friend Grab");
@@ -95,6 +101,7 @@ public class SessionsServiceController {
         return new ResponseEntity<>(userService.getFriends(userId), HttpStatus.OK);
     }
 
+/* Add Friend API Call */
     @RequestMapping(value = "/api/session/addfriends", method = RequestMethod.POST) 
     public ResponseEntity<Object> addUserFriends(@RequestBody Map<String, Object> email, HttpSession session) {
         // System.out.println("SessionServiceController");
@@ -104,6 +111,7 @@ public class SessionsServiceController {
         return new ResponseEntity<>("Add Friend Successful", HttpStatus.OK);
     }
 
+/* Get User Account Value API Call */
     @RequestMapping(value = "/api/session/value", method = RequestMethod.GET)
     public ResponseEntity<Object> getUserValue(HttpSession session) {
         HashMap<String, String> map = new HashMap<String, String>();

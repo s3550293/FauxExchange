@@ -122,6 +122,10 @@ TODO(Arnold): Remove hardcoded values
         return false;
     }
 
+/* Process Orders
+This function runs through all orders and compares to the current market price. And then either
+Sells or Buys.
+If neither happens orders will exist unless they get deleted. */
     @Override
     @Scheduled(fixedRate = 60000, initialDelay = 60000)
     public void processOrders() {
@@ -157,17 +161,19 @@ TODO(Arnold): Remove hardcoded values
         }
     }
 
-
+/* Returns all the orders */
     @Override
     public List<Order> getOrders() {
         return orderRepository.findAll();
     }
 
+/* Returns all orders based on code */
     @Override
     public List<Order> getOrders(String code) {
         return orderRepository.findAll();
     }
 
+/* Returns all orders from user */
     @Override
     public List<Order> getOrdersByUserId(String id) {
         return orderRepository.findByUserId(id);

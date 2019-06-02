@@ -20,12 +20,16 @@ public class UserServiceController {
     @Autowired
     UserService userService;
 
+    /* Get Users API Call
+    JSON Get Request all the users */
     @RequestMapping(value = "/api/user/all", method = RequestMethod.GET)
     public ResponseEntity<Object> getUsers() {
         return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
     }
 
-
+    /* Create User API Call
+    JSON Post Request creates the user
+    Response created */
     @RequestMapping(value = "/api/user/registration", method = RequestMethod.POST)
     public ResponseEntity<Object> createUser(@RequestBody User user) {
         System.out.println("Creating User - ");
@@ -33,6 +37,8 @@ public class UserServiceController {
         return new ResponseEntity<>("Hello World!", HttpStatus.OK);
     }
 
+    /* Get Leaderboard API Call
+    JSON Get Request the leaderboard */
     @RequestMapping(value = "/api/user/leaderboard", method = RequestMethod.GET)
     public ResponseEntity<Object> getLeaderboard() {
         return new ResponseEntity<>(userService.getLeaderboard(), HttpStatus.OK);

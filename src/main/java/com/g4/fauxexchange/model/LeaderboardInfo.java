@@ -1,5 +1,9 @@
 package com.g4.fauxexchange.model;
 
+/* 
+    This class is used for manipulating data for the frontend
+ */
+
 public class LeaderboardInfo {
 
     public String name;

@@ -19,6 +19,7 @@ public class SecurityServiceImpl implements SecurityService {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    /* Functino for logging in through security service */
     @Override
     public String findLoggedInUsername() {
         Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
@@ -29,6 +30,8 @@ public class SecurityServiceImpl implements SecurityService {
         return null;
     }
 
+    /* Auto Login
+    WIP */
     @Override
     public void autoLogin(String email, String password) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(email);

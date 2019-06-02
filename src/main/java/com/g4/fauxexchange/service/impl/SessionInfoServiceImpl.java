@@ -17,6 +17,7 @@ public class SessionInfoServiceImpl implements SessionInfoService {
     @Autowired
     private UserRepository userRepository;
 
+    /* Create a user session given a session id and email */
     @Override
     public SessionInfo createSession(String sid, String email) {
         SessionInfo si = new SessionInfo();
@@ -31,6 +32,7 @@ public class SessionInfoServiceImpl implements SessionInfoService {
         return si;
     }
 
+    /* Create a session based on the session id */
     @Override
     public SessionInfo createSession(HttpSession session) {
         SessionInfo si = new SessionInfo();
@@ -42,6 +44,7 @@ public class SessionInfoServiceImpl implements SessionInfoService {
         return si;
     }
 
+    /* Reset Session */
     @Override
     public SessionInfo resetSesssion() {
         return new SessionInfo();

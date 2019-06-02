@@ -20,6 +20,7 @@ public class TransactionServiceController {
     @Autowired
     TransactionService tService;
 
+    /* Get Transaction API Call */
     @RequestMapping(value = "/api/transaction/all", method = RequestMethod.GET)
     public ResponseEntity<Object> getTransactions() {
         return new ResponseEntity<>(tService.getTransactions(), HttpStatus.OK);

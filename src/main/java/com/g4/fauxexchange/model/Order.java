@@ -33,9 +33,8 @@ public class Order {
 		return String.format("Order[id=%s, type='%s', code='%s', price='%f', qty='%f', userId='%s']", orderId, type, code, price, qty, userId);
 	}
 
-    /* GENERIC
-        Getters & Setters 
-    */
+    // Getters & Setters
+    
     public String getOrderId() {
         return this.orderId;
     }
@@ -84,10 +83,9 @@ public class Order {
         this.userId = userId;
     }
 
-    /* CUSTOM
-        Getters & Setters
-    */
+    // Custom Getters & Setters
 
+    // Return the current value of the order based on price per coin * qty
     public double getValue() {
         return this.price * this.qty;
     }

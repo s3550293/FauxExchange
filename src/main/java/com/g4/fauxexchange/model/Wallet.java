@@ -16,6 +16,8 @@ public class Wallet {
         this.value = price * qty;
     }
 
+    //Getter & Setters
+
     public String getCode() {
         return this.code;
     }

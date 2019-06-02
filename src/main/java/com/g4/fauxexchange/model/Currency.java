@@ -24,6 +24,14 @@ public class Currency {
         this.price.add(new Price(0.0));
 	}
 
+	@Override
+	public String toString() {
+		return String.format("Currency[id=%s, code='%s', name='%s'] | %s", 
+            currencyId, code, name, price.peekLast());
+	}
+
+    // Getters & Setters
+
     public String getCurrencyId() {
         return this.currencyId;
     }
@@ -48,16 +56,9 @@ public class Currency {
         this.name = name;
     }
 
-	@Override
-	public String toString() {
-		return String.format("Currency[id=%s, code='%s', name='%s'] | %s", 
-            currencyId, code, name, price.peekLast());
-	}
+    // Getters & Setters
 
-    /* CUSTOM
-        Getters & Setters
-    */
-    
+    // Update the current price in the Currency, given a price.
     public void update(Price price) {
         if(!this.price.isEmpty()) {
             price.setChange(price.getValue() - this.price.peekLast().getValue());
@@ -65,10 +66,12 @@ public class Currency {
         }  
     }
 
+    // Return the most recent price
     public double getRecentPrice() {
         return this.price.peekLast().getValue();
     }
 
+    // Return the most recent change
     public double getRecentChange() {
         return this.price.peekLast().getChange();
     }

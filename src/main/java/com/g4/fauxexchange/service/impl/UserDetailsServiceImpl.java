@@ -15,6 +15,9 @@ import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
+/* Class User Details
+This class loads the user into the session */
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
     @Autowired
