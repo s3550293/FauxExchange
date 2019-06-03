@@ -40,12 +40,15 @@ public class CurrencyServiceImpl implements CurrencyService {
             } catch(Exception e) {
                 e.printStackTrace();
             }
-
-            if(json != null) {
-                double priceAPI = json.getJSONObject("ticker").getDouble("price");
-                Price price = new Price(priceAPI);
-                currency.update(price);
-                currencyRepository.save(currency);
+            try{
+                if(json != null) {
+                    double priceAPI = json.getJSONObject("ticker").getDouble("price");
+                    Price price = new Price(priceAPI);
+                    currency.update(price);
+                    currencyRepository.save(currency);
+                }
+            } catch(JSONException je) {
+                je.printStackTrace();
             }
 
             System.out.println("Updated: " + currency);
