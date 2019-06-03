@@ -93,10 +93,15 @@ public class User {
         this.role = role;
     }
 
+    //Custom Getters & Setters
+
+    //Return all wallets back
     public LinkedList<Wallet> getWallets() {
         return this.wallet;
     }
 
+
+    //Return a specific wallet back
     public Wallet getWallet(String code) {
         Wallet wallet = null;
         for(Wallet w : this.wallet) {
@@ -108,6 +113,7 @@ public class User {
         return wallet;
     }
 
+    //Return all the wallets collective total value
     public double getWalletsValue() {
         double result = 0;
         

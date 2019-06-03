@@ -20,12 +20,13 @@ public class OrderServiceController {
     @Autowired
     OrderService orderService;
 
+/* Get All Orders API Call */
     @RequestMapping(value = "/api/orders", method = RequestMethod.GET)
     public ResponseEntity<Object> getOrders() {
         return new ResponseEntity<>(orderService.getOrders(), HttpStatus.OK);
     }
 
-
+/* Create Order API Call */
     @RequestMapping(value = "/api/orders", method = RequestMethod.POST)
     public ResponseEntity<Object> createOrder(@RequestBody Order order) {
         if(orderService.createOrder(order)) {

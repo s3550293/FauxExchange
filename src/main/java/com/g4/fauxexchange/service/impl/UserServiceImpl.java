@@ -38,6 +38,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    /* Create User
+    This function creates a user from a given data structure that will be passed in
+    TODO: This needs to be extended for error checking */
     @Override
     public void createUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
@@ -48,11 +51,16 @@ public class UserServiceImpl implements UserService {
         System.out.println("Created " + user);
     }
 
+    /* Delete User
+    This function will remove the user from the database */
     @Override
     public void deleteUser(User user) {
         uRepo.delete(user);
     }
 
+    /* Update User
+    This function runs through the user database and updates the wallets according to the current
+    their current prices according to the currency stored in the database */
     @Override
     @Scheduled(fixedRate = 60000, initialDelay = 60000)
     public void updateUser() {
@@ -71,21 +79,30 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /* Save User
+    This function is used to update/save any changes made to the given user */
     @Override
     public void saveUser(User user) {
         uRepo.save(user);
     }
 
+    /* Get Users
+    Return back all users in the database */
     @Override
     public List<User> getUsers() {
         return uRepo.findAll();
     }
 
+    /* Get User By Email
+    Return back a specific user given an email */
     @Override
     public User getUserByEmail(String email) {
         return uRepo.findByEmail(email);
     }
 
+    /* Get User Info
+    This function takes in a id. From this id fill out the session info so that it can be sent
+    to the frontend */
     @Override
     public UserInfo getUserInfo(String id) {
         User user = uRepo.findByUserId(id);
@@ -98,12 +115,18 @@ public class UserServiceImpl implements UserService {
         return ui;
     }
 
+    /* Get User Wallet
+    Return back the wallets of the user */
     @Override
     public List<Wallet> getUserWallet(String id) {
         User user = uRepo.findByUserId(id);
         return user.getWallets();
     }
 
+    /* Get Leaderboard
+    This function returns back a data structure for the front end.
+    It grabs all the users and then sorts by their total account value.
+    This is then pushed towards the frontend to display */
     @Override
     public List<LeaderboardInfo> getLeaderboard() {
         List<User> users = uRepo.findAll();
@@ -134,6 +157,8 @@ public class UserServiceImpl implements UserService {
         return leaderboards;
     }
 
+    /* Add Friends 
+    Add a friend given the User and the Friends email */
     @Override
     public void addFriends(String userId, String email) {
         System.out.println("UserServiceImpl");
@@ -142,6 +167,8 @@ public class UserServiceImpl implements UserService {
         uRepo.save(user);
     }
 
+    /* Get Friends
+    Use the leaderboard info and return back a list of friends that are sorted as well */
     @Override
     public List<LeaderboardInfo> getFriends(String userId) {
         User user = uRepo.findByUserId(userId);
@@ -162,6 +189,8 @@ public class UserServiceImpl implements UserService {
         return friends;
     }
 
+    /* Get User
+    Return back the user */
     @Override
     public User getUser(String id) {
         return uRepo.findByUserId(id);

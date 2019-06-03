@@ -21,11 +21,16 @@ public class CurrencyServiceImpl implements CurrencyService {
     @Autowired
     private CurrencyRepository currencyRepository;
 
+    /* Create Currency
+    Based on a given currency we can create a new currency to save to the database */
     @Override
     public void createCurrency(Currency currency) {
         currencyRepository.save(currency);
     }
 
+    /* Update Currency
+    This function pulls data from a API and sets the currencies price to the data.
+    All other data is calculated within this function. Eg, timestamp and change  */
     @Override
     @Scheduled(fixedRate=60000, initialDelay = 60000)
     public void updateCurrency() {
@@ -55,16 +60,20 @@ public class CurrencyServiceImpl implements CurrencyService {
         }
     }
 
+    /* Delete Currency
+    Based on a given currency remove it fomr the database */
     @Override
     public void deleteCurrency(Currency currency) {
         currencyRepository.delete(currency);
     }
 
+    /* Get All currencies */
     @Override
     public List<Currency> getCurrencies() {
         return currencyRepository.findAllWithRecentPrices();
     }
 
+    /* Get specific currency */
     @Override
     public Currency getCurrency(String code) {
         return currencyRepository.findByCode(code);

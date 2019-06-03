@@ -3,6 +3,8 @@ package com.g4.fauxexchange.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+// This class is used for manipulation of data for the front end
+
 @Document
 public class SessionInfo {
 

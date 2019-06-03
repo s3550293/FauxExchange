@@ -30,6 +30,8 @@ public class Transaction {
         this.userId = userId;
     }
 
+    // Getters & Setters
+    
     public void setType(String type) {
         this.type = type;
     }

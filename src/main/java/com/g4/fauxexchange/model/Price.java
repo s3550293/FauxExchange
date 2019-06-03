@@ -18,6 +18,13 @@ public class Price {
         this.time = Instant.now().getEpochSecond();
     }
 
+    @Override
+    public String toString() {
+        return String.format("Price[value='%f', change='%f', time='%d']", value, change, time);
+    }
+
+    // Getters & Setters
+
     public double getValue() {
         return this.value;
     }
@@ -40,11 +47,6 @@ public class Price {
 
     public void setTime(long time) {
         this.time = time;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("Price[value='%f', change='%f', time='%d']", value, change, time);
     }
 
 }

@@ -18,11 +18,13 @@ public class CurrencyServiceController {
     @Autowired
     private CurrencyService currencyService;
 
+/* Get Currencies API Call */
     @RequestMapping(value = "/api/currencies", method = RequestMethod.GET)
     public ResponseEntity<Object> getCurrencies() {
         return new ResponseEntity<Object>(currencyService.getCurrencies(), HttpStatus.OK);
     }
 
+/* Get Currency by Code API Call */
     @RequestMapping(value = "/api/currencies/{code}", method = RequestMethod.GET)
     public ResponseEntity<Object> getCurrencyByCode(@PathVariable("code") String code) {
         return new ResponseEntity<Object>(currencyService.getCurrency(code), HttpStatus.OK);

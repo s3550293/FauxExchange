@@ -19,6 +19,9 @@ public class TransactionServiceImpl implements TransactionService {
     @Autowired
     private TransactionRepository tRepo;
 
+
+    /* Create Transaction
+    This function creates and stores a transaction based on a processed order */
     @Override
     public boolean createTransaction(Order order) {
         Transaction t = new Transaction(order.getType(), order.getCode(), order.getPrice(), order.getQty(), order.getValue(), order.getUserId());
@@ -27,6 +30,8 @@ public class TransactionServiceImpl implements TransactionService {
         return true;
     }
 
+    /* Process Transactions
+    This function calculates the standings profits / losses and and updates the transaction */
     @Override
     public void processTransactions(Transaction transaction) {
         LinkedList<String> codes = new LinkedList<String>();
@@ -82,16 +87,22 @@ public class TransactionServiceImpl implements TransactionService {
         }
     }
 
+    /* Get Transactions
+    Grab all transactions in the database */
     @Override
     public List<Transaction> getTransactions() {
         return tRepo.findAll();
     }
 
+    /* Get Transaction By User Id
+    Return back user specific transactions */
     @Override
     public List<Transaction> getTransactionsByUserId(String id) {
         return tRepo.findByUserId(id);
     }
 
+    /* Get Standings
+    Return back the profit and loss of the transactions for user */
     @Override
     public double getStandings(String id) {
         double result = 0.0;
