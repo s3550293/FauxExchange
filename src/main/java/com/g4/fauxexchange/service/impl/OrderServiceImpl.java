@@ -63,13 +63,17 @@ the usage of an enum.
                     return true;
                 }
             } else {
-                double uc = user.getWallet(order.getCode()).getValue();
-                double uqty = user.getWallet(order.getCode()).getQty();
-                if(uqty >= order.getQty()) {
-                    user.updateWallet(order.getCode(), currency.getRecentPrice(), uqty - order.getQty());
-                    userRepository.save(user);
-                    orderRepository.save(order);
-                    return true;
+                if(user.getWallet(order.getCode()) != null) {
+                    double uc = user.getWallet(order.getCode()).getValue();
+                    double uqty = user.getWallet(order.getCode()).getQty();
+                    if(uqty >= order.getQty()) {
+                        user.updateWallet(order.getCode(), currency.getRecentPrice(), uqty - order.getQty());
+                        userRepository.save(user);
+                        orderRepository.save(order);
+                        return true;
+                    }
+                } else {
+                    return false;
                 }
             }
 
@@ -123,7 +127,7 @@ TODO(Arnold): Remove hardcoded values
     }
 
     @Override
-    @Scheduled(fixedRate = 60000, initialDelay = 60000)
+    @Scheduled(fixedRate = 15000, initialDelay = 15000)
     public void processOrders() {
         System.out.println("- Processing Orders -");
         for(Currency currency : currencyRepository.findAll()) {
