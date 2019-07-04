@@ -94,6 +94,10 @@ function addData(update) {
         if (convertDate(jsonData[jsonData.length - 1].time) != Graphdata.labels[Graphdata.labels.length - 1]) {
             Graphdata.labels.push(convertDate(jsonData[jsonData.length - 1].time)),
                 Graphdata.datasets[0].data.push(jsonData[jsonData.length - 1].value)
+            if(Graphdata.datasets[0].data.length > 5000){
+                Graphdata.datasets[0].data.shift();
+                Graphdata.labels.shift();
+            }
             currencyGraph.update();
         }
     }
